@@ -37,6 +37,8 @@ function sendemail_verify($email, $verify_token)
     <h2> Kamu berhasil mendaftar dengan AksiKita</h2>
     <h5>Verifikasi email kamu untuk login pada link dibawah ini</h5>
     <br/><br/>
+    <a href='/user/register.php/verify-email.php/token=$verify_token'> Click Me </a>
+
     ";
 
     $mail->Body = $email_template;
@@ -71,7 +73,7 @@ if(isset($_POST['register_btn']))
     if(mysqli_num_rows($checkEmailQuery) > 0)
     {
         $_SESSION['status'] = "Email sudah terdaftar";
-        header('Location: register.php');
+        header('Location: register.php'); 
     } else {
 
         // Insert data user 
