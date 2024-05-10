@@ -31,14 +31,13 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>
-
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active"><a href="../index.html" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="how-it-works.html" class="nav-link">Cari Aksi</a></li>          
           <li class="nav-item"><a href="../about.html" class="nav-link">Tentang Kami</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">FAQ</a></li>
-          <li class="nav-item"><a href="user/register.php" class="nav-link">Login</a></li>    
+          <li class="nav-item"><a href="../user/register.php" class="nav-link">Login</a></li>    
         </ul>
       </div>
     </div>
@@ -47,7 +46,7 @@
   
   <div class="block-31" style="position: relative;">
     <div class="owl-carousel loop-block-31 ">
-      <div class="block-30 block-30-sm item" style="background-image: url('../assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+      <!-- <div class="block-30 block-30-sm item" style="background-image: url('../assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
         <div class="container">
           <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-7">
@@ -55,8 +54,7 @@
             </div>
           </div>
         </div>
-      </div>
-      
+      </div>       -->
     </div>
   </div>
   <div class="site-section fund-raisers">
@@ -71,19 +69,19 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8">
-            <div class="card-header">
+            <!-- <div class="card-header">
               <h5>Registration Form</h5>
-            </div>
+            </div> -->
             <div class="card-body">
               <form action="/user/registerCode.php" method="post">
                 <input type="hidden" name="user_status" value="user">
                 <div class="form-group mb-3">
                   <label for="">Nama Lengkap</label>
-                  <input type="text" name="nama" class="form-control"> 
+                  <input type="text" name="nama" class="form-control" placeholder="jhondoe" required> 
                 </div>
                 <div class="form-group mb-3">
                   <label for="">Email</label>
-                  <input type="text" name="email" class="form-control"> 
+                  <input type="text" name="email" class="form-control" placeholder="jhon@example.com" required> 
                 </div>
                 <div class="form-group mb-3">
                   <label for="">Jenis Kelamin</label>
@@ -97,11 +95,11 @@
                 </div>
                 <div class="form-group mb-3">
                   <label for="">Password</label>
-                  <input type="password" name="pass" class="form-control"> 
+                  <input type="password" name="pass" class="form-control" required> 
                 </div> 
                 <div class="form-group mb-3">
                   <label for="">Alamat</label>
-                  <input type="text" name="address" class="form-control"> 
+                  <input type="text" name="address" class="form-control" required > 
                 </div>
                 <div class="form-group">
                   <button type="submit" name="register_btn" class="btn btn-primary">Daftar Sekarang</button>
