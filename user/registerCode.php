@@ -66,7 +66,38 @@ if(isset($_POST['register_btn']))
 
     sendemail_verify($email, $verify_token);
     echo "sent or not?";
-    // Cek email terdaftar atau tidak
+
+    if (!empty($gender)) {
+        // Memeriksa dan menyimpan data ke database
+        if ($gender === 'Male' || $gender === 'Female') {
+            // Query untuk menyimpan data ke dalam database
+            $query = "INSERT INTO users(userName, userEmail, userGender, userPassword, userAddress, userStatus, verifyOtp)
+                      VALUES ('$name', '$email', '$gender', '$password', '$address', '$userStatus', '$verify_token')";
+
+            $query_run = mysqli_query($conn, $query);
+
+            if($query_run){
+                sendemail_verify("$email", "$verify_token");
+
+                $_SESSION['status'] = "Registrasi berhasil! Verifikasi alamat email anda.";
+                header("Location: register.php");
+            } else {
+                $_SESSION['status'] = "Registrasi gagal.";
+                header("Location: register.php");
+            }
+        } else {
+            // Jika nilai gender tidak valid
+            $_SESSION['status'] = "Error: Nilai gender tidak valid.";
+            header("Location: register.php");
+        }
+    } else {
+        // Jika gender tidak dipilih
+        $_SESSION['status'] = "Error: Gender harus dipilih.";
+        header("Location: register.php");
+    }
+} else {
+    // Jika tombol register tidak diklik, jalankan kode lainnya
+    // Contoh: Cek apakah email sudah terdaftar sebelumnya
     $checkEmail = "SELECT userEmail FROM users WHERE userEmail = '$email' LIMIT 1";
     $checkEmailQuery = mysqli_query($conn, $checkEmail);
 
@@ -75,28 +106,37 @@ if(isset($_POST['register_btn']))
         $_SESSION['status'] = "Email sudah terdaftar";
         header('Location: register.php'); 
     } else {
-
-        // Insert data user 
-        // $query = "INSERT INTO users(NULL ,userName, userEmail, userGender, userPassword, userAddress, userStatus, verifyOtp)
-        // VALUES ('$name', '$email', $gender', '$password', $address', '$userStatus', '$verify_token)";
-
-        $query = "INSERT INTO users(userName, userEmail, userGender, userPassword, userAddress, userStatus, verifyOtp)
-        VALUES ('$name', '$email', '$gender', '$password', '$address', '$userStatus', '$verify_token')";
-
-        $query_run = mysqli_query($conn, $query);
-
-        if($query_run){
-            sendemail_verify("$email", "$verify_token");
-
-            $_SESSION['status'] = "Registrasi berhasil! Verifikasi alamat email anda.";
-            header("Location: register.php");
-        } else {
-            $_SESSION['status'] = "Registrasi gagal.";
-            header("Location: register.php");
-        }
+        // Jika email belum terdaftar, lanjutkan kode lainnya seperti biasa
+        // Contoh: Tampilkan formulir pendaftaran
     }
-
 }
+
+    // // Cek email terdaftar atau tidak
+    // $checkEmail = "SELECT userEmail FROM users WHERE userEmail = '$email' LIMIT 1";
+    // $checkEmailQuery = mysqli_query($conn, $checkEmail);
+
+    // if(mysqli_num_rows($checkEmailQuery) > 0)
+    // {
+    //     $_SESSION['status'] = "Email sudah terdaftar";
+    //     header('Location: register.php'); 
+    // } else {
+
+    //     $query = "INSERT INTO users(userName, userEmail, userGender, userPassword, userAddress, userStatus, verifyOtp)
+    //     VALUES ('$name', '$email', '$gender', '$password', '$address', '$userStatus', '$verify_token')";
+
+    //     $query_run = mysqli_query($conn, $query);
+
+    //     if($query_run){
+    //         sendemail_verify("$email", "$verify_token");
+
+    //         $_SESSION['status'] = "Registrasi berhasil! Verifikasi alamat email anda.";
+    //         header("Location: register.php");
+    //     } else {
+    //         $_SESSION['status'] = "Registrasi gagal.";
+    //         header("Location: register.php");
+    //     }
+    // }
+
 
 
 ?>
