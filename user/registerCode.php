@@ -37,8 +37,7 @@ function sendemail_verify($email, $verify_token)
     <h2> Kamu berhasil mendaftar dengan AksiKita</h2>
     <h5>Verifikasi email kamu untuk login pada link dibawah ini</h5>
     <br/><br/>
-    <a href='/user/register.php/verify-email.php/token=$verify_token'> Click Me </a>
-
+    <a href='http://localhost:2121/user/verify-email.php?token=$verify_token'> Click Me </a>
     ";
 
     $mail->Body = $email_template;
@@ -67,76 +66,40 @@ if(isset($_POST['register_btn']))
     sendemail_verify($email, $verify_token);
     echo "sent or not?";
 
-    if (!empty($gender)) {
-        // Memeriksa dan menyimpan data ke database
-        if ($gender === 'Male' || $gender === 'Female') {
-            // Query untuk menyimpan data ke dalam database
-            $query = "INSERT INTO users(userName, userEmail, userGender, userPassword, userAddress, userStatus, verifyOtp)
-                      VALUES ('$name', '$email', '$gender', '$password', '$address', '$userStatus', '$verify_token')";
+    // Periksa apakah email sudah terdaftar sebelumnya
+    $checkEmailQuery = "SELECT userEmail FROM users WHERE userEmail = '$email' LIMIT 1";
+    $checkEmailResult = mysqli_query($conn, $checkEmailQuery);
 
-            $query_run = mysqli_query($conn, $query);
-
-            if($query_run){
-                sendemail_verify("$email", "$verify_token");
-
-                $_SESSION['status'] = "Registrasi berhasil! Verifikasi alamat email anda.";
-                header("Location: register.php");
-            } else {
-                $_SESSION['status'] = "Registrasi gagal.";
-                header("Location: register.php");
-            }
-        } else {
-            // Jika nilai gender tidak valid
-            $_SESSION['status'] = "Error: Nilai gender tidak valid.";
-            header("Location: register.php");
-        }
-    } else {
-        // Jika gender tidak dipilih
-        $_SESSION['status'] = "Error: Gender harus dipilih.";
-        header("Location: register.php");
-    }
-} else {
-    // Jika tombol register tidak diklik, jalankan kode lainnya
-    // Contoh: Cek apakah email sudah terdaftar sebelumnya
-    $checkEmail = "SELECT userEmail FROM users WHERE userEmail = '$email' LIMIT 1";
-    $checkEmailQuery = mysqli_query($conn, $checkEmail);
-
-    if(mysqli_num_rows($checkEmailQuery) > 0)
-    {
+    if(mysqli_num_rows($checkEmailResult) > 0) {
+        // Jika email sudah terdaftar, beri pesan kesalahan
         $_SESSION['status'] = "Email sudah terdaftar";
         header('Location: register.php'); 
+        exit(); // Hentikan eksekusi kode selanjutnya
+    }
+
+    // Validasi nilai gender
+    if (!empty($gender) && ($gender === 'Male' || $gender === 'Female')) {
+        // Query untuk menyimpan data ke dalam database
+        $query = "INSERT INTO users(userName, userEmail, userGender, userPassword, userAddress, userStatus, verifyOtp)
+                  VALUES ('$name', '$email', '$gender', '$password', '$address', '$userStatus', '$verify_token')";
+
+        // Jalankan query
+        if(mysqli_query($conn, $query)){
+            // Kirim email verifikasi
+            sendemail_verify($email, $verify_token);
+
+            $_SESSION['status'] = "Registrasi berhasil! <br> Periksa alamat email anda untuk verifikasi!";
+            header("Location: register.php");
+            exit(); // Hentikan eksekusi kode selanjutnya setelah mengalihkan pengguna
+        } else {
+            $_SESSION['status'] = "Registrasi gagal: " . mysqli_error($conn); // Tangkap pesan kesalahan MySQL
+            header("Location: register.php");
+            exit(); // Hentikan eksekusi kode selanjutnya setelah mengalihkan pengguna
+        }
     } else {
-        // Jika email belum terdaftar, lanjutkan kode lainnya seperti biasa
-        // Contoh: Tampilkan formulir pendaftaran
+        // Jika nilai gender tidak valid
+        $_SESSION['status'] = "Error: Nilai gender tidak valid.";
+        header("Location: register.php");
+        exit(); // Hentikan eksekusi kode selanjutnya setelah mengalihkan pengguna
     }
 }
-
-    // // Cek email terdaftar atau tidak
-    // $checkEmail = "SELECT userEmail FROM users WHERE userEmail = '$email' LIMIT 1";
-    // $checkEmailQuery = mysqli_query($conn, $checkEmail);
-
-    // if(mysqli_num_rows($checkEmailQuery) > 0)
-    // {
-    //     $_SESSION['status'] = "Email sudah terdaftar";
-    //     header('Location: register.php'); 
-    // } else {
-
-    //     $query = "INSERT INTO users(userName, userEmail, userGender, userPassword, userAddress, userStatus, verifyOtp)
-    //     VALUES ('$name', '$email', '$gender', '$password', '$address', '$userStatus', '$verify_token')";
-
-    //     $query_run = mysqli_query($conn, $query);
-
-    //     if($query_run){
-    //         sendemail_verify("$email", "$verify_token");
-
-    //         $_SESSION['status'] = "Registrasi berhasil! Verifikasi alamat email anda.";
-    //         header("Location: register.php");
-    //     } else {
-    //         $_SESSION['status'] = "Registrasi gagal.";
-    //         header("Location: register.php");
-    //     }
-    // }
-
-
-
-?>

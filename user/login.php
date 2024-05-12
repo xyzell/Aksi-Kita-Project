@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,7 +40,7 @@
           <li class="nav-item"><a href="how-it-works.html" class="nav-link">Cari Aksi</a></li>          
           <li class="nav-item"><a href="../about.html" class="nav-link">Tentang Kami</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">FAQ</a></li>
-          <li class="nav-item"><a href="../user/register.php" class="nav-link">Login</a></li>    
+          <li class="nav-item"><a href="../user/login.php" class="nav-link">Login</a></li>    
         </ul>
       </div>
     </div>
@@ -62,6 +65,17 @@
     <div class="row d-flex align-items-center justify-content-center h-100">
       <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
         <div class="container">
+          <?php
+            if(isset($_SESSION['status'])) 
+            {
+              ?>
+              <div class="alert alert-success text-center">
+                  <h5><?= $_SESSION['status'];?></h5>
+              </div>
+              <?php
+              unset($_SESSION['status']);
+            }
+          ?>
           <div class="row mb-3 justify-content-center">
             <div class="col-md-8 text-center">
               <h2>Masuk</h2>        
@@ -71,27 +85,27 @@
         <form>
           <!-- Email input -->
           <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="form1Example13">Email</label>
             <input type="email" id="form1Example13" class="form-control form-control-lg" />
-            <label class="form-label" for="form1Example13">Email address</label>
           </div>
 
           <!-- Password input -->
           <div data-mdb-input-init class="form-outline mb-4">
-            <input type="password" id="form1Example23" class="form-control form-control-lg" />
             <label class="form-label" for="form1Example23">Password</label>
+            <input type="password" id="form1Example23" class="form-control form-control-lg" />
           </div>
 
           <div class="d-flex justify-content-around align-items-center mb-4">
             <!-- Checkbox -->
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-              <label class="form-check-label" for="form1Example3"> Remember me </label>
+              <label class="form-check-label" for="form1Example3"> Ingat Saya </label>
             </div>
-            <a href="#!">Forgot password?</a>
+            <a href="#!">Lupa Password?</a>
           </div>
 
           <!-- Submit button -->
-          <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Sign in</button>
+          <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Login</button>
         </form>
       </div>
     </div>
