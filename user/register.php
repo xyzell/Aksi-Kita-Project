@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,7 +41,7 @@
           <li class="nav-item"><a href="how-it-works.html" class="nav-link">Cari Aksi</a></li>          
           <li class="nav-item"><a href="../about.html" class="nav-link">Tentang Kami</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">FAQ</a></li>
-          <li class="nav-item"><a href="../user/register.php" class="nav-link">Login</a></li>    
+          <li class="nav-item"><a href="../user/login.php" class="nav-link">Login</a></li>    
         </ul>
       </div>
     </div>
@@ -59,6 +63,21 @@
   </div>
   <div class="site-section fund-raisers">
     <div class="container">
+    <div class="row mb-3 justify-content-center">
+        <div class="alert">
+          <?php
+              if(isset($_SESSION['status'])) 
+              {
+                ?>
+                <div class="alert alert-primary text-center">
+                    <h5><?= $_SESSION['status'];?></h5>
+                </div>
+                <?php
+                unset($_SESSION['status']);
+              }
+          ?>
+        </div>
+    </div>
       <div class="row mb-3 justify-content-center">
         <div class="col-md-8 text-center">
           <h2>Formulir Registrasi</h2>        
