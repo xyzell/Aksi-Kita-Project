@@ -1,6 +1,7 @@
 <?php
   session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -53,65 +54,82 @@
         <div class="container">
           <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-7">
-              <h2 class="heading">Masuk ke AksiKita</h2>
+              <h2 class="heading">Daftar ke <br> Aksi Kita</h2>
             </div>
           </div>
         </div>
       </div>      
     </div>
   </div>
-  <section class="vh-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex align-items-center justify-content-center h-100">
-      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-        <div class="container">
+  <div class="site-section fund-raisers">
+    <div class="container">
+    <div class="row mb-3 justify-content-center">
+        <div class="alert">
           <?php
-            if(isset($_SESSION['status'])) 
-            {
-              ?>
-              <div class="alert alert-success text-center">
-                  <h5><?= $_SESSION['status'];?></h5>
-              </div>
-              <?php
-              unset($_SESSION['status']);
-            }
+              if(isset($_SESSION['status'])) 
+              {
+                ?>
+                <div class="alert alert-primary text-center">
+                    <h5><?= $_SESSION['status'];?></h5>
+                </div>
+                <?php
+                unset($_SESSION['status']);
+              }
           ?>
-          <div class="row mb-3 justify-content-center">
-            <div class="col-md-8 text-center">
-              <h2>Masuk</h2>        
-            </div>        
-          </div>
         </div>
-        <form>
-          <!-- Email input -->
-          <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="form1Example13">Email</label>
-            <input type="email" id="form1Example13" class="form-control form-control-lg" />
-          </div>
-
-          <!-- Password input -->
-          <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="form1Example23">Password</label>
-            <input type="password" id="form1Example23" class="form-control form-control-lg" />
-          </div>
-
-          <div class="d-flex justify-content-around align-items-center mb-4">
-            <!-- Checkbox -->
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-              <label class="form-check-label" for="form1Example3"> Ingat Saya </label>
-            </div>
-            <a href="#!">Lupa Password?</a>
-          </div>
-
-          <!-- Submit button -->
-          <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Login</button>
-        </form>
+    </div>
+      <div class="row mb-3 justify-content-center">
+        <div class="col-md-8 text-center">
+          <h2>Formulir Registrasi</h2>        
+        </div>        
       </div>
     </div>
-  </div>
-</section> 
-<!-- .section -->
+    <div class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <!-- <div class="card-header">
+              <h5>Registration Form</h5>
+            </div> -->
+            <div class="card-body">
+              <form action="/user/registerCode.php" method="post">
+                <input type="hidden" name="user_status" value="user">
+                <div class="form-group mb-3">
+                  <label for="">Nama Lengkap</label>
+                  <input type="text" name="nama" class="form-control" placeholder="jhondoe" required> 
+                </div>
+                <div class="form-group mb-3">
+                  <label for="">Email</label>
+                  <input type="text" name="email" class="form-control" placeholder="jhon@example.com" required> 
+                </div>
+                <div class="form-group mb-3">
+                  <div class="select-box">                    
+                    <label for="">Jenis Kelamin</label>
+                    <select name="gender" id="">
+                      <option value="" disabled selected>...</option>
+                      <option value="Male">Laki-laki</option>
+                      <option value="Female">Perempuan</option>
+                    </select>
+                  </div>                
+                </div>
+                <div class="form-group mb-3">
+                  <label for="">Password</label>
+                  <input type="password" name="pass" class="form-control" required> 
+                </div> 
+                <div class="form-group mb-3">
+                  <label for="">Alamat</label>
+                  <input type="text" name="address" class="form-control" required > 
+                </div>
+                <div class="form-group">
+                  <button type="submit" name="register_btn" class="btn btn-primary">Daftar Sekarang</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .section -->
 
   <div class="featured-section overlay-color-2" style="background-image: url('../assets/images/bg_2.jpg');">
     

@@ -2010,3 +2010,35 @@ flex: 1;
 height: 1px;
 background: #eee;
 }
+
+/* Style ikon dari Font Awesome */
+.fa-solid {
+  font-size: 24px;
+}
+
+/* Tambahkan style untuk grid besar horizontal */
+.icon-grid {
+  display: flex;
+  justify-content: center;
+}
+
+/* Tambahkan margin antara ikon */
+.icon-grid .btn {
+  margin: 0 10px;
+  border-radius: 8px;
+}
+
+/* Style ikon dari Font Awesome */
+.fa-solid {
+  font-size: 36px;
+}
+
+.modal-body .btn i {
+  display: block; /* Menempatkan ikon di atas teks */
+  margin-bottom: 5px; /* Memberikan jarak antara ikon dan teks */
+}
+
+.modal-body .btn span {
+  font-family: "Overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
