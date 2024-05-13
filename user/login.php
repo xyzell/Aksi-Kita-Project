@@ -103,9 +103,11 @@
             </div>
             <a href="#!">Lupa Password?</a>
           </div>
-
           <!-- Submit button -->
           <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Login</button>
+          <div class="text-center mt-3">
+              Belum punya akun? <a href="/user/register.php" class="register-link">Ayo Daftar!</a>
+          </div>
         </form>
       </div>
     </div>
