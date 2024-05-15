@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>AksiKita &mdash; Website Template by Colorlib</title>
+    <title>AksiKita &mdash;Go for action!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -80,7 +80,7 @@
     </div>
       <div class="row mb-3 justify-content-center">
         <div class="col-md-8 text-center">
-          <h2>Formulir Registrasi</h2>        
+          <h2>Formulir Registrasi Organisasi</h2>        
         </div>        
       </div>
     </div>
@@ -92,36 +92,62 @@
               <h5>Registration Form</h5>
             </div> -->
             <div class="card-body">
-              <form action="/user/registerCode.php" method="post">
+              <form action="/organizer/registerCode.php" method="post">
                 <input type="hidden" name="user_status" value="user">
                 <div class="form-group mb-3">
-                  <label for="">Nama Lengkap</label>
+                  <label for="">Nama Organisasi</label>
                   <input type="text" name="nama" class="form-control" placeholder="jhondoe" required> 
                 </div>
                 <div class="form-group mb-3">
-                  <label for="">Email</label>
+                  <label for="">Email Organisasi</label>
                   <input type="text" name="email" class="form-control" placeholder="jhon@example.com" required> 
                 </div>
                 <div class="form-group mb-3">
-                  <div class="select-box">                    
-                    <label for="">Jenis Kelamin</label>
-                    <select name="gender" id="">
-                      <option value="" disabled selected>...</option>
-                      <option value="Male">Laki-laki</option>
-                      <option value="Female">Perempuan</option>
-                    </select>
-                  </div>                
+                  <label for="">No. Telepon Organisasi</label>
+                  <input type="text" name="pnumber" class="form-control" placeholder="0821XXXXXX" required> 
                 </div>
                 <div class="form-group mb-3">
                   <label for="">Password</label>
                   <input type="password" name="pass" class="form-control" required> 
                 </div> 
                 <div class="form-group mb-3">
-                  <label for="">Alamat</label>
+                  <label for="">Konfirmasi Password</label>
+                  <input type="password" name="passConfirm" class="form-control" required> 
+                </div> 
+                <div class="form-group mb-3">
+                  <div class="select-box">                    
+                    <label for="">Tipe Organisasi</label>
+                    <select name="orgTipe" id="">
+                      <option value="" disabled selected>...</option>
+                      <option value="">Yayasan</option>
+                      <option value="">Koperasi</option>
+                      <option value="">Perusahaan</option>
+                      <option value="">Umum</option>
+                      <option value="">Komunitas</option>
+                      <option value="">Lembaga Pemerintah</option>
+                      <option value="">Perkumpulan</option>
+                      <option value="">Lain-lain</option>
+                    </select>
+                  </div>                
+                </div>
+                <div class="form-group mb-3">
+                  <label for="">Deskripsi Organisasi</label>
+                  <textarea type="text" name="desc" class="form-control" rows="5" placeholder="Deskripsi Organisasi" required></textarea> 
+                </div>
+                <div class="form-group mb-3">
+                  <label for="">Alamat Organisasi</label>
                   <input type="text" name="address" class="form-control" required > 
                 </div>
+                <div class="form-group mb-3">
+                  <label for="">Website Organisasi</label>
+                  <input type="text" name="website" class="form-control" required > 
+                </div>
+                <div class="form-group mb-3">
+                <label for="logo_organisasi">Logo Organisasi</label>
+                <input type="file" name="logo_organisasi" class="form-control-file" accept="image/*" required>
+                </div>
                 <div class="form-group">
-                  <button type="submit" name="register_btn" class="btn btn-primary">Daftar Sekarang</button>
+                  <button type="submit" name="registerBtn" class="btn btn-primary">Daftar Sekarang</button>
                 </div>
               </form>
             </div>
@@ -131,45 +157,7 @@
     </div>
   </div> <!-- .section -->
 
-  <div class="featured-section overlay-color-2" style="background-image: url('../assets/images/bg_2.jpg');">
-    
-    <div class="container">
-      <div class="row">
-
-        <div class="col-md-6 mb-5 mb-md-0">
-          <img src="../assets/images/bg_2.jpg" alt="Image placeholder" class="img-fluid">
-        </div>
-
-        <div class="col-md-6 pl-md-5">
-
-          <div class="form-volunteer">
-            
-            <h2>Be A Volunteer Today</h2>
-            <form action="#" method="post">
-              <div class="form-group">
-                <!-- <label for="name">Name</label> -->
-                <input type="text" class="form-control py-2" id="name" placeholder="Enter your name">
-              </div>
-              <div class="form-group">
-                <!-- <label for="email">Email</label> -->
-                <input type="text" class="form-control py-2" id="email" placeholder="Enter your email">
-              </div>
-              <div class="form-group">
-                <!-- <label for="v_message">Email</label> -->
-                <textarea name="v_message" id="" cols="30" rows="3" class="form-control py-2" placeholder="Write your message"></textarea>
-                <!-- <input type="text" class="form-control py-2" id="email"> -->
-              </div>
-              <div class="form-group">
-                <input type="submit" class="btn btn-white px-5 py-2" value="Send">
-              </div>
-            </form>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-
-  </div> <!-- .featured-donate -->
+ 
 
   <footer class="footer">
     <div class="container">
