@@ -2011,14 +2011,14 @@ height: 1px;
 background: #eee;
 }
 
-* {
-  padding: 0;
+.all-page {
+    padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-section {
-    min-height: 70vh;
+.section-question {
+    min-height: 60vh;
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -2059,7 +2059,7 @@ section {
     padding-top: 1rem;
     line-height: 1.6;
     font-size: 1.4rem;
-    color: #fdef2c;
+    color: #daf109;
 }
 
 .faq.active .answer{
