@@ -19,14 +19,14 @@ function sendemail_verify($email, $verify_token)
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
 
     $mail->Host       = 'smtp.gmail.com';                       //Set the SMTP server to send through
-    $mail->Username   = 'alif.billah122014@gmail.com';          //SMTP username
-    $mail->Password   = 'ijkr ynzb bghy njdk';                  //SMTP password
+    $mail->Username   = 'aksik1taaa@gmail.com';                 //SMTP username
+    $mail->Password   = 'mzpj jnsa yvrv ancx';                  //SMTP password
     
     $mail->SMTPSecure = "tls";                                  //Enable implicit TLS encryption
     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('alif.billah122014@gmail.com');
+    $mail->setFrom('aksik1taaa@gmail.com');
     $mail->addAddress($email);                                  //Add a recipient
 
     //Content
@@ -37,7 +37,7 @@ function sendemail_verify($email, $verify_token)
     <h2> Kamu berhasil mendaftar dengan AksiKita</h2>
     <h5>Verifikasi email kamu untuk login pada link dibawah ini</h5>
     <br/><br/>
-    <a href='http://localhost:2121/user/verify-email.php?token=$verify_token'> Click Me </a>
+    <a href='http://localhost:3000/user/verify-email.php?token=$verify_token'> Click Me </a>
     ";
 
     $mail->Body = $email_template;
@@ -50,7 +50,6 @@ function sendemail_verify($email, $verify_token)
     }
     // echo "Message has been sent";
     
-
 }
 
 if(isset($_POST['register_btn']))
@@ -58,7 +57,7 @@ if(isset($_POST['register_btn']))
     $name = $_POST['nama'];
     $email = $_POST['email'];
     $gender = $_POST['gender'];
-    $password = $_POST['pass'];
+    $password = md5($_POST['pass']);
     $address = $_POST['address'];
     $userStatus = $_POST['user_status'];
     $verify_token = md5(rand());

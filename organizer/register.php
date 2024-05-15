@@ -1,51 +1,11 @@
-<!-- <?php
+<?php
   session_start();
-  
-  include('server/connection.php');
+?>
 
-    if (isset($_SESSION['logged_in'])) {
-        header('location: account.php');
-        exit;
-    }
-
-    if (isset($_POST['login_btn'])) {
-        $email = $_POST['email'];
-        $password = md5($_POST['pass']);
-
-        $query = "SELECT userName, userEmail, userGender, userPassword, userAddress, userStatus, verifyOtp FROM users WHERE email = ? AND pass = ? LIMIT 1";
-
-        $stmt_login = $conn->prepare($query);
-        $stmt_login->bind_param('ss', $email, $password);
-        
-        if ($stmt_login->execute()) {
-            $stmt_login->bind_result($name, $email, $gender, $password, $address, $userStatus, $verify_token);
-            $stmt_login->store_result();
-
-            if ($stmt_login->num_rows() == 1) {
-                $stmt_login->fetch();
-
-                $_SESSION['user_id'] = $user_id;
-                $_SESSION['user_name'] = $user_name;
-                $_SESSION['user_email'] = $user_email;
-                $_SESSION['user_phone'] = $user_phone;
-                $_SESSION['user_address'] = $user_address;
-                $_SESSION['user_city'] = $user_city;
-                $_SESSION['user_photo'] = $user_photo;
-                $_SESSION['logged_in'] = true;
-
-                header('location: account.php?message=Logged in successfully');
-            } else {
-                header('location: login.php?error=Could not verify your account');
-            }
-        } else {          
-            header('location: login.php?error=Something went wrong!');
-        }
-    }
-?>  -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>AksiKita &mdash; Website Template by Colorlib</title>
+    <title>AksiKita &mdash;Go for action!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -64,7 +24,6 @@
 
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="https://kit.fontawesome.com/e1612437fd.js" crossorigin="anonymous"></script>
 
   </head>
   <body>
@@ -82,31 +41,12 @@
           <li class="nav-item"><a href="how-it-works.html" class="nav-link">Cari Aksi</a></li>          
           <li class="nav-item"><a href="../about.html" class="nav-link">Tentang Kami</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">FAQ</a></li>
-          <li class="nav-item"><a href="user/login.php" class="nav-link" data-toggle="modal" data-target="#loginModal" id="loginButton">Login</a></li>           
+          <li class="nav-item"><a href="../user/login.php" class="nav-link">Login</a></li>    
         </ul>
       </div>
     </div>
   </nav>
   <!-- END nav -->
-
-  <!-- START modal -->
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="loginModalLabel">Pilih Jenis Login</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body icon-grid">
-          <button type="button" class="btn btn-primary btn-block" onclick="loginAsUser()"><i class="fa-solid fa-user"></i><span>User</span></button>
-          <button type="button" class="btn btn-primary btn-block" onclick="loginAsOrganizer()"><i class="fa-solid fa-landmark"></i><span>Organizer</span></button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- END modal -->
   
   <div class="block-31" style="position: relative;">
     <div class="owl-carousel loop-block-31 ">
@@ -114,107 +54,110 @@
         <div class="container">
           <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-7">
-              <h2 class="heading">Masuk ke Aksi Kita</h2>
+              <h2 class="heading">Daftar ke <br> Aksi Kita</h2>
             </div>
           </div>
         </div>
       </div>      
     </div>
   </div>
-  <section class="vh-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex align-items-center justify-content-center">
-      <div class="col-md-7 col-lg-5 col-xl-5 justify-content-center">
-        <div class="container">
-          <?php
-            if(isset($_SESSION['status'])) 
-            {
-              ?>
-              <div class="alert alert-success text-center">
-                  <h5><?= $_SESSION['status'];?></h5>
-              </div>
-              <?php
-              unset($_SESSION['status']);
-            }
-          ?>
-          <div class="row mb-3 justify-content-center">
-            <div class="col-md-8 text-center">
-              <h2>Masuk</h2>        
-            </div>        
-          </div>
-        </div>
-        <form>
-          <!-- Email input -->
-          <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="form1Example13">Email</label>
-            <input type="email" id="form1Example13" class="form-control form-control-lg" />
-          </div>
-
-          <!-- Password input -->
-          <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="form1Example23">Password</label>
-            <input type="password" id="form1Example23" class="form-control form-control-lg" />
-          </div>
-
-          <div class="d-flex justify-content-around align-items-center mb-4">
-            <!-- Checkbox -->
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-              <label class="form-check-label" for="form1Example3"> Ingat Saya </label>
-            </div>
-            <a href="#!">Lupa Password?</a>
-          </div>
-          <!-- Submit button -->
-          <button type="submit" id="login_btn" name="login_btn" value="login" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Login</button>
-          <div class="text-center mt-3">
-              Belum punya akun? <a href="/user/register.php" class="register-link">Ayo Daftar!</a>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section> 
-<!-- .section -->
-
-  <div class="featured-section overlay-color-2" style="background-image: url('../assets/images/bg_2.jpg');">
-    
+  <div class="site-section fund-raisers">
     <div class="container">
-      <div class="row">
-
-        <div class="col-md-6 mb-5 mb-md-0">
-          <img src="../assets/images/bg_2.jpg" alt="Image placeholder" class="img-fluid">
+    <div class="row mb-3 justify-content-center">
+        <div class="alert">
+          <?php
+              if(isset($_SESSION['status'])) 
+              {
+                ?>
+                <div class="alert alert-primary text-center">
+                    <h5><?= $_SESSION['status'];?></h5>
+                </div>
+                <?php
+                unset($_SESSION['status']);
+              }
+          ?>
         </div>
-
-        <div class="col-md-6 pl-md-5">
-
-          <div class="form-volunteer">
-            
-            <h2>Be A Volunteer Today</h2>
-            <form action="#" method="post">
-              <div class="form-group">
-                <!-- <label for="name">Name</label> -->
-                <input type="text" class="form-control py-2" id="name" placeholder="Enter your name">
-              </div>
-              <div class="form-group">
-                <!-- <label for="email">Email</label> -->
-                <input type="text" class="form-control py-2" id="email" placeholder="Enter your email">
-              </div>
-              <div class="form-group">
-                <!-- <label for="v_message">Email</label> -->
-                <textarea name="v_message" id="" cols="30" rows="3" class="form-control py-2" placeholder="Write your message"></textarea>
-                <!-- <input type="text" class="form-control py-2" id="email"> -->
-              </div>
-              <div class="form-group">
-                <input type="submit" class="btn btn-white px-5 py-2" value="Send">
-              </div>
-            </form>
-          </div>
-        </div>
-        
+    </div>
+      <div class="row mb-3 justify-content-center">
+        <div class="col-md-8 text-center">
+          <h2>Formulir Registrasi Organisasi</h2>        
+        </div>        
       </div>
     </div>
+    <div class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <!-- <div class="card-header">
+              <h5>Registration Form</h5>
+            </div> -->
+            <div class="card-body">
+              <form action="/organizer/registerCode.php" method="post">
+                <input type="hidden" name="user_status" value="user">
+                <div class="form-group mb-3">
+                  <label for="">Nama Organisasi</label>
+                  <input type="text" name="nama" class="form-control" placeholder="jhondoe" required> 
+                </div>
+                <div class="form-group mb-3">
+                  <label for="">Email Organisasi</label>
+                  <input type="text" name="email" class="form-control" placeholder="jhon@example.com" required> 
+                </div>
+                <div class="form-group mb-3">
+                  <label for="">No. Telepon Organisasi</label>
+                  <input type="text" name="pnumber" class="form-control" placeholder="0821XXXXXX" required> 
+                </div>
+                <div class="form-group mb-3">
+                  <label for="">Password</label>
+                  <input type="password" name="pass" class="form-control" required> 
+                </div> 
+                <div class="form-group mb-3">
+                  <label for="">Konfirmasi Password</label>
+                  <input type="password" name="passConfirm" class="form-control" required> 
+                </div> 
+                <div class="form-group mb-3">
+                  <div class="select-box">                    
+                    <label for="">Tipe Organisasi</label>
+                    <select name="orgTipe" id="">
+                      <option value="" disabled selected>...</option>
+                      <option value="">Yayasan</option>
+                      <option value="">Koperasi</option>
+                      <option value="">Perusahaan</option>
+                      <option value="">Umum</option>
+                      <option value="">Komunitas</option>
+                      <option value="">Lembaga Pemerintah</option>
+                      <option value="">Perkumpulan</option>
+                      <option value="">Lain-lain</option>
+                    </select>
+                  </div>                
+                </div>
+                <div class="form-group mb-3">
+                  <label for="">Deskripsi Organisasi</label>
+                  <textarea type="text" name="desc" class="form-control" rows="5" placeholder="Deskripsi Organisasi" required></textarea> 
+                </div>
+                <div class="form-group mb-3">
+                  <label for="">Alamat Organisasi</label>
+                  <input type="text" name="address" class="form-control" required > 
+                </div>
+                <div class="form-group mb-3">
+                  <label for="">Website Organisasi</label>
+                  <input type="text" name="website" class="form-control" required > 
+                </div>
+                <div class="form-group mb-3">
+                <label for="logo_organisasi">Logo Organisasi</label>
+                <input type="file" name="logo_organisasi" class="form-control-file" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                  <button type="submit" name="registerBtn" class="btn btn-primary">Daftar Sekarang</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .section -->
 
-  </div> <!-- .featured-donate -->
+ 
 
   <footer class="footer">
     <div class="container">
@@ -305,25 +248,5 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="../assets/js/google-map.js"></script>
   <script src="../assets/js/main.js"></script>
-  <script>
-    function loginAsUser() {
-      // Redirect or perform actions for user login
-      window.location.href = "user/login.php";
-    }
-
-    function loginAsOrganizer() {
-      // Redirect or perform actions for organizer login
-      // Example: window.location.href = "organizer/login.php";
-      window.location.href = "../organizer/register.php";
-      // alert("Fitur ini belum tersedia");
-    }
-  </script>
-  <script>
-    $(document).ready(function(){
-      $("#loginButton").click(function(){
-        $("#loginModal").modal();
-      });
-    });
-  </script>
   </body>
 </html>

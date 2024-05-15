@@ -1980,3 +1980,69 @@ textarea.form-control {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
   
+/* Register CSS */
+
+.select-box {
+  position: relative;
+  width: 100%;
+}
+
+.select-box select {
+  width: 100%;
+  height: 38px; /* Sesuaikan dengan tinggi input */
+  padding: 6px 12px; /* Sesuaikan dengan padding input */
+  font-size: 14px; /* Sesuaikan dengan font-size input */
+  border: 1px solid #ced4da; /* Warna border input */
+  border-radius: 4px; /* Sudut border input */
+  box-sizing: border-box;
+
+}
+
+.form-group.mb-3 input {
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+
+/* Style ikon dari Font Awesome */
+.fa-solid {
+  font-size: 24px;
+}
+
+/* Tambahkan style untuk grid besar horizontal */
+.icon-grid {
+  display: flex;
+  justify-content: center;
+}
+
+/* Tambahkan margin antara ikon */
+.icon-grid .btn {
+  margin: 0 10px;
+  border-radius: 8px;
+}
+
+/* Style ikon dari Font Awesome */
+.fa-solid {
+  font-size: 36px;
+}
+
+.modal-body .btn i {
+  display: block; /* Menempatkan ikon di atas teks */
+  margin-bottom: 5px; /* Memberikan jarak antara ikon dan teks */
+}
+
+.modal-body .btn span {
+  font-family: "Overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.register-link {
+  color: #333; /* Warna teks */
+  font-size: 14px; /* Ukuran font */
+}
