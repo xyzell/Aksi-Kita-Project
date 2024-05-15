@@ -1,6 +1,47 @@
-<?php
+<!-- <?php
   session_start();
-?>
+  
+  include('server/connection.php');
+
+    if (isset($_SESSION['logged_in'])) {
+        header('location: account.php');
+        exit;
+    }
+
+    if (isset($_POST['login_btn'])) {
+        $email = $_POST['email'];
+        $password = md5($_POST['pass']);
+
+        $query = "SELECT userName, userEmail, userGender, userPassword, userAddress, userStatus, verifyOtp FROM users WHERE email = ? AND pass = ? LIMIT 1";
+
+        $stmt_login = $conn->prepare($query);
+        $stmt_login->bind_param('ss', $email, $password);
+        
+        if ($stmt_login->execute()) {
+            $stmt_login->bind_result($name, $email, $gender, $password, $address, $userStatus, $verify_token);
+            $stmt_login->store_result();
+
+            if ($stmt_login->num_rows() == 1) {
+                $stmt_login->fetch();
+
+                $_SESSION['user_id'] = $user_id;
+                $_SESSION['user_name'] = $user_name;
+                $_SESSION['user_email'] = $user_email;
+                $_SESSION['user_phone'] = $user_phone;
+                $_SESSION['user_address'] = $user_address;
+                $_SESSION['user_city'] = $user_city;
+                $_SESSION['user_photo'] = $user_photo;
+                $_SESSION['logged_in'] = true;
+
+                header('location: account.php?message=Logged in successfully');
+            } else {
+                header('location: login.php?error=Could not verify your account');
+            }
+        } else {          
+            header('location: login.php?error=Something went wrong!');
+        }
+    }
+?>  -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,6 +64,7 @@
 
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://kit.fontawesome.com/e1612437fd.js" crossorigin="anonymous"></script>
 
   </head>
   <body>
@@ -40,12 +82,31 @@
           <li class="nav-item"><a href="how-it-works.html" class="nav-link">Cari Aksi</a></li>          
           <li class="nav-item"><a href="../about.html" class="nav-link">Tentang Kami</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">FAQ</a></li>
-          <li class="nav-item"><a href="../user/login.php" class="nav-link">Login</a></li>    
+          <li class="nav-item"><a href="user/login.php" class="nav-link" data-toggle="modal" data-target="#loginModal" id="loginButton">Login</a></li>           
         </ul>
       </div>
     </div>
   </nav>
   <!-- END nav -->
+
+  <!-- START modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Pilih Jenis Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body icon-grid">
+          <button type="button" class="btn btn-primary btn-block" onclick="loginAsUser()"><i class="fa-solid fa-user"></i><span>User</span></button>
+          <button type="button" class="btn btn-primary btn-block" onclick="loginAsOrganizer()"><i class="fa-solid fa-landmark"></i><span>Organizer</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END modal -->
   
   <div class="block-31" style="position: relative;">
     <div class="owl-carousel loop-block-31 ">
@@ -53,7 +114,7 @@
         <div class="container">
           <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-7">
-              <h2 class="heading">Masuk ke AksiKita</h2>
+              <h2 class="heading">Masuk ke Aksi Kita</h2>
             </div>
           </div>
         </div>
@@ -62,8 +123,8 @@
   </div>
   <section class="vh-100">
   <div class="container py-5 h-100">
-    <div class="row d-flex align-items-center justify-content-center h-100">
-      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="col-md-7 col-lg-5 col-xl-5 justify-content-center">
         <div class="container">
           <?php
             if(isset($_SESSION['status'])) 
@@ -104,7 +165,7 @@
             <a href="#!">Lupa Password?</a>
           </div>
           <!-- Submit button -->
-          <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Login</button>
+          <button type="submit" id="login_btn" name="login_btn" value="login" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Login</button>
           <div class="text-center mt-3">
               Belum punya akun? <a href="/user/register.php" class="register-link">Ayo Daftar!</a>
           </div>
@@ -244,5 +305,25 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="../assets/js/google-map.js"></script>
   <script src="../assets/js/main.js"></script>
+  <script>
+    function loginAsUser() {
+      // Redirect or perform actions for user login
+      window.location.href = "user/login.php";
+    }
+
+    function loginAsOrganizer() {
+      // Redirect or perform actions for organizer login
+      // Example: window.location.href = "organizer/login.php";
+      window.location.href = "../organizer/register.php";
+      // alert("Fitur ini belum tersedia");
+    }
+  </script>
+  <script>
+    $(document).ready(function(){
+      $("#loginButton").click(function(){
+        $("#loginModal").modal();
+      });
+    });
+  </script>
   </body>
 </html>

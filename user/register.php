@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>AksiKita &mdash; Website Template by Colorlib</title>
+    <title>AksiKita &mdash; Go for action!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -84,6 +84,7 @@
         </div>        
       </div>
     </div>
+    </div>
     <div class="py-5">
       <div class="container">
         <div class="row justify-content-center">
@@ -96,11 +97,11 @@
                 <input type="hidden" name="user_status" value="user">
                 <div class="form-group mb-3">
                   <label for="">Nama Lengkap</label>
-                  <input type="text" name="nama" class="form-control" placeholder="jhondoe" required> 
+                  <input type="text" name="nama" class="form-control" placeholder="john doe" required> 
                 </div>
                 <div class="form-group mb-3">
                   <label for="">Email</label>
-                  <input type="text" name="email" class="form-control" placeholder="jhon@example.com" required> 
+                  <input type="text" name="email" class="form-control" placeholder="john@example.com" required> 
                 </div>
                 <div class="form-group mb-3">
                   <div class="select-box">                    
