@@ -1,33 +1,3 @@
-/* Register CSS */
-
-.select-box {
-    position: relative;
-    width: 100%;
-  }
-  
-  .select-box select {
-    width: 100%;
-    height: 38px; /* Sesuaikan dengan tinggi input */
-    padding: 6px 12px; /* Sesuaikan dengan padding input */
-    font-size: 14px; /* Sesuaikan dengan font-size input */
-    border: 1px solid #ced4da; /* Warna border input */
-    border-radius: 4px; /* Sudut border input */
-    box-sizing: border-box;
-  
-  }
-  
-  .form-group.mb-3 input {
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .divider:after,
-  .divider:before {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #eee;
-  }
   
   .all-page {
       padding: 0;
