@@ -31,62 +31,49 @@
   <!-- START Navbar Section -->
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-      <a class="navbar-brand" href="../index.html"><div class="logo-header"><img src="/assets/images/LongLogo.png" alt="" width="126" height="45"></div></a>
+      <a class="navbar-brand" href="../index.html"><div class="logo-header"><img src="/assets/images/logo/whiteLogo.png" alt="" width="126" height="45"></div></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="../index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="how-it-works.html" class="nav-link">Cari Aksi</a></li>          
           <li class="nav-item"><a href="../about.html" class="nav-link">Tentang Kami</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">FAQ</a></li>
-          <li class="nav-item"><a href="../user/login.php" class="nav-link">Login</a></li>    
+          <li class="nav-item active"><a href="../user/login.php" class="nav-link">Login</a></li>    
         </ul>
       </div>
     </div>
   </nav>
   <!-- END nav -->
   
-  <div class="block-31" style="position: relative;">
-    <div class="owl-carousel loop-block-31 ">
-      <div class="block-30 block-30-sm item" style="background-image: url('../assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-        <div class="container">
-          <div class="row align-items-center justify-content-center text-center">
-            <div class="col-md-7">
-              <h2 class="heading">Daftar ke <br> Aksi Kita</h2>
-            </div>
-          </div>
-        </div>
-      </div>      
-    </div>
-  </div>
   <div class="site-section fund-raisers">
     <div class="container">
-    <div class="row mb-3 justify-content-center">
-        <div class="alert">
-          <?php
-              if(isset($_SESSION['status'])) 
-              {
-                ?>
-                <div class="alert alert-primary text-center">
-                    <h5><?= $_SESSION['status'];?></h5>
-                </div>
-                <?php
-                unset($_SESSION['status']);
-              }
-          ?>
-        </div>
-    </div>
-      <div class="row mb-3 justify-content-center">
+      <div class="row mb-3 justify-content-center" style="margin-top: 80px;">
+          <div class="alert">
+            <?php
+                if(isset($_SESSION['status'])) 
+                {
+                  ?>
+                  <div class="alert alert-primary text-center">
+                      <h5><?= $_SESSION['status'];?></h5>
+                  </div>
+                  <?php
+                  unset($_SESSION['status']);
+                }
+            ?>
+          </div>
+      </div>
+      <div class="row mb-3 justify-content-center" style="padding-top: 10px;">
         <div class="col-md-8 text-center">
-          <h2>Formulir Registrasi</h2>        
+          <h2>FORMULIR REGISTRASI USER</h2>        
         </div>        
       </div>
     </div>
     </div>
     <div class="py-5">
-      <div class="container">
+      <div class="container" style="margin-top: -120px;">
         <div class="row justify-content-center">
           <div class="col-md-8">
             <!-- <div class="card-header">
@@ -97,11 +84,11 @@
                 <input type="hidden" name="user_status" value="user">
                 <div class="form-group mb-3">
                   <label for="">Nama Lengkap</label>
-                  <input type="text" name="nama" class="form-control" placeholder="john doe" required> 
+                  <input type="text" name="nama" class="form-control" placeholder="John Doe" required> 
                 </div>
                 <div class="form-group mb-3">
                   <label for="">Email</label>
-                  <input type="text" name="email" class="form-control" placeholder="john@example.com" required> 
+                  <input type="text" name="email" class="form-control" placeholder="John@example.com" required> 
                 </div>
                 <div class="form-group mb-3">
                   <div class="select-box">                    
@@ -115,11 +102,17 @@
                 </div>
                 <div class="form-group mb-3">
                   <label for="">Password</label>
-                  <input type="password" name="pass" class="form-control" required> 
+                  <input type="password" name="pass" class="form-control" placeholder="Password" required> 
+                </div> 
+                <div class="form-group mb-3">
+                  <label for="">Konfirmasi Password</label>
+                  <input type="password" name="passConfirm" class="form-control" placeholder="Konfirmasi Password" required> 
                 </div> 
                 <div class="form-group mb-3">
                   <label for="">Alamat</label>
-                  <input type="text" name="address" class="form-control" required > 
+                  <input type="text" name="address" class="form-control" placeholder="Jl. PHH Mustofa No 23" required > 
+                </div>
+                <div class="form-group mb-5">                 
                 </div>
                 <div class="form-group">
                   <button type="submit" name="register_btn" class="btn btn-primary">Daftar Sekarang</button>
@@ -131,46 +124,6 @@
       </div>
     </div>
   </div> <!-- .section -->
-
-  <div class="featured-section overlay-color-2" style="background-image: url('../assets/images/bg_2.jpg');">
-    
-    <div class="container">
-      <div class="row">
-
-        <div class="col-md-6 mb-5 mb-md-0">
-          <img src="../assets/images/bg_2.jpg" alt="Image placeholder" class="img-fluid">
-        </div>
-
-        <div class="col-md-6 pl-md-5">
-
-          <div class="form-volunteer">
-            
-            <h2>Be A Volunteer Today</h2>
-            <form action="#" method="post">
-              <div class="form-group">
-                <!-- <label for="name">Name</label> -->
-                <input type="text" class="form-control py-2" id="name" placeholder="Enter your name">
-              </div>
-              <div class="form-group">
-                <!-- <label for="email">Email</label> -->
-                <input type="text" class="form-control py-2" id="email" placeholder="Enter your email">
-              </div>
-              <div class="form-group">
-                <!-- <label for="v_message">Email</label> -->
-                <textarea name="v_message" id="" cols="30" rows="3" class="form-control py-2" placeholder="Write your message"></textarea>
-                <!-- <input type="text" class="form-control py-2" id="email"> -->
-              </div>
-              <div class="form-group">
-                <input type="submit" class="btn btn-white px-5 py-2" value="Send">
-              </div>
-            </form>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-
-  </div> <!-- .featured-donate -->
 
   <footer class="footer">
     <div class="container">
