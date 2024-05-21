@@ -31,7 +31,7 @@
   <!-- START Navbar Section -->
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-      <a class="navbar-brand" href="../index.html"><div class="logo-header"><img src="/assets/images/LongLogo.png" alt="" width="126" height="45"></div></a>
+      <a class="navbar-brand" href="../index.html"><div class="logo-header"><img src="/assets/images/logo/whiteLogo.png" alt="" width="126" height="45"></div></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>
@@ -48,21 +48,8 @@
   </nav>
   <!-- END nav -->
   
-  <div class="block-31" style="position: relative;">
-    <div class="owl-carousel loop-block-31 ">
-      <div class="block-30 block-30-sm item" style="background-image: url('../assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-        <div class="container">
-          <div class="row align-items-center justify-content-center text-center">
-            <div class="col-md-7">
-              <h2 class="heading">Daftar ke <br> Aksi Kita</h2>
-            </div>
-          </div>
-        </div>
-      </div>      
-    </div>
-  </div>
   <div class="site-section fund-raisers">
-    <div class="container">
+    <div class="container" style="padding-top: 50px;">
     <div class="row mb-3 justify-content-center">
         <div class="alert">
           <?php
@@ -80,7 +67,7 @@
     </div>
       <div class="row mb-3 justify-content-center">
         <div class="col-md-8 text-center">
-          <h2>Formulir Registrasi Organisasi</h2>        
+          <h2>FORMULIR REGISTRASI ORGANISASI</h2>        
         </div>        
       </div>
     </div>

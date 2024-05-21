@@ -1,51 +1,55 @@
-<!-- <?php
+<?php
+  ini_set('display_errors',  true);
+  error_reporting(E_ALL);
+
   session_start();
-  
-  include('server/connection.php');
+  include('../server/koneksi.php');
 
-    if (isset($_SESSION['logged_in'])) {
-        header('location: account.php');
-        exit;
-    }
+  if (isset($_SESSION['logged_in'])) {
+      header('location: cariAksi.html');
+      exit;
+  }
 
-    if (isset($_POST['login_btn'])) {
-        $email = $_POST['email'];
-        $password = md5($_POST['pass']);
+  if (isset($_POST['login_btn'])) {
+      $email = $_POST['email'];
+      $password = md5($_POST['pass']);
 
-        $query = "SELECT userName, userEmail, userGender, userPassword, userAddress, userStatus, verifyOtp FROM users WHERE email = ? AND pass = ? LIMIT 1";
+      $query = "SELECT userId, userName, userEmail, userPassword, userGender, userAddress, userStatus, verifyOtp, verifyStatus FROM users WHERE userEmail = ? AND userPassword = ? LIMIT 1";
 
-        $stmt_login = $conn->prepare($query);
-        $stmt_login->bind_param('ss', $email, $password);
-        
-        if ($stmt_login->execute()) {
-            $stmt_login->bind_result($name, $email, $gender, $password, $address, $userStatus, $verify_token);
-            $stmt_login->store_result();
+      $stmt_login = $conn->prepare($query);
+      $stmt_login->bind_param('ss', $email, $password);
+      
+      if ($stmt_login->execute()) {
+          $stmt_login->bind_result($user_id, $name, $userEmail, $userPassword, $gender, $address, $userStatus, $verify_token, $verifyStatus);
+          $stmt_login->store_result();
 
-            if ($stmt_login->num_rows() == 1) {
-                $stmt_login->fetch();
+          if ($stmt_login->num_rows() == 1) {
+              $stmt_login->fetch();
 
-                $_SESSION['user_id'] = $user_id;
-                $_SESSION['user_name'] = $user_name;
-                $_SESSION['user_email'] = $user_email;
-                $_SESSION['user_phone'] = $user_phone;
-                $_SESSION['user_address'] = $user_address;
-                $_SESSION['user_city'] = $user_city;
-                $_SESSION['user_photo'] = $user_photo;
-                $_SESSION['logged_in'] = true;
+              $_SESSION['userId'] = $user_id;
+              $_SESSION['userName'] = $name;
+              $_SESSION['userEmail'] = $userEmail;
+              $_SESSION['userGender'] = $gender;
+              $_SESSION['userAddress'] = $address;
+              $_SESSION['userStatus'] = $userStatus;
+              $_SESSION['verifyOtp'] = $verify_token;
+              $_SESSION['verifyStatus'] = $verifyStatus;
+              $_SESSION['logged_in'] = true;
 
-                header('location: account.php?message=Logged in successfully');
-            } else {
-                header('location: login.php?error=Could not verify your account');
-            }
-        } else {          
-            header('location: login.php?error=Something went wrong!');
-        }
-    }
-?>  -->
+              header('location: cariAksi.html?message=Logged in successfully');
+          } else {
+              header('location: login.php?error=Could not verify your account');
+          }
+      } else {          
+          header('location: login.php?error=Something went wrong!');
+      }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>AksiKita &mdash; Website Template by Colorlib</title>
+    <title>AksiKita &mdash; Go for action!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -72,7 +76,7 @@
   <!-- START Navbar Section -->
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-      <a class="navbar-brand" href="../index.html"><div class="logo-header"><img src="/assets/images/LongLogo.png" alt="" width="126" height="45"></div></a>
+      <a class="navbar-brand" href="../index.html"><div class="logo-header"><img src="/assets/images/logo/whiteLogo.png" alt="" width="126" height="45"></div></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>
@@ -108,113 +112,61 @@
   </div>
   <!-- END modal -->
   
-  <div class="block-31" style="position: relative;">
-    <div class="owl-carousel loop-block-31 ">
-      <div class="block-30 block-30-sm item" style="background-image: url('../assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-        <div class="container">
-          <div class="row align-items-center justify-content-center text-center">
-            <div class="col-md-7">
-              <h2 class="heading">Masuk ke Aksi Kita</h2>
+  <section class="vh-100" style="padding: 150px;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-7 col-lg-5 col-xl-5 justify-content-center">
+          <div class="container">
+            <?php
+              if(isset($_SESSION['status'])) 
+              {
+                ?>
+                <div class="alert alert-success text-center">
+                    <h5><?= $_SESSION['status'];?></h5>
+                </div>
+                <?php
+                unset($_SESSION['status']);
+              }
+            ?>
+            <div class="row mb-3 justify-content-center" style="padding-top: 120px;"> 
+              <div class="col-md-8 text-center">
+                <h2>LOGIN</h2>        
+              </div>        
             </div>
           </div>
-        </div>
-      </div>      
-    </div>
-  </div>
-  <section class="vh-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex align-items-center justify-content-center">
-      <div class="col-md-7 col-lg-5 col-xl-5 justify-content-center">
-        <div class="container">
-          <?php
-            if(isset($_SESSION['status'])) 
-            {
-              ?>
-              <div class="alert alert-success text-center">
-                  <h5><?= $_SESSION['status'];?></h5>
+          <form id="login-form" method="POST" action="login.php">
+            <!-- Email input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+              <label class="form-label" for="form1Example13">Email</label>
+              <input type="email" id="form1Example13" name="email" class="form-control form-control-lg" />
+            </div>
+
+            <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+              <label class="form-label" for="form1Example23">Password</label>
+              <input type="password" id="form1Example23" name="pass" class="form-control form-control-lg" />
+            </div>
+
+            <div class="d-flex justify-content-around align-items-center mb-4">
+              <!-- Checkbox -->
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                <label class="form-check-label" for="form1Example3"> Ingat Saya </label>
               </div>
-              <?php
-              unset($_SESSION['status']);
-            }
-          ?>
-          <div class="row mb-3 justify-content-center">
-            <div class="col-md-8 text-center">
-              <h2>Masuk</h2>        
-            </div>        
-          </div>
-        </div>
-        <form>
-          <!-- Email input -->
-          <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="form1Example13">Email</label>
-            <input type="email" id="form1Example13" class="form-control form-control-lg" />
-          </div>
-
-          <!-- Password input -->
-          <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="form1Example23">Password</label>
-            <input type="password" id="form1Example23" class="form-control form-control-lg" />
-          </div>
-
-          <div class="d-flex justify-content-around align-items-center mb-4">
-            <!-- Checkbox -->
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-              <label class="form-check-label" for="form1Example3"> Ingat Saya </label>
+              <a href="#!">Lupa Password?</a>
             </div>
-            <a href="#!">Lupa Password?</a>
-          </div>
-          <!-- Submit button -->
-          <button type="submit" id="login_btn" name="login_btn" value="login" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Login</button>
-          <div class="text-center mt-3">
-              Belum punya akun? <a href="/user/register.php" class="register-link">Ayo Daftar!</a>
-          </div>
-        </form>
-      </div>
+            <!-- Submit button -->
+            <button type="submit" id="login_btn" name="login_btn" value="login" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Login</button>
+            <div class="text-center">
+                Belum punya akun? <a href="/user/register.php" class="register-link">Ayo Daftar!</a>
+            </div>
+          </form>
+        </div>
     </div>
   </div>
 </section> 
 <!-- .section -->
 
-  <div class="featured-section overlay-color-2" style="background-image: url('../assets/images/bg_2.jpg');">
-    
-    <div class="container">
-      <div class="row">
-
-        <div class="col-md-6 mb-5 mb-md-0">
-          <img src="../assets/images/bg_2.jpg" alt="Image placeholder" class="img-fluid">
-        </div>
-
-        <div class="col-md-6 pl-md-5">
-
-          <div class="form-volunteer">
-            
-            <h2>Be A Volunteer Today</h2>
-            <form action="#" method="post">
-              <div class="form-group">
-                <!-- <label for="name">Name</label> -->
-                <input type="text" class="form-control py-2" id="name" placeholder="Enter your name">
-              </div>
-              <div class="form-group">
-                <!-- <label for="email">Email</label> -->
-                <input type="text" class="form-control py-2" id="email" placeholder="Enter your email">
-              </div>
-              <div class="form-group">
-                <!-- <label for="v_message">Email</label> -->
-                <textarea name="v_message" id="" cols="30" rows="3" class="form-control py-2" placeholder="Write your message"></textarea>
-                <!-- <input type="text" class="form-control py-2" id="email"> -->
-              </div>
-              <div class="form-group">
-                <input type="submit" class="btn btn-white px-5 py-2" value="Send">
-              </div>
-            </form>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-
-  </div> <!-- .featured-donate -->
 
   <footer class="footer">
     <div class="container">

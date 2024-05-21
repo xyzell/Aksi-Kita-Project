@@ -21,7 +21,7 @@ a {
 
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
-  color: #000;
+  color: #342e37;
   font-weight: 300;
   font-family: "Dosis", sans-serif; }
 
@@ -29,12 +29,12 @@ h1, h2, h3, h4, h5,
   color: #f7ca44 !important; }
 
 .ftco-navbar-light {
-  background: transparent !important;
+  background: #0b1215 !important;
   position: absolute;
   left: 0;
   right: 0;
   z-index: 3;
-  top: 10px; }
+}
   @media (max-width: 991.98px) {
     .ftco-navbar-light {
       background: #000 !important;
@@ -357,7 +357,8 @@ h1, h2, h3, h4, h5,
   .btn.btn-primary {
     background: #f7ca44;
     border: 2px solid #f7ca44;
-    color: #fff; }
+    color: #fff;
+    float: right; }
     .btn.btn-primary:hover {
       border: 2px solid #f7ca44;
       background: transparent;
@@ -635,7 +636,7 @@ textarea.form-control {
 
 .footer {
   background: #404040;
-  padding: 8em 0;
+  padding: 2em 0;
   color: #fff; }
   .footer .heading-section {
     font-size: 20px;
