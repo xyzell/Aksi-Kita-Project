@@ -37,7 +37,7 @@ function sendemail_verify($email, $verify_token)
     <h2> Kamu berhasil mendaftar dengan AksiKita</h2>
     <h5>Verifikasi email kamu untuk login pada link dibawah ini</h5>
     <br/><br/>
-    <a href='http://localhost:3000/user/verify-email.php?token=$verify_token'> Click Me </a>
+    <a href='http://localhost:3000/organizer/verify-email.php?token=$verify_token'> Click Me </a>
     ";
 
     $mail->Body = $email_template;
@@ -53,87 +53,70 @@ function sendemail_verify($email, $verify_token)
 }
 
 if (isset($_POST['registerBtn'])) {
-    $organizerName = $_POST['nama'];
-    $organizerEmail = $_POST['email'];
-    $organizerPhoneNum = $_POST['pnumber'];
-    $organizerPass = password_hash($_POST['pass'], PASSWORD_BCRYPT);
-    $organizerKind = $_POST['orgTipe'];
-    $organizerDesc = $_POST['desc'];
-    $organizerAddress = $_POST['address'];
-    $organizerWebsite = $_POST['website'];
+    $name = $_POST['nama'];
+    $email = $_POST['email'];
+    $phone = $_POST['pnumber'];
+    $password = $_POST['pass'];
+    $confirm_password = $_POST['passConfirm'];
+    $kindOrg = $_POST['orgTipe'];
+    $description = $_POST['desc'];
+    $address = $_POST['address'];
+    $website = $_POST['website'];    
+    $userStatus = $_POST['user_status'];
+    $verify_token = md5(rand());
 
-    // Periksa apakah email sudah terdaftar sebelumnya
-    $checkEmailQuery = "SELECT organizerEmail FROM organizer WHERE organizerEmail = ?";
-    $stmt = $conn->prepare($checkEmailQuery);
-    $stmt->bind_param('s', $organizerEmail);
-    $stmt->execute();
-    $stmt->store_result();
+    // This is image file
+    $photo = $_FILES['logo_organisasi']['tmp_name'];
 
-    if ($stmt->num_rows > 0) {
-        // Jika email sudah terdaftar, beri pesan kesalahan
-        $_SESSION['status'] = "Email sudah terdaftar";
-        header('Location: register.php'); 
-        exit(); // Hentikan eksekusi kode selanjutnya
-    }
+    // Photo name
+    $photo_name = str_replace(' ', '_', $name) . ".jpg";
 
-    // Menghandle upload file logo
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["logo_organisasi"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    // Upload image
+    move_uploaded_file($photo, "../assets/images/profiles/" . $photo_name);
 
-    // Cek apakah file adalah gambar
-    $check = getimagesize($_FILES["logo_organisasi"]["tmp_name"]);
-    if ($check !== false) {
-        $uploadOk = 1;
+    // If password didn't match
+    if ($password !== $confirm_password) {
+        header('location: register.php?error=Password did not match');
+
+    // If password less than 6 characters
+    } else if (strlen($password) < 6) {
+        header('location: register.php?error=Password must be at least 6 characters');
+
+    // Inf no error
     } else {
-        echo "File bukan gambar.";
-        $uploadOk = 0;
-    }
+        // Check whether there is a user with this email or not
+        $query_check_user = "SELECT COUNT(*) FROM organizer WHERE organizerEmail = ?";
 
-    // Cek apakah file sudah ada
-    if (file_exists($target_file)) {
-        echo "Maaf, file sudah ada.";
-        $uploadOk = 0;
-    }
+        $stmt_check_user = $conn->prepare($query_check_user);
+        $stmt_check_user->bind_param('s', $email);
+        $stmt_check_user->execute();
+        $stmt_check_user->bind_result($num_rows);
+        $stmt_check_user->store_result();
+        $stmt_check_user->fetch();
 
-    // Cek ukuran file
-    if ($_FILES["logo_organisasi"]["size"] > 500000) {
-        echo "Maaf, file Anda terlalu besar.";
-        $uploadOk = 0;
-    }
-
-    // Hanya izinkan format gambar tertentu
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        echo "Maaf, hanya file JPG, JPEG, PNG & GIF yang diizinkan.";
-        $uploadOk = 0;
-    }
-
-    // Cek apakah $uploadOk bernilai 0
-    if ($uploadOk == 0) {
-        echo "Maaf, file Anda tidak dapat diunggah.";
-    } else {
-        if (move_uploaded_file($_FILES["logo_organisasi"]["tmp_name"], $target_file)) {
-            $organizerLogo = $target_file;
-
-            // Masukkan data ke database
-            $sql = "INSERT INTO organizer (organizerName, organizerEmail, organizerPhoneNum, organizerPass, organizerKind, organizerDesc, organizerAddress, organizerWebsite, organizerLogo)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sssssssss', $organizerName, $organizerEmail, $organizerPhoneNum, $organizerPass, $organizerKind, $organizerDesc, $organizerAddress, $organizerWebsite, $organizerLogo);
-
-            if ($stmt->execute()) {
-                echo "Registrasi berhasil.";
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
+        // If there is a user registered with this email
+        if ($num_rows !== 0) {
+            header('location: register.php?error=Organizer with this email already exists');
+        
+        // If no user registered with this email
         } else {
-            echo "Maaf, terjadi kesalahan saat mengunggah file.";
+            $query = "INSERT INTO organizer (organizerName, organizerEmail, organizerPhoneNum, organizerPass, organizerKind,	organizerDesc,	organizerAddress, organizerWebsite, organizerLogo, userStatus, verifyOtp) 
+                                VALUES ('$name', '$email', '$phone', '$password', '$kindOrg', '$description', '$address', '$website', '$photo_name','$userStatus', '$verify_token')";
+
+            if(mysqli_query($conn, $query)){
+                // Kirim email verifikasi
+                sendemail_verify($email, $verify_token);
+
+                $_SESSION['status'] = "Registrasi berhasil! <br> Periksa alamat email anda untuk verifikasi!";
+                header("Location: register.php");
+                exit(); // Hentikan eksekusi kode selanjutnya setelah mengalihkan pengguna
+            } else {
+                $_SESSION['status'] = "Registrasi gagal: " . mysqli_error($conn); // Tangkap pesan kesalahan MySQL
+                header("Location: register.php");
+                exit(); // Hentikan eksekusi kode selanjutnya setelah mengalihkan pengguna
+            }
         }
     }
-
-    $stmt->close();
-    $conn->close();
 }
 
 

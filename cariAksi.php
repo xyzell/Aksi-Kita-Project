@@ -1,3 +1,24 @@
+<?php
+session_start();
+
+// Cek apakah pengguna sudah login
+// if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+//     header('location: login.php?error=Anda harus login terlebih dahulu');
+//     exit;
+// }
+
+// Mengambil informasi pengguna dari sesi
+// $userId = $_SESSION['userId'];
+// $userName = $_SESSION['userName'];
+// $userEmail = $_SESSION['userEmail'];
+// $userGender = $_SESSION['userGender'];
+// $userAddress = $_SESSION['userAddress'];
+// $userStatus = $_SESSION['userStatus'];
+// $verifyOtp = $_SESSION['verifyOtp'];
+// $verifyStatus = $_SESSION['verifyStatus'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,7 +40,6 @@
     <link rel="stylesheet" href="../assets/css/icomoon.css">
     <link rel="stylesheet" href="../assets/css/fancybox.min.css">
     <link rel="stylesheet" href="../assets/css/font-awesome.min.css" type="text/css">
-
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 
@@ -32,19 +52,50 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>
-
       <div class="collapse navbar-collapse" id="ftco-nav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-          <li class="nav-item active"><a href="how-it-works.html" class="nav-link">Cari Aksi</a></li>          
-          <li class="nav-item"><a href="../about.html" class="nav-link">Tentang Kami</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">FAQ</a></li>
-          <li class="nav-item"><a href="../user/login.php" class="nav-link">Login</a></li>          
-        </ul>
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a href="../index.php" class="nav-link">Home</a></li>
+              <li class="nav-item active"><a href="cariAksi.php" class="nav-link">Cari Aksi</a></li>          
+              <li class="nav-item"><a href="../about.php" class="nav-link">Tentang Kami</a></li>
+              <li class="nav-item"><a href="contact.php" class="nav-link">FAQ</a></li>
+              <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user fa-sm"></i>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="my-profile.php">My Profile</a></li>
+                    <li><a class="dropdown-item" href="../user/logout.php">Logout</a></li>
+                  </ul>
+                </li>
+              <?php else: ?>
+                <li class="nav-item"><a href="../user/login.php" class="nav-link" data-toggle="modal" data-target="#loginModal" id="loginButton">Login</a></li>
+              <?php endif; ?>   
+          </ul>
       </div>
+
     </div>
   </nav>
   <!-- END nav -->
+
+  <!-- START modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Pilih Jenis Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body icon-grid">
+          <button type="button" class="btn btn-primary btn-block" onclick="loginAsUser()"><i class="fa-solid fa-user"></i><span>User</span></button>
+          <button type="button" class="btn btn-primary btn-block" onclick="loginAsOrganizer()"><i class="fa-solid fa-landmark"></i><span>Organizer</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END modal -->
   
   <div class="block-31" style="position: relative;">
     <div class="owl-carousel loop-block-31 ">    
@@ -54,17 +105,18 @@
   
   <div class="site-section">
     <div class="container">
-      
-
+      </div>
     </div>
-  </div>
-
-  <div class="site-section fund-raisers">
     
-  </div> <!-- .section -->
+    <div class="site-section fund-raisers">      
+      <!-- <div class="my-2">
+          <a class="btn btn-light" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
+          <a class="btn btn-danger" href="?logout">Logout</a>
+      </div> -->
+    </div> 
+  <!-- .section -->
 
   
-
   <footer class="footer">
     <div class="container">
       <div class="row mb-5">
@@ -127,9 +179,7 @@
                 <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
               </ul>
             </div>
-        </div>
-        
-        
+        </div>        
       </div>
       <div class="row pt-5">
         <div class="col-md-12 text-center">
@@ -144,7 +194,7 @@
   </footer>
 
   <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  <!-- <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div> -->
 
 
   <script src="assets/js/jquery.min.js"></script>
@@ -157,7 +207,8 @@
   <script src="assets/js/owl.carousel.min.js"></script>
   <script src="assets/js/jquery.magnific-popup.min.js"></script>
   <script src="assets/js/bootstrap-datepicker.js"></script>
-
+  <script src="https://kit.fontawesome.com/e1612437fd.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/jquery.fancybox.min.js"></script>
   
   <script src="assets/js/aos.js"></script>
@@ -165,6 +216,27 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="assets/js/google-map.js"></script>
   <script src="assets/js/main.js"></script>
+  <script>
+    function loginAsUser() {
+      // Redirect or perform actions for user login
+      window.location.href = "user/login.php";
+    }
+
+    function loginAsOrganizer() {
+      // Redirect or perform actions for organizer login
+      // Example: window.location.href = "organizer/login.php";
+      window.location.href = "organizer/login.php";
+      // alert("Fitur ini belum tersedia");
+    }
+  </script>
+
+  <script>
+    $(document).ready(function(){
+      $("#loginButton").click(function(){
+        $("#loginModal").modal();
+      });
+    });
+  </script>
     
   </body>
 </html>
