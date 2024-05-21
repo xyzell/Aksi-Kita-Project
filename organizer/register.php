@@ -8,7 +8,6 @@
     <title>AksiKita &mdash;Go for action!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
     <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/animate.css">
@@ -37,16 +36,36 @@
       </button>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="../index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="how-it-works.html" class="nav-link">Cari Aksi</a></li>          
-          <li class="nav-item"><a href="../about.html" class="nav-link">Tentang Kami</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">FAQ</a></li>
-          <li class="nav-item"><a href="../user/login.php" class="nav-link">Login</a></li>    
+          <li class="nav-item"><a href="../index.php" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="cariAksi.php" class="nav-link">Cari Aksi</a></li>          
+          <li class="nav-item"><a href="../about.php" class="nav-link">Tentang Kami</a></li>
+          <li class="nav-item"><a href="contact.php" class="nav-link">FAQ</a></li>
+          <li class="nav-item active"><a href="../user/login.php" class="nav-link"  data-toggle="modal" data-target="#loginModal" id="loginButton">Login</a></li>    
         </ul>
       </div>
     </div>
   </nav>
   <!-- END nav -->
+
+  <!-- START modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Pilih Jenis Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body icon-grid">
+          <button type="button" class="btn btn-primary btn-block" onclick="loginAsUser()"><i class="fa-solid fa-user"></i><span>User</span></button>
+          <button type="button" class="btn btn-primary btn-block" onclick="loginAsOrganizer()"><i class="fa-solid fa-landmark"></i><span>Organizer</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END modal -->
+  
   
   <div class="site-section fund-raisers">
     <div class="container" style="padding-top: 50px;">
@@ -79,63 +98,73 @@
               <h5>Registration Form</h5>
             </div> -->
             <div class="card-body">
-              <form action="/organizer/registerCode.php" method="post">
-                <input type="hidden" name="user_status" value="user">
-                <div class="form-group mb-3">
-                  <label for="">Nama Organisasi</label>
-                  <input type="text" name="nama" class="form-control" placeholder="jhondoe" required> 
-                </div>
-                <div class="form-group mb-3">
-                  <label for="">Email Organisasi</label>
-                  <input type="text" name="email" class="form-control" placeholder="jhon@example.com" required> 
-                </div>
-                <div class="form-group mb-3">
-                  <label for="">No. Telepon Organisasi</label>
-                  <input type="text" name="pnumber" class="form-control" placeholder="0821XXXXXX" required> 
-                </div>
-                <div class="form-group mb-3">
-                  <label for="">Password</label>
-                  <input type="password" name="pass" class="form-control" required> 
-                </div> 
-                <div class="form-group mb-3">
-                  <label for="">Konfirmasi Password</label>
-                  <input type="password" name="passConfirm" class="form-control" required> 
-                </div> 
-                <div class="form-group mb-3">
-                  <div class="select-box">                    
-                    <label for="">Tipe Organisasi</label>
-                    <select name="orgTipe" id="">
-                      <option value="" disabled selected>...</option>
-                      <option value="">Yayasan</option>
-                      <option value="">Koperasi</option>
-                      <option value="">Perusahaan</option>
-                      <option value="">Umum</option>
-                      <option value="">Komunitas</option>
-                      <option value="">Lembaga Pemerintah</option>
-                      <option value="">Perkumpulan</option>
-                      <option value="">Lain-lain</option>
-                    </select>
-                  </div>                
-                </div>
-                <div class="form-group mb-3">
-                  <label for="">Deskripsi Organisasi</label>
-                  <textarea type="text" name="desc" class="form-control" rows="5" placeholder="Deskripsi Organisasi" required></textarea> 
-                </div>
-                <div class="form-group mb-3">
-                  <label for="">Alamat Organisasi</label>
-                  <input type="text" name="address" class="form-control" required > 
-                </div>
-                <div class="form-group mb-3">
-                  <label for="">Website Organisasi</label>
-                  <input type="text" name="website" class="form-control" required > 
-                </div>
-                <div class="form-group mb-3">
-                <label for="logo_organisasi">Logo Organisasi</label>
-                <input type="file" name="logo_organisasi" class="form-control-file" accept="image/*" required>
-                </div>
-                <div class="form-group">
-                  <button type="submit" name="registerBtn" class="btn btn-primary">Daftar Sekarang</button>
-                </div>
+              <form action="/organizer/registerCode.php" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="user_status" value="organizer">
+
+                  <!-- Section 1 -->
+                  <div class="form-section current">
+                      <div class="form-group mb-3">
+                          <label for="nama">Nama Organisasi</label>
+                          <input type="text" name="nama" class="form-control" placeholder="jhondoe" required> 
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="email">Email Organisasi</label>
+                          <input type="email" name="email" class="form-control" placeholder="jhon@example.com" required> 
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="pnumber">No. Telepon Organisasi</label>
+                          <input type="text" name="pnumber" class="form-control" placeholder="0821XXXXXX" required> 
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="pass">Password</label>
+                          <input type="password" name="pass" class="form-control" required> 
+                      </div> 
+                      <div class="form-group mb-3">
+                          <label for="passConfirm">Konfirmasi Password</label>
+                          <input type="password" name="passConfirm" class="form-control" required> 
+                      </div> 
+                      <div class="form-group">
+                          <button type="button" class="btn btn-primary next-btn">Next</button>
+                      </div>
+                  </div>
+
+                  <!-- Section 2 -->
+                  <div class="form-section">
+                      <div class="form-group mb-3">
+                          <label for="orgTipe">Tipe Organisasi</label>
+                          <select name="orgTipe" class="form-control" required>
+                              <option value="" disabled selected>...</option>
+                              <option value="Yayasan">Yayasan</option>
+                              <option value="Koperasi">Koperasi</option>
+                              <option value="Perusahaan">Perusahaan</option>
+                              <option value="Umum">Umum</option>
+                              <option value="Komunitas">Komunitas</option>
+                              <option value="Lembaga Pemerintah">Lembaga Pemerintah</option>
+                              <option value="Perkumpulan">Perkumpulan</option>
+                              <option value="Lain-lain">Lain-lain</option>
+                          </select>
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="desc">Deskripsi Organisasi</label>
+                          <textarea name="desc" class="form-control" rows="5" placeholder="Deskripsi Organisasi" required></textarea> 
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="address">Alamat Organisasi</label>
+                          <input type="text" name="address" class="form-control" required > 
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="website">Website Organisasi</label>
+                          <input type="text" name="website" class="form-control" required > 
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="logo_organisasi">Logo Organisasi</label>
+                          <input type="file" name="logo_organisasi" class="form-control-file" accept="image/*" required>
+                      </div>
+                      <div class="form-group">
+                          <button type="button" class="btn btn-secondary prev-btn">Back</button>
+                          <button type="submit" name="registerBtn" class="btn btn-primary">Daftar Sekarang</button>
+                      </div>
+                  </div>
               </form>
             </div>
           </div>
@@ -235,5 +264,45 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="../assets/js/google-map.js"></script>
   <script src="../assets/js/main.js"></script>
+  <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nextBtn = document.querySelector('.next-btn');
+            const prevBtn = document.querySelector('.prev-btn');
+            const formSections = document.querySelectorAll('.form-section');
+            let currentSectionIndex = 0;
+
+            nextBtn.addEventListener('click', function () {
+                formSections[currentSectionIndex].classList.remove('current');
+                currentSectionIndex++;
+                formSections[currentSectionIndex].classList.add('current');
+            });
+
+            prevBtn.addEventListener('click', function () {
+                formSections[currentSectionIndex].classList.remove('current');
+                currentSectionIndex--;
+                formSections[currentSectionIndex].classList.add('current');
+            });
+        });
+  </script>
+  <script>
+    function loginAsUser() {
+      // Redirect or perform actions for user login
+      window.location.href = "user/login.php";
+    }
+
+    function loginAsOrganizer() {
+      // Redirect or perform actions for organizer login
+      // Example: window.location.href = "organizer/login.php";
+      window.location.href = "../organizer/register.php";
+      // alert("Fitur ini belum tersedia");
+    }
+  </script>
+  <script>
+    $(document).ready(function(){
+      $("#loginButton").click(function(){
+        $("#loginModal").modal();
+      });
+    });
+  </script>
   </body>
 </html>

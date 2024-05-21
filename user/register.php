@@ -37,10 +37,10 @@
       </button>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="how-it-works.html" class="nav-link">Cari Aksi</a></li>          
-          <li class="nav-item"><a href="../about.html" class="nav-link">Tentang Kami</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">FAQ</a></li>
+          <li class="nav-item"><a href="../index.php" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="cariAksi.php" class="nav-link">Cari Aksi</a></li>          
+          <li class="nav-item"><a href="../about.php" class="nav-link">Tentang Kami</a></li>
+          <li class="nav-item"><a href="contact.php" class="nav-link">FAQ</a></li>
           <li class="nav-item active"><a href="../user/login.php" class="nav-link">Login</a></li>    
         </ul>
       </div>

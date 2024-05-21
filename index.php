@@ -1,3 +1,7 @@
+<?php
+session_start(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,11 +23,8 @@
     <link rel="stylesheet" href="assets/css/icomoon.css">
     <link rel="stylesheet" href="assets/css/fancybox.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css">
-
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <script src="https://kit.fontawesome.com/e1612437fd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/style.css">  
   </head>
   <body>
   
@@ -38,11 +39,23 @@
       </button>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="how-it-works.html" class="nav-link">Cari Aksi</a></li>          
-          <li class="nav-item"><a href="tentangKami.html" class="nav-link">Tentang Kami</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">FAQ</a></li>
-          <li class="nav-item"><a href="user/login.php" class="nav-link" data-toggle="modal" data-target="#loginModal" id="loginButton">Login</a></li>          
+          <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="cariAksi.php" class="nav-link">Cari Aksi</a></li>          
+          <li class="nav-item"><a href="about.php" class="nav-link">Tentang Kami</a></li>
+          <li class="nav-item"><a href="contact.php" class="nav-link">FAQ</a></li>      
+          <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-user fa-sm"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="my-profile.php">My Profile</a></li>
+                <li><a class="dropdown-item" href="../user/logout.php">Logout</a></li>
+              </ul>
+            </li>
+          <?php else: ?>
+            <li class="nav-item"><a href="user/login.php" class="nav-link" data-toggle="modal" data-target="#loginModal" id="loginButton">Login</a></li>
+          <?php endif; ?>        
         </ul>
       </div>
     </div>
@@ -74,7 +87,7 @@
         <div class="container">
           <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-7">
-              <h2 class="heading mb-5">Bersatu kita teguh, berpisah kita gamon</h2>              
+              <h2 class="heading mb-5">Grow Together</h2>              
             </div>
           </div>
         </div>
@@ -516,6 +529,8 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="assets/js/google-map.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="https://kit.fontawesome.com/e1612437fd.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script>
     // Ambil elemen logo
     var headerLogo = document.querySelector('.header-logo');
@@ -542,7 +557,7 @@
     function loginAsOrganizer() {
       // Redirect or perform actions for organizer login
       // Example: window.location.href = "organizer/login.php";
-      window.location.href = "organizer/register.php";
+      window.location.href = "organizer/login.php";
       // alert("Fitur ini belum tersedia");
     }
   </script>

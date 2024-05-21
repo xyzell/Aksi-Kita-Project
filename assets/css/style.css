@@ -345,6 +345,10 @@ h1, h2, h3, h4, h5,
   .btn.btn-hover-white:hover {
     background: transparent;
     color: #fff !important; }
+  .btn.btn-secondary {
+    background: #f7ca44;
+    color: #fff;
+  }
   .btn.btn-success {
     border: 2px solid #28a745;
     color: #fff; }
@@ -2046,4 +2050,11 @@ background: #eee;
 .register-link {
   color: #333; /* Warna teks */
   font-size: 14px; /* Ukuran font */
+}
+
+.form-section {
+  display: none;
+}
+.form-section.current {
+  display: block;
 }
