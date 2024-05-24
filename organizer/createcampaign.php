@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
   $date = $_POST['date'];
   $location = $_POST['loc'];
 
-  $queryInsert = "INSERT INTO campaign VALUES ('', ?, ?, ?, ?, ?, ?)";
+  $queryInsert = "INSERT INTO campaign (title, banner, description, campaignDate, location, organizerId) VALUES (?, ?, ?, ?, ?, ?)";
 
   if ($stmt_insert = $conn->prepare($queryInsert)) {
     $stmt_insert->bind_param("sssssi", $title, $image, $desc, $date, $location, $organizer);
