@@ -9,6 +9,8 @@ function uploadImage(){
     let imgLink = URL.createObjectURL(inputImage.files[0]);
     imageView.style.backgroundImage = `url(${imgLink})`;
     imageView.textContent = ""; 
+    imageView.style.outlineColor = "";
+    imageView.style.backgroundColor = "";
 }
 
 dropArea.addEventListener("dragenter", (e) => {
@@ -56,7 +58,7 @@ dropArea.addEventListener("drop", (e) =>{
 function countTextTitle() {
   let text = document.getElementById("title").value;
   document.getElementById('title-char').innerText = text.length;
-  if (text.length == 100) {
+  if (text.length == 120) {
     document.getElementById('title-max').setAttribute('style', 'color: #dc3545 !important');
   } else {
     document.getElementById('title-max').setAttribute('style', '');
@@ -98,8 +100,9 @@ function countTextLoc () {
 
 // empty file
 function noImage (){
-   imageView.style.outlineColor = "rgba(220, 53, 69, 0.5)";
-   imageView.style.backgroundColor = "rgba(220, 53, 69, 0.1)";
+  imageView.style.outlineColor = "rgba(220, 53, 69, 0.5)";
+  imageView.style.backgroundColor = "rgba(220, 53, 69, 0.1)";
+  window.scrollTo(0, 0);
 }
 
 function noTitle(){

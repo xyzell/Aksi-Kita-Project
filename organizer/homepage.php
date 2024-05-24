@@ -2,19 +2,41 @@
 
 include('../server/koneksi.php');
 
+session_start();
+include('converter.php');
 
-// $organizerId = $_SESSION['organizerId'];
-$organizerId = '1';
+if (!isset($_SESSION['loggedIn']) || $_SESSION['userStatus'] != 'organizer') {
+  header('location: login.php');
+  exit;
+}
 
-$queryCampaign = "SELECT count(*) as count FROM campaign WHERE organizerId = $organizerId";
-$result = mysqli_query($conn, $queryCampaign);
+$organizerId = $_SESSION['organizerId'];
+
+$queryListCampaign = "SELECT campaignId, title, banner, description, campaignDate, location, organizerName FROM campaign INNER JOIN organizer ON campaign.organizerId = organizer.organizerId WHERE campaign.organizerId = $organizerId LIMIT 8";
+$ListCampaignResult = mysqli_query($conn, $queryListCampaign);
+
+$queryTotalCampaign = "SELECT count(*) as count FROM campaign WHERE organizerId = $organizerId";
+$result = mysqli_query($conn, $queryTotalCampaign);
 
 $row = mysqli_fetch_assoc($result);
 $campaignCount = $row['count'];
-$campaignCount = 8;
 
-// $_SESSION["total"] = $campaignCount;
+?>
 
+<!-- get user and campaign total -->
+<?php
+
+$queryUserTotal = "SELECT count(*) as userTotal from users";
+$resultUserTotal = mysqli_query($conn, $queryUserTotal);
+
+$rowUser = mysqli_fetch_assoc($resultUserTotal);
+$userTotal = $rowUser['userTotal'];
+
+$queryCampaignTotal = "SELECT count(*) as campaignTotal from campaign";
+$resultCampaignTotal = mysqli_query($conn, $queryCampaignTotal);
+
+$rowCampaign = mysqli_fetch_assoc($resultCampaignTotal);
+$campaignTotal = $rowCampaign['campaignTotal'];
 
 ?>
 
@@ -40,116 +62,50 @@ $campaignCount = 8;
   <div class="banner">
     <p class="subtitle">Total Active Campaigns and Active Users</p>
     <div class="information">
-      <p class="campaigns-count">300 Campaigns</p>
+      <p class="campaigns-count"><?php echo $campaignTotal ?>&nbsp;Campaigns</p>
       <p>|</p>
-      <p class="volunteers-count">1200000 Users</p>
+      <p class="volunteers-count"><?php echo $userTotal ?>&nbsp;Users</p>
     </div>
   </div>
 
   <!-- Campaigns List -->
   <section>
     <h1 class="title">My Campaigns</h1>
-    <form class="search" action="">
-      <input class="search-bar fa" type="text" name="search-bar" placeholder="Search..." autocomplete="off">
-      <button class="search-button" name="search-button"><i class="fa fa-arrow-right"></i></button>
-    </form>
     <div class="list-container">
       <div class="campaigns-list">
-        <a href="campaignview.php">
-          <div class="campaigns-card">
-            <img class="campaigns-image" src="assets/banner.jpg" alt="">
-            <div class="campaigns-info">
-              <div class="campaigns-details">
-                <p class="campaigns-organizer">Houndary Fundraising Group</p>
-                <h1 class="campaigns-title">Pendidikan Kesejahteraan Warga area Pedesaan dan Perkotaan Jakarta</h1>
-              </div>
-              <div class="loc-date">
-                <img class="campaigns-location-icon" src="assets/pin.png" alt="">
-                <p class="campaigns-location">Jakarta Timur</p>
-              </div>
-              <div class="loc-date">
-                <img class="campaigns-date-icon" src="assets/calendar.png" alt="">
-                <p class="campaigns-date">15 April 2024</p>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="campaigns-card">
-            <img class="campaigns-image" src="assets/test.png" alt="">
-            <div class="campaigns-info">
-              <div class="campaigns-details">
-                <p class="campaigns-organizer">PT Waifu Finder</p>
-                <h1 class="campaigns-title">Open Recruitment for all hensem man who always wanted to have an imaginary wife</h1>
-              </div>
-              <div class="loc-date">
-                <img class="campaigns-location-icon" src="assets/pin.png" alt="">
-                <p class="campaigns-location">Jakarta Timur</p>
-              </div>
-              <div class="loc-date">
-                <img class="campaigns-date-icon" src="assets/calendar.png" alt="">
-                <p class="campaigns-date">15 April 2024</p>
+        <?php while ($row = mysqli_fetch_assoc($ListCampaignResult)) { ?>
+          <a href="campaignview.php?id=<?php echo $row['campaignId'] ?>">
+            <div class="campaigns-card">
+              <img class="campaigns-image" src="../assets/images/<?php echo $row['banner'] ?>" alt="">
+              <div class="campaigns-info">
+                <div class="campaigns-details">
+                  <p class="campaigns-organizer"><?php echo $row['organizerName'] ?></p>
+                  <div class="container-title">
+                    <h1 class="campaigns-title"><?php echo $row['title'] ?></h1>
+                  </div>
+                </div>
+                <div class="loc-date">
+                  <img class="campaigns-location-icon" src="assets/pin.png" alt="">
+                  <p class="campaigns-location"><?php echo $row['location'] ?></p>
+                </div>
+                <div class="loc-date">
+                  <img class="campaigns-date-icon" src="assets/calendar.png" alt="">
+                  <p class="campaigns-date">
+                    <?PHP
+                    $day = date("d", strtotime($row['campaignDate']));
+                    $month = date("n", strtotime($row['campaignDate']));
+                    $year = date("Y", strtotime($row['campaignDate']));
+
+                    $month = convertMonth(1, $month);
+
+                    echo $day . " " . $month . " " . $year;
+                    ?>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="campaigns-card">
-            <img class="campaigns-image" src="../assets/images/gen.jpeg" alt="">
-            <div class="campaigns-info">
-              <div class="campaigns-details">
-                <p class="campaigns-organizer">PT Waifu Finder</p>
-                <h1 class="campaigns-title">Open Recruitment for all hensem man who always wanted to have an imaginary wife</h1>
-              </div>
-              <div class="loc-date">
-                <img class="campaigns-location-icon" src="assets/pin.png" alt="">
-                <p class="campaigns-location">Jakarta Timur</p>
-              </div>
-              <div class="loc-date">
-                <img class="campaigns-date-icon" src="assets/calendar.png" alt="">
-                <p class="campaigns-date">15 April 2024</p>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="campaigns-card">
-            <img class="campaigns-image" src="../assets/images/gen.jpeg" alt="">
-            <div class="campaigns-info">
-              <div class="campaigns-details">
-                <p class="campaigns-organizer">PT Waifu Finder</p>
-                <h1 class="campaigns-title">Open Recruitment for all hensem man who always wanted to have an imaginary wife</h1>
-              </div>
-              <div class="loc-date">
-                <img class="campaigns-location-icon" src="assets/pin.png" alt="">
-                <p class="campaigns-location">Jakarta Timur</p>
-              </div>
-              <div class="loc-date">
-                <img class="campaigns-date-icon" src="assets/calendar.png" alt="">
-                <p class="campaigns-date">15 April 2024</p>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="campaigns-card">
-            <img class="campaigns-image" src="../assets/images/gen.jpeg" alt="">
-            <div class="campaigns-info">
-              <div class="campaigns-details">
-                <p class="campaigns-organizer">PT Waifu Finder</p>
-                <h1 class="campaigns-title">Open Recruitment for all hensem man who always wanted to have an imaginary wife</h1>
-              </div>
-              <div class="loc-date">
-                <img class="campaigns-location-icon" src="assets/pin.png" alt="">
-                <p class="campaigns-location">Jakarta Timur</p>
-              </div>
-              <div class="loc-date">
-                <img class="campaigns-date-icon" src="assets/calendar.png" alt="">
-                <p class="campaigns-date">15 April 2024</p>
-              </div>
-            </div>
-          </div>
-        </a>
+          </a>
+        <?php } ?>
       </div>
     </div>
 
