@@ -10,7 +10,7 @@ include('converter.php');
 //   exit;
 // }
 
-$id = $_REQUEST['id'];
+$id = $_REQUEST['campaign'];
 
 // campaigns
 $queryCampaign = "SELECT campaignId, title, banner, description, campaignDate, location, organizerName from campaign join organizer on campaign.organizerId = organizer.organizerId where campaignId = ? LIMIT 1";
@@ -92,7 +92,7 @@ $check = 0;
         <?php echo $title ?>
       </h1>
       <div class="banner border border-2 border-secondary border-opacity-25 rounded-3" id="banner-container">
-        <img id="image-size" class="image-banner rounded-2" src="../assets/images/<?php echo $banner ?>" alt="" />
+        <img id="image-size" class="image-banner rounded-2" src="../assets/images/campaign/<?php echo $banner ?>" alt="" />
       </div>
       <div>
         <p class="desc">
@@ -124,17 +124,28 @@ $check = 0;
       <div class="top-line border-bottom border-warning border-opacity-75 border-2 my-4"></div>
     </div>
 
-    <!-- Button Edit & Delete -->
+    <!-- Button Voluunter, Edit & Delete -->
+    <div class="mb-3">
+      <a href="managevolunteer.php?campaign=<?php echo $id ?>    ">
+        <button class="button-css w-100 rounded-pill bg-info fw-bold text-white border-0 pb-2">
+          Manage Volunteer
+        </button>
+      </a>
+    </div>
     <div class="row">
       <div class="col">
-        <button class="button-css w-100 rounded-pill bg-info fw-bold text-white border-0">
-          Edit
-        </button>
+        <a href="editcampaign.php?campaign=<?php echo $id ?>    ">
+          <button class="button-css w-100 rounded-pill bg-warning fw-bold text-white border-0 pb-2">
+            Edit
+          </button>
+        </a>
       </div>
       <div class="col">
-        <button class="button-css w-100 rounded-pill bg-danger fw-bold text-white border-0">
-          Delete
-        </button>
+        <a href="">
+          <button class="button-css w-100 rounded-pill bg-danger fw-bold text-white border-0 pb-2">
+            Delete
+          </button>
+        </a>
       </div>
     </div>
 
