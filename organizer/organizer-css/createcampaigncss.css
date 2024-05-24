@@ -1,0 +1,48 @@
+.image-box {
+    outline: 2px dashed rgba(108, 117, 125, 0.5);
+    height: 424px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgba(108, 117, 125, 0.1);
+    background-position: center;
+}
+
+.input-cursor {
+    cursor: pointer;
+}
+
+.title-active:focus {
+    outline: none;
+    border: 2.5px solid gray !important;
+}
+
+.margin-bottom-20 {
+    margin-bottom: -25px;
+}
+
+.margin-bottom-30 {
+    margin-bottom: -35px;
+}
+
+.h-desc {
+    height: 300px;
+    max-height: 1000px;
+    min-height: 35px;
+}
+
+.padding-tb{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.h-button {
+    height: 35px;
+}
+
+.button-modal {
+    width: 100px;
+}
+
+.title-modal {
+    line-height: 10px;
+}

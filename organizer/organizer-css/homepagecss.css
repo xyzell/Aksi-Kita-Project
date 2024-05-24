@@ -1,0 +1,279 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body{
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Header */
+.header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 60px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo-img {
+    height: 40px;
+    position: relative;
+}
+
+header .title {
+    color: black;
+    margin-top: 5px;
+    font-size: 22px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    background-color: #e8e8e8;
+    padding: 0.4rem 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    
+}
+
+.profile {
+    border-radius: 50%;
+    height: 40px;
+    margin-right: 0px;
+    margin-left: 73px;
+}
+
+/* Banner */
+.banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 1),rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.0)), url('../assets/banner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    padding-top: 185px;
+    padding-bottom: 140px;
+    color: #e8e8e8;
+}
+
+.subtitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.information {
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.campaigns-count {
+    padding-left: auto;
+    padding-right: 550px;
+    position: absolute;
+}
+
+.volunteers-count {
+    padding-left: 550px;
+    padding-right: auto;
+    position: absolute;
+}
+
+section .title {
+    text-align: center;
+    margin-top: 25px;
+    font-weight: bold;
+    font-size: 30px;
+    padding-bottom: 16px;
+    margin-bottom: 15px;  
+}
+
+/* Campaign List */
+.list-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px auto 0;
+    max-height: 690px;
+    padding: 5px;
+}
+
+.campaigns-list {
+    display: grid;
+    grid-template-columns: 310px 310px 310px 310px;
+    column-gap: 30px;
+    row-gap: 30px;
+}
+
+/* .campaigns-list {
+    border: solid black 1px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 55px;
+    align-items: center;
+    padding-left: 35px;
+    gap: 1rem;
+} */
+
+/* Campaigns Card */
+.campaigns-card{
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    height: 320px;
+    background-image: linear-gradient(to bottom, black 1%, #f8f9fa 50%);
+    cursor: pointer;
+    transition: all .4s ease;
+}
+
+.campaigns-card:hover {
+    cursor: pointer;
+    transform: translateY(-10px);
+}
+
+.campaigns-image {
+    border-radius: 8px;
+    width: 312px;
+    transform: translate(-1px, -1px);
+    height: 150px;
+    overflow: hidden;
+    background-position: center;
+    object-fit: cover;
+}
+
+.campaigns-info {
+    padding: 0px 6px;
+    overflow: hidden;
+    height: 150px;
+}
+
+.campaigns-details {
+    height: 85px;
+    overflow: hidden;
+}
+
+.campaigns-organizer {
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+    color: grey;
+    margin-bottom: 3px;
+    padding-top: 1px;
+}
+
+.container-title{
+    height: 65px;
+    display: flex;    
+    align-items: center;
+}
+
+.campaigns-title {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.loc-date {
+    display: flex;
+}
+
+.campaigns-location-icon {
+    margin-top: 10px;
+    width: 23px;
+}
+
+.campaigns-location {
+    margin-left: 6px;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: grey;
+}
+
+.campaigns-date-icon {
+    margin-top: 6px;
+    width: 21px;
+    padding: 4.5px;
+    background-color: #f0d404;
+    border-radius: 4px;
+    margin-left: 1px;
+}
+
+.campaigns-date {
+    margin-top: 7px;
+    margin-left: 7px;
+    font-size: 13px;
+    font-weight: 500;
+    color: grey;
+}
+
+.line-bottom {
+    width: 700px;
+    height: 2px;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45px;
+    margin-bottom: 40px;
+    background-color: #cccccc;
+    border-radius: 50px;
+}
+
+/* Add Button */
+.add-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.add-button-position {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.add-button-href {
+    border-radius: 50px;
+}
+
+.add-button-button {
+    outline: none;
+    border: solid silver 1px;
+    border-radius: 50px;
+    background-color: rgba(192, 192, 192, 0.2);
+    padding: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.button-modal {
+    width: 100px;
+    border-radius: 100px;
+    border: none;
+    background-color: rgba(255, 193, 7, 0.75);
+    height: 35px;
+    font-weight: bolder;
+    font-size: 16px;
+    color: white;
+}
+
+.title-modal {
+    line-height: 10px;
+}

@@ -58,6 +58,7 @@ if(isset($_POST['register_btn']))
     $email = $_POST['email'];
     $gender = $_POST['gender'];
     $password = md5($_POST['pass']);
+    $confirm_pass = $_POST['passConfirm'];
     $address = $_POST['address'];
     $userStatus = $_POST['user_status'];
     $verify_token = md5(rand());
@@ -74,6 +75,15 @@ if(isset($_POST['register_btn']))
         $_SESSION['status'] = "Email sudah terdaftar";
         header('Location: register.php'); 
         exit(); // Hentikan eksekusi kode selanjutnya
+    }
+
+    // Cek kesamaan password 
+    if ($password !== $confirm_pass) {
+        header('location: register.php?error=Kata sandi tidak cocok!');
+
+    // If password less than 6 characters
+    } else if (strlen($password) < 6) {
+        header('location: register.php?error=Kata sandi minimal harus 6 karakter');
     }
 
     // Validasi nilai gender
