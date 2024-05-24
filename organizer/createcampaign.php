@@ -2,14 +2,14 @@
 
 include('../server/koneksi.php');
 
-// session_start();
+session_start();
 
-// if (!isset($_SESSION['logged_in'])) {
-//   header('location: login.php');
-//   exit;
-// }
+if (!isset($_SESSION['loggedIn']) || $_SESSION['userStatus'] != 'organizer') {
+  header('location: login.php');
+  exit;
+}
 
-$organizer = '1';
+$organizer = $_SESSION['organizerId'];
 $image = null;
 
 if (isset($_POST['submit'])) {
@@ -21,10 +21,17 @@ if (isset($_POST['submit'])) {
   $date = $_POST['date'];
   $location = $_POST['loc'];
 
-  $queryInsert = "INSERT INTO campaign VALUES ('', '$title', '$image', '$desc', '$date', '$location', '$organizer')";
-  $result = mysqli_query($conn, $queryInsert);
+  $queryInsert = "INSERT INTO campaign VALUES ('', ?, ?, ?, ?, ?, ?)";
+
+  if ($stmt_insert = $conn->prepare($queryInsert)) {
+    $stmt_insert->bind_param("sssssi", $title, $image, $desc, $date, $location, $organizer);
+    $stmt_insert->execute();
+    $stmt_insert->close();
+  }
 
   move_uploaded_file($_FILES['image-data']['tmp_name'], $path);
+
+  header("location: homepage.php");
 }
 
 ?>
@@ -79,10 +86,10 @@ if (isset($_POST['submit'])) {
 
         <!-- Title -->
         <p class="mb-1 mt-3 fw-medium text-secondary">Campaign Title</p>
-        <input onclick="clickTitle()" oninvalid="noTitle()" required type="text" name="title" id="title" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal" maxlength="100" oninput="countTextTitle()" autocomplete="off" />
+        <input onclick="clickTitle()" oninvalid="noTitle()" required type="text" name="title" id="title" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal" maxlength="120" oninput="countTextTitle()" autocomplete="off" />
         <div class="d-flex justify-content-end fw-medium text-secondary fs-6 margin-bottom-20" id="title-max">
           <p class="text-end" id="title-char">0</p>
-          <p>/100</p>
+          <p>/120</p>
         </div>
 
         <!-- Desc -->
@@ -116,7 +123,7 @@ if (isset($_POST['submit'])) {
         <div class="row" style="margin-top: -30px">
           <div class="col">
             <p class="mb-1 mt-3 fw-medium text-secondary">Campaigns Date</p>
-            <input onclick="clickDate()" oninvalid="noDate()" required type="date" name="date" id="date" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb" maxlength="50" oninput="countTextOrganizer()" autocomplete="off" />
+            <input onclick="clickDate()" oninvalid="noDate()" required type="date" name="date" id="date" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb" oninput="countTextOrganizer()" autocomplete="off" />
           </div>
 
           <div class="col">

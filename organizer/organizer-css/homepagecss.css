@@ -103,37 +103,6 @@ section .title {
     margin-bottom: 15px;  
 }
 
-/* Search */
-.search {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    height: 35px;
-}
-
-.search-bar  {
-    width: 1295px;
-    border-radius: 5px 0 0 5px;
-    border: 1px #ffdc04 solid;
-    padding-left: 10px;
-}
-
-.search-bar:focus {
-    outline: none;
-    background-color: #fafafa;
-}
-
-.search-button {
-    font-size: 20px;
-    width: 36px;
-    border-radius: 0 5px 5px 0;
-    border: 1px silver solid;
-    background-color: #ffdc04;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
 /* Campaign List */
 .list-container {
     display: flex;
@@ -205,6 +174,12 @@ section .title {
     color: grey;
     margin-bottom: 3px;
     padding-top: 1px;
+}
+
+.container-title{
+    height: 65px;
+    display: flex;    
+    align-items: center;
 }
 
 .campaigns-title {
