@@ -27,18 +27,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Jika ditemukan pengguna dengan email yang sesuai
     if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        // Verifikasi kata sandi
-        if (($password) == $row['organizerPass']) {
-            // Kata sandi cocok, simpan data pengguna dalam sesi
+        $row = $result->fetch_assoc();      
+        if (($password) == $row['organizerPass']) {            
             $_SESSION['organizerId'] = $row['organizerId'];
             $_SESSION['organizerName'] = $row['organizerName'];
-            $_SESSION['userStatus'] = $row['userStatus'];
-            // Redirect ke halaman dashboard atau halaman lain yang sesuai
+            $_SESSION['organizerEmail'] = $row['organizerEmail'];
+            $_SESSION['organizerPhoneNum'] = $row['organizerPhoneNum'];
+            $_SESSION['organizerKind'] = $row['organizerKind'];
+            $_SESSION['organizerDesc'] = $row['organizerDesc'];
+            $_SESSION['organizerAddress'] = $row['organizerAddress'];
+            $_SESSION['organizerWebsite'] = $row['organizerWebsite'];
+            $_SESSION['organizerLogo'] = $row['organizerLogo'];
+            $_SESSION['userStatus'] = $row['userStatus'];            
+            $_SESSION['verifyStatus'] = $row['verifyStatus'];            
+            
             header("Location: ../index.php");
             exit();
         } else {
-            // Kata sandi tidak cocok
+            
             echo "Kata sandi salah.";
         }
     } else {
@@ -53,8 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Tutup koneksi ke database
 $conn->close();
 ?>
-
-
 
 
 <!DOCTYPE html>
