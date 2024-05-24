@@ -37,7 +37,7 @@ $row = mysqli_fetch_assoc($beforeEdit);
         <!-- Title and Back Button -->
         <table class="table border-bottom border-2 border-warning border-opacity-75">
             <th scope="col" class="col-1">
-                <a href="homepage.php">
+                <a href="campaignview.php?campaign=<?php echo $campaign ?>">
                     <i class="fs-1 link-secondary opacity-75 fa fa-angle-left"></i>
                 </a>
             </th>

@@ -1,14 +1,14 @@
 <?php
 
 include('../server/koneksi.php');
+
+session_start();
 include('converter.php');
 
-// session_start();
-
-// if (!isset($_SESSION['logged_in'])) {
-//   header('location: login.php');
-//   exit;
-// }
+if (!isset($_SESSION['loggedIn']) || $_SESSION['userStatus'] != 'organizer') {
+  header('location: login.php');
+  exit;
+}
 
 $id = $_REQUEST['campaign'];
 
