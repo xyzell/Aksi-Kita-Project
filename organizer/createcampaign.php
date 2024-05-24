@@ -9,11 +9,16 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['userStatus'] != 'organizer') {
   exit;
 }
 
+if ($_SESSION['maxCampaign'] == 8) {
+  header('location: homepage.php');
+  exit;
+}
+
 $organizer = $_SESSION['organizerId'];
 $image = null;
 
 if (isset($_POST['submit'])) {
-  $path = "../assets/images/" . basename($_FILES['image-data']['name']);
+  $path = "../assets/images/campaign/" . basename($_FILES['image-data']['name']);
   $image = $_FILES['image-data']['name'];
 
   $title = $_POST['title'];
@@ -27,9 +32,9 @@ if (isset($_POST['submit'])) {
     $stmt_insert->bind_param("sssssi", $title, $image, $desc, $date, $location, $organizer);
     $stmt_insert->execute();
     $stmt_insert->close();
-  }
 
-  move_uploaded_file($_FILES['image-data']['tmp_name'], $path);
+    move_uploaded_file($_FILES['image-data']['tmp_name'], $path);
+  }
 
   header("location: homepage.php");
 }
