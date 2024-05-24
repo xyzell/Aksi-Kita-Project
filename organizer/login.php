@@ -103,9 +103,9 @@ $conn->close();
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="../index.php" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="cariAksi.php" class="nav-link">Cari Aksi</a></li>
+          <li class="nav-item"><a href="../cariAksi.php" class="nav-link">Cari Aksi</a></li>
           <li class="nav-item"><a href="../about.php" class="nav-link">Tentang Kami</a></li>
-          <li class="nav-item"><a href="contact.php" class="nav-link">FAQ</a></li>
+          <li class="nav-item"><a href="../contact.php" class="nav-link">FAQ</a></li>
           <li class="nav-item active"><a href="user/login.php" class="nav-link" data-toggle="modal" data-target="#loginModal" id="loginButton">Login</a></li>
         </ul>
       </div>
@@ -280,16 +280,12 @@ $conn->close();
         <script src="../assets/js/google-map.js"></script>
         <script src="../assets/js/main.js"></script>
         <script>
-          function loginAsUser() {
-            // Redirect or perform actions for user login
+          function loginAsUser() {          
             window.location.href = "user/login.php";
           }
 
-          function loginAsOrganizer() {
-            // Redirect or perform actions for organizer login
-            // Example: window.location.href = "organizer/login.php";
-            window.location.href = "../organizer/register.php";
-            // alert("Fitur ini belum tersedia");
+          function loginAsOrganizer() {           
+            window.location.href = "../organizer/login.php";            
           }
         </script>
         <script>
