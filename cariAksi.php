@@ -1,34 +1,6 @@
-<?php
-session_start();
-
-// Cek apakah pengguna sudah login
-// if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-//     header('location: login.php?error=Anda harus login terlebih dahulu');
-//     exit;
-// }
-
-// Mengambil informasi pengguna dari sesi
-// $userId = $_SESSION['userId'];
-// $userName = $_SESSION['userName'];
-// $userEmail = $_SESSION['userEmail'];
-// $userGender = $_SESSION['userGender'];
-// $userAddress = $_SESSION['userAddress'];
-// $userStatus = $_SESSION['userStatus'];
-// $verifyOtp = $_SESSION['verifyOtp'];
-// $verifyStatus = $_SESSION['verifyStatus'];
-
-include './server/koneksi.php';
-
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-$query = "SELECT * FROM campaign";
-$result = $conn->query($sql);
 
 
 
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -114,28 +86,11 @@ $result = $conn->query($sql);
 
   <div class="block-31" style="position: relative;">
     <div class="owl-carousel loop-block-31 ">
-
     </div>
   </div>
   <div class="site-section">
     <div class="container py-5">
-    <?php while ($row = $campaigns->fetch_assoc()) { ?>      
-      <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
-        <div class="col">
-          <div class="card">
-            <img src="../assets/images/banner/<?php echo $row['banner']; ?>" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><?php echo $row['title']; ?></h5>
-              <p class="card-text"><?php echo $row['description']; ?>.</p>
-            </div>
-            <div class="mb-5 d-flex justify-content-around">
-              <h3>190$</h3>
-              <button class="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>    
-      </div>
-      <?php } ?>
+    <?php include 'rowlist.php'; ?>
     </div>
   </div>
 
