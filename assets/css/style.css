@@ -2063,4 +2063,83 @@ background: #eee;
   Cari Aksi
 -----------------------*/
 
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
 
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 10px;
+  width: 23%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  border-radius: 8px 8px 0 0;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.category {
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.sub-category {
+  color: #ff6600;
+  font-weight: bold;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+}
+
+.card-content h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.card-content p {
+  flex: 1;
+  color: #666;
+  font-size: 0.9em;
+  margin: 10px 0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+  color: #888;
+}
+
+.buy-now {
+  background-color: #ffc107;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 10px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.buy-now:hover {
+  background-color: #e0a800;
+}
