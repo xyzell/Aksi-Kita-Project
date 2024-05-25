@@ -16,6 +16,11 @@
     border: 2.5px solid gray !important;
 }
 
+.title-active-change:focus {
+    outline: none;
+    border: 2.5px solid #02bce0 !important;
+}
+
 .margin-bottom-20 {
     margin-bottom: -25px;
 }
@@ -49,4 +54,30 @@
 
 ::placeholder{
     color: rgba(0, 0, 0, 0.2);
+}
+
+.button-undo-size {
+    height: 30px;
+    width: 200px;
+}
+
+.display-undo-button {
+    display: none;
+}
+
+.position-undo-button {
+    margin-right: -10px;
+}
+
+.banner-info {
+    margin-top: -10px;
+    font-size: 14px;
+}
+
+.table-info-height {
+    height: 50px;
+}
+
+.margin-top-minus-div {
+    margin-top: -35px;
 }

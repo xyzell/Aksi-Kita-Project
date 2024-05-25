@@ -79,14 +79,14 @@ $campaignTotal = $rowCampaign['campaignTotal'];
               <img class="campaigns-image" src="../assets/images/campaign/<?php echo $row['banner'] ?>" alt="">
               <div class="campaigns-info">
                 <div class="campaigns-details">
-                  <p class="campaigns-organizer"><?php echo $row['organizerName'] ?></p>
+                  <p class="campaigns-organizer"><?php echo htmlentities($row['organizerName']) ?></p>
                   <div class="container-title">
-                    <h1 class="campaigns-title"><?php echo $row['title'] ?></h1>
+                    <h1 class="campaigns-title"><?php echo htmlentities($row['title']) ?></h1>
                   </div>
                 </div>
                 <div class="loc-date">
                   <img class="campaigns-location-icon" src="assets/pin.png" alt="">
-                  <p class="campaigns-location"><?php echo $row['location'] ?></p>
+                  <p class="campaigns-location"><?php echo htmlentities($row['location']) ?></p>
                 </div>
                 <div class="loc-date">
                   <img class="campaigns-date-icon" src="assets/calendar.png" alt="">

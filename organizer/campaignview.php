@@ -69,7 +69,7 @@ $check = 0;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title><?php echo $title ?></title>
 
   <link rel="icon" href="../assets/images/title.png" type="image/x-icon" />
 
@@ -96,7 +96,7 @@ $check = 0;
       </div>
       <div>
         <p class="desc">
-          <?php echo $description ?>
+          <?php echo htmlentities($description) ?>
         </p>
       </div>
 
@@ -105,7 +105,7 @@ $check = 0;
           <tr>
             <th class="border-secondary border-opacity-75 text-center text-secondary fw-medium border-bottom border-2 border-0 pt-1 pb-2" colspan="2">
               Organizer<br />
-              <span class="fw-normal text-black"> <?php echo $organizer ?></span>
+              <span class="fw-normal text-black"> <?php echo htmlentities($organizer) ?></span>
             </th>
           </tr>
           <tr>
@@ -115,7 +115,7 @@ $check = 0;
             </th>
             <th class="border-secondary border-opacity-75 text-center text-secondary fw-medium border-start border-2 border-0 pt-1 pb-2 col-5">
               Location<br />
-              <span class="fw-normal text-black"> <?php echo $location ?></span>
+              <span class="fw-normal text-black"> <?php echo htmlentities($location) ?></span>
             </th>
           </tr>
         </table>

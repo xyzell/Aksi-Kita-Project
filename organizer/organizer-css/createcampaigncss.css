@@ -46,3 +46,8 @@
 .title-modal {
     line-height: 10px;
 }
+
+.title-active-invalid:focus {
+    outline: none;
+    border: solid #e83345 2.5px !important;
+}
