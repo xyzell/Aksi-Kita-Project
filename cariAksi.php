@@ -1,6 +1,16 @@
+<?php
+
+session_start();
+include('./server/koneksi.php');
+
+$queryCampaignTotal = "SELECT count(*) as campaignTotal from campaign";
+$resultCampaignTotal = mysqli_query($conn, $queryCampaignTotal);
+
+$rowCampaign = mysqli_fetch_assoc($resultCampaignTotal);
+$campaignTotal = $rowCampaign['campaignTotal'];
 
 
-
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +20,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
+  <link rel="icon" href="../assets/images/title.png" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/animate.css">
@@ -84,22 +96,25 @@
   </div>
   <!-- END modal -->
 
-  <div class="block-31" style="position: relative;">
-    <div class="owl-carousel loop-block-31 ">
+  <div class="site-section-aksi">
+    <div class="search-container">
+      <div class="subTitle">
+        <h2>Cari Aksimu, <?php echo $campaignTotal ?> aktivitas membutuhkan bantuan</h2>
+      </div>
+      <div class="searchBtn">
+        <form method="GET" action="">
+          <div class="input-group rounded">
+          <input type="search" name="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" />
+            <span class="input-group-text border-0" id="search-addon">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+      </div>
     </div>
-  </div>
-  <div class="site-section">
-    <div class="container py-5">
     <?php include 'rowlist.php'; ?>
-    </div>
   </div>
 
-  <div class="site-section fund-raisers">
-    <!-- <div class="my-2">
-          <a class="btn btn-light" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
-          <a class="btn btn-danger" href="?logout">Logout</a>
-      </div> -->
-  </div>
+
   <!-- .section -->
 
 
@@ -226,6 +241,7 @@
       });
     });
   </script>
+
 
 </body>
 
