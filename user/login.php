@@ -64,6 +64,7 @@ if (isset($_POST['login_btn'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
+    <link rel="icon" href="../assets/images/title.png" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/animate.css">
@@ -94,9 +95,9 @@ if (isset($_POST['login_btn'])) {
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="../index.php" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="cariAksi.php" class="nav-link">Cari Aksi</a></li>          
+          <li class="nav-item"><a href="../cariAksi.php" class="nav-link">Cari Aksi</a></li>          
           <li class="nav-item"><a href="../about.php" class="nav-link">Tentang Kami</a></li>
-          <li class="nav-item"><a href="contact.php" class="nav-link">FAQ</a></li>
+          <li class="nav-item"><a href="../contact.php" class="nav-link">FAQ</a></li>
           <li class="nav-item active"><a href="user/login.php" class="nav-link" data-toggle="modal" data-target="#loginModal" id="loginButton">Login</a></li>           
         </ul>
       </div>
@@ -277,7 +278,7 @@ if (isset($_POST['login_btn'])) {
     function loginAsOrganizer() {
       // Redirect or perform actions for organizer login
       // Example: window.location.href = "organizer/login.php";
-      window.location.href = "../organizer/register.php";
+      window.location.href = "../organizer/login.php";
       // alert("Fitur ini belum tersedia");
     }
   </script>
