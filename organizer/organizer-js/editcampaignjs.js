@@ -1,3 +1,40 @@
+// Onload Page
+document.getElementById('title-char').innerHTML = document.getElementById("title").value.length;
+document.getElementById('desc-char').innerHTML = document.getElementById("desc").value.length;
+document.getElementById('loc-char').innerHTML = document.getElementById("loc").value.length;
+
+const title = document.getElementById("title").value;
+const desc = document.getElementById("desc").value;
+const loc = document.getElementById("loc").value;
+
+// Check Change
+function titleChange() {
+  let check = document.getElementById("title").value;
+  if (check != title) {
+    document.getElementById("title").setAttribute('class', 'w-100 rounded-3 border-info border-2 border border-opacity-50 bg-info bg-opacity-10 px-2 title-active-change fw-normal');
+  } else {
+    document.getElementById("title").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal');
+  }
+}
+
+function descChange() {
+  let check = document.getElementById("desc").value;
+  if (check != desc) {
+    document.getElementById("desc").setAttribute('class', 'w-100 rounded-3 border-info border-2 border border-opacity-50 bg-info bg-opacity-10 px-2 title-active-change h-desc fw-normal');
+  } else {
+    document.getElementById("desc").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active h-desc fw-normal');
+  }
+}
+
+function locChange() {
+  let check = document.getElementById("loc").value;
+  if (check != loc) {
+    document.getElementById("loc").setAttribute('class', 'w-100 rounded-3 border-info border-2 border border-opacity-50 bg-info bg-opacity-10 px-2 title-active-change fw-normal padding-tb');
+  } else {
+    document.getElementById("loc").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb');
+  }
+}
+
 // Drag & Drop Image
 const dropArea = document.getElementById("drop-area");
 const inputImage = document.getElementById("input-image");
@@ -8,9 +45,11 @@ inputImage.addEventListener("change", uploadImage);
 function uploadImage(){
     let imgLink = URL.createObjectURL(inputImage.files[0]);
     imageView.style.backgroundImage = `url(${imgLink})`;
+
     imageView.textContent = ""; 
-    imageView.style.outlineColor = "";
-    imageView.style.backgroundColor = "";
+    imageView.style.outlineColor = "#02bce0";
+    imageView.style.backgroundColor = "#e6fafd";
+    document.getElementById("undo-button").style.display = "inline";
 }
 
 dropArea.addEventListener("dragenter", (e) => {
@@ -40,8 +79,8 @@ dropArea.addEventListener("drop", (e) =>{
       if(check.files.length == 1){
         inputImage.files = e.dataTransfer.files;
         inputImage.dispatchEvent(new Event('change'));
-        imageView.style.outlineColor = "";
-        imageView.style.backgroundColor = "";
+        imageView.style.outlineColor = "#02bce0";
+        imageView.style.backgroundColor = "#e6fafd";
       } else {
         imageView.style.outlineColor = "";
         imageView.style.backgroundColor = "";
@@ -54,9 +93,22 @@ dropArea.addEventListener("drop", (e) =>{
     }
 });
 
+// Undo Change
+function undoImageChange() {
+  document.getElementById("undo-button").style.display = "none";
+  
+
+  imageView.style.backgroundImage = "url('../assets/images/campaign/" + imageCheck + "')";
+  imageView.style.outlineColor = "";
+  imageView.style.backgroundColor = "";
+
+  inputImage.value = "";
+}
+
 // Char Count Title
 function countTextTitle() {
   let text = document.getElementById("title").value;
+  titleChange();
   document.getElementById('title-char').innerText = text.length;
   if (text.length == 120) {
     document.getElementById('title-max').setAttribute('style', 'color: #dc3545 !important');
@@ -68,6 +120,7 @@ function countTextTitle() {
 // Char Count Desc
 function countTextDesc() {
   let text = document.getElementById("desc").value;
+  descChange();
   document.getElementById('desc-char').innerText = text.length;
   if (text.length == 3000) {
     document.getElementById('desc-max').setAttribute('style', 'color: #dc3545 !important');
@@ -76,20 +129,10 @@ function countTextDesc() {
   }
 }
 
-// Char Count Organizer
-function countTextOrganizer () {
-  let text = document.getElementById("organizer").value;
-  document.getElementById('organizer-char').innerText = text.length;
-  if (text.length == 50) {
-    document.getElementById('organizer-max').setAttribute('style', 'color: #dc3545 !important');
-  } else {
-    document.getElementById('organizer-max').setAttribute('style', '');
-  }
-}
-
 // Char Count Location
 function countTextLoc () {
   let text = document.getElementById("loc").value;
+  locChange();
   document.getElementById('loc-char').innerText = text.length;
   if (text.length == 40) {
     document.getElementById('loc-max').setAttribute('style', 'color: #dc3545 !important');
@@ -106,20 +149,8 @@ function noImage (){
 }
 
 // onclick after empty
-function clickTitle(){
-  document.getElementById("title").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal');
-}
-
-function clickDesc(){
-  document.getElementById("desc").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active h-desc fw-normal');
-}
-
 function clickDate(){
   document.getElementById("date").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb');
-}
-
-function clickLocation(){
-  document.getElementById("loc").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb');
 }
 
 // error image
