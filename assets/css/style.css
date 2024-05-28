@@ -2303,20 +2303,37 @@ h1 {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
-  max-width: 700px; /* Ukuran modal dikurangi */
+  max-width: 700px;
   border-radius: 8px;
   position: relative;
   animation: slideIn 0.5s;
+  font-size: 14px;
+}
+
+.custom-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.custom-close:hover,
+.custom-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+h2 {
+  margin: 0;
+  padding-right: 40px; /* Adjusted to give space for the close button */
 }
 
 .custom-form-group {
   margin-bottom: 15px;
-}
-
-.custom-form-group-inline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .custom-label {
@@ -2338,11 +2355,7 @@ h1 {
 
 .custom-textarea {
   resize: vertical;
-  height: 80px; /* Ukuran kolom teks dikurangi */
-}
-
-.custom-input-small {
-  width: 48%; /* Ukuran kolom input menjadi lebih kecil */
+  height: 80px;
 }
 
 .custom-submit-btn {
@@ -2375,6 +2388,7 @@ h1 {
 .custom-logo {
   max-width: 50px;
   margin-right: 10px;
+  border-radius: 50%; /* Membuat gambar menjadi rounded */
 }
 
 .input-container {
@@ -2393,6 +2407,10 @@ h1 {
   text-decoration: underline;
 }
 
+.custom-submit-container {
+  text-align: right; /* Tombol submit pindah ke kanan bawah */
+}
+
 @keyframes slideIn {
   from {
       top: -300px;
@@ -2402,4 +2420,91 @@ h1 {
       top: 0;
       opacity: 1;
   }
+}
+
+.custom-modal-content-success {
+  width: 80%;
+  max-width: 500px;
+  text-align: center; /* Agar teks dalam modal sukses rata tengah */
+}
+
+#successModal h2 {
+  margin-bottom: 20px;
+}
+
+#successModal p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+#closeSuccessModalBtn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#closeSuccessModalBtn:hover {
+  background-color: #45a049;
+}
+
+/*---------------------
+  MyProfile
+-----------------------*/
+
+body.profile-edit-body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+.profile-edit-container {
+  width: 75%;
+  margin: 120px auto;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+.profile-edit-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.profile-edit-form {
+  display: flex;
+  flex-direction: column;
+}
+.profile-edit-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.profile-edit-form input[type="text"],
+.profile-edit-form input[type="email"],
+.profile-edit-form input[type="date"],
+.profile-edit-form textarea,
+.profile-edit-form select {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.profile-edit-form textarea {
+  resize: vertical;
+}
+.profile-edit-form button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #5cb85c;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.profile-edit-form button:hover {
+  background-color: #4cae4c;
 }

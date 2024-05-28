@@ -48,67 +48,58 @@ function sendemail_verify($email, $verify_token)
     } else {
         echo "Email has been sent";
     }
-    // echo "Message has been sent";
+    
     
 }
 
-if(isset($_POST['register_btn']))
-{
+if (isset($_POST['register_btn'])) {
     $name = $_POST['nama'];
     $email = $_POST['email'];
     $gender = $_POST['gender'];
-    $password = md5($_POST['pass']);
-    $confirm_pass = $_POST['passConfirm'];
+    $password = $_POST['pass']; 
+    $confirm_pass = $_POST['passConfirm'];    
     $address = $_POST['address'];
     $userStatus = $_POST['user_status'];
     $verify_token = md5(rand());
 
-    sendemail_verify($email, $verify_token);
-    echo "sent or not?";
+    // Hash password sebelum menyimpannya ke database
+    $hashed_password = md5($password);
 
-    // Periksa apakah email sudah terdaftar sebelumnya
     $checkEmailQuery = "SELECT userEmail FROM users WHERE userEmail = '$email' LIMIT 1";
     $checkEmailResult = mysqli_query($conn, $checkEmailQuery);
 
-    if(mysqli_num_rows($checkEmailResult) > 0) {
-        // Jika email sudah terdaftar, beri pesan kesalahan
+    if (mysqli_num_rows($checkEmailResult) > 0) {
         $_SESSION['status'] = "Email sudah terdaftar";
-        header('Location: register.php'); 
-        exit(); // Hentikan eksekusi kode selanjutnya
+        header('Location: register.php');
+        exit();
     }
 
-    // Cek kesamaan password 
     if ($password !== $confirm_pass) {
         header('location: register.php?error=Kata sandi tidak cocok!');
-
-    // If password less than 6 characters
+        exit();
     } else if (strlen($password) < 6) {
         header('location: register.php?error=Kata sandi minimal harus 6 karakter');
+        exit();
     }
 
-    // Validasi nilai gender
-    if (!empty($gender) && ($gender === 'Male' || $gender === 'Female')) {
-        // Query untuk menyimpan data ke dalam database
-        $query = "INSERT INTO users(userName, userEmail, userGender, userPassword, userAddress, userStatus, verifyOtp)
-                  VALUES ('$name', '$email', '$gender', '$password', '$address', '$userStatus', '$verify_token')";
+    if (!empty($gender) && ($gender === 'Male' || 'Female')) {
+        $query = "INSERT INTO users (userName, userEmail, userGender, userPassword, userAddress, userStatus, userBirthdate, userBio, userProfession, userProvince, userTown, userPostalCode, verifyOtp)
+                  VALUES ('$name', '$email', '$gender', '$hashed_password', '$address', '$userStatus', NULL, NULL, NULL, NULL, NULL, NULL, '$verify_token')";
 
-        // Jalankan query
-        if(mysqli_query($conn, $query)){
-            // Kirim email verifikasi
+        if (mysqli_query($conn, $query)) {
             sendemail_verify($email, $verify_token);
 
             $_SESSION['status'] = "Registrasi berhasil! <br> Periksa alamat email anda untuk verifikasi!";
             header("Location: register.php");
-            exit(); // Hentikan eksekusi kode selanjutnya setelah mengalihkan pengguna
+            exit();
         } else {
-            $_SESSION['status'] = "Registrasi gagal: " . mysqli_error($conn); // Tangkap pesan kesalahan MySQL
+            $_SESSION['status'] = "Registrasi gagal: " . mysqli_error($conn);
             header("Location: register.php");
-            exit(); // Hentikan eksekusi kode selanjutnya setelah mengalihkan pengguna
+            exit();
         }
     } else {
-        // Jika nilai gender tidak valid
         $_SESSION['status'] = "Error: Nilai gender tidak valid.";
         header("Location: register.php");
-        exit(); // Hentikan eksekusi kode selanjutnya setelah mengalihkan pengguna
+        exit();
     }
 }

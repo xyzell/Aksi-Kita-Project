@@ -38,7 +38,6 @@ $campaignTotal = $rowCampaign['campaignTotal'];
   <link rel="stylesheet" href="../assets/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="../assets/css/bootstrap.css">
   <link rel="stylesheet" href="../assets/css/style.css">
-
 </head>
 
 <body>
@@ -63,7 +62,7 @@ $campaignTotal = $rowCampaign['campaignTotal'];
                 <i class="fa-solid fa-user fa-sm"></i>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="my-profile.php">My Profile</a></li>
+                <li><a class="dropdown-item" href="myProfile.php">My Profile</a></li>
                 <li><a class="dropdown-item" href="../user/logout.php">Logout</a></li>
               </ul>
             </li>
