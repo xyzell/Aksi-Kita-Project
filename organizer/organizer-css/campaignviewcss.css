@@ -1,0 +1,89 @@
+.top-line {
+    padding-bottom: 13px !important;
+}
+
+.banner {
+    height: 424px;
+    overflow: hidden;
+    max-height: 424px;
+    width: 100%;
+}
+
+.image-banner {
+    width: 100%;
+    max-height: 424px;
+    background-size: cover;
+}
+
+.desc {
+    line-height: 23px;
+    padding-top: 5px;
+    white-space: pre-line;
+}
+
+.margin-top-table {
+    margin-top: 30px;
+}
+
+.button-css {
+    height: 30px;
+}
+
+.image-size {
+    max-width: 65px;
+}
+
+.text-area {
+    height: 65px;
+    max-height: 65px;
+    padding-left: 5px;
+    margin-left: -10px;
+    resize: none;
+}
+
+.text-area:focus {
+    outline: none;
+    border: 2.5px solid gray !important;
+}
+
+.margin-line {
+    margin-bottom: 3px;
+}
+
+.col-size {
+    width: 65px;
+}
+
+.v-align {
+    vertical-align: top !important;
+}
+
+.comment-css {
+    padding-bottom: 15px;
+}
+
+.name-image-css {
+    padding-top: 15px;
+}
+
+.submit-comment {
+    width: 150px;
+    height: 30px;
+    margin-left : -10px;
+}
+
+.delete-button, .delete-button:focus, .delete-button:active {
+    outline: none;
+}
+
+.button-modal {
+    width: 100px;
+}
+
+.title-modal {
+    line-height: 10px;
+}
+
+.button-modal, button-modal:focus {
+    box-shadow: none !important;
+}
