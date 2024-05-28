@@ -75,10 +75,10 @@ $campaign = $stmt_campaign->get_result();
                             <tr>
                                 <td><?php echo htmlspecialchars($campaigns['campaignId']); ?></td>
                                 <td><?php echo htmlspecialchars($campaigns['title']); ?></td>
-                                <td><?php echo htmlspecialchars($campaigns['banner']); ?></td>
-                                <td><?php echo htmlspecialchars($campaigns['description_campaign']); ?></td>
+                                <td><img src="<?php echo htmlspecialchars($campaigns['banner']); ?>" alt="Banner" style="width: 100px; height: auto;"></td>
+                                <td><?php echo htmlspecialchars($campaigns['description']); ?></td>
                                 <td><?php echo htmlspecialchars($campaigns['campaignDate']); ?></td>
-                                <td><?php echo htmlspecialchars($campaigns['location_campaign']); ?></td>
+                                <td><?php echo htmlspecialchars($campaigns['location']); ?></td>
                                 <td class="text-center">
                                     <a href="edit_campaign.php?campaignId=<?php echo htmlspecialchars($campaigns['campaignId']); ?>" class="btn btn-info btn-circle">
                                         <i class="fas fa-edit"></i>
