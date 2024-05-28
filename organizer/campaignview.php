@@ -69,17 +69,20 @@ $check = 0;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title><?php echo $title ?></title>
 
   <link rel="icon" href="../assets/images/title.png" type="image/x-icon" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="organizer-css/bootstrap5/bootstrap.css" />
-  <link rel="stylesheet" href="organizer-css/viewcampaigncss.css" />
+  <link rel="stylesheet" href="organizer-css/campaignviewcss.css" />
+
+  <script src="organizer-js/bootstrap5/bootstrap.bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="pb-5 mb-2">
-  <div class="container shadow rounded-3 pt-2 pb-4 px-4 mt-5">
+<body class="pb-5 mb-2 bg-success bg-opacity-25">
+  <div class="container bg-white shadow rounded-3 pt-2 pb-4 px-4 mt-5">
     <!-- Back Button -->
     <div class="top-line border-bottom border-warning border-opacity-75 border-2 mb-3">
       <a href="homepage.php">
@@ -96,7 +99,7 @@ $check = 0;
       </div>
       <div>
         <p class="desc">
-          <?php echo $description ?>
+          <?php echo htmlentities($description) ?>
         </p>
       </div>
 
@@ -105,7 +108,7 @@ $check = 0;
           <tr>
             <th class="border-secondary border-opacity-75 text-center text-secondary fw-medium border-bottom border-2 border-0 pt-1 pb-2" colspan="2">
               Organizer<br />
-              <span class="fw-normal text-black"> <?php echo $organizer ?></span>
+              <span class="fw-normal text-black"> <?php echo htmlentities($organizer) ?></span>
             </th>
           </tr>
           <tr>
@@ -115,7 +118,7 @@ $check = 0;
             </th>
             <th class="border-secondary border-opacity-75 text-center text-secondary fw-medium border-start border-2 border-0 pt-1 pb-2 col-5">
               Location<br />
-              <span class="fw-normal text-black"> <?php echo $location ?></span>
+              <span class="fw-normal text-black"> <?php echo htmlentities($location) ?></span>
             </th>
           </tr>
         </table>
@@ -125,6 +128,13 @@ $check = 0;
     </div>
 
     <!-- Button Voluunter, Edit & Delete -->
+    <div class="mb-3">
+      <a href="manageregistrant.php?campaign=<?php echo $id ?>    ">
+        <button class="button-css w-100 rounded-pill bg-primary bg-opacity-75 fw-bold text-white border-0 pb-2">
+          Manage Registrant
+        </button>
+      </a>
+    </div>
     <div class="mb-3">
       <a href="managevolunteer.php?campaign=<?php echo $id ?>    ">
         <button class="button-css w-100 rounded-pill bg-info fw-bold text-white border-0 pb-2">
@@ -141,13 +151,16 @@ $check = 0;
         </a>
       </div>
       <div class="col">
-        <a href="">
-          <button class="button-css w-100 rounded-pill bg-danger fw-bold text-white border-0 pb-2">
-            Delete
-          </button>
-        </a>
+        <button type="button" class="button-css w-100 rounded-pill bg-danger fw-bold text-white border-0 pb-2 delete-button" href="#" onclick="deleteCampaign()">
+          Delete
+        </button>
       </div>
     </div>
+
+    <form action="deletecampaign.php" id="form-delete" method="POST">
+      <input type="hidden" name="campaign-id" id="campaign-id" value="<?php echo $id ?>" hidden />
+      <input type="hidden" name="campaign-banner" id="campaign-banner" value="<?php echo $banner ?>" hidden />
+    </form>
 
     <div class="top-line border-bottom border-warning border-opacity-75 border-2 mt-3"></div>
 
@@ -225,7 +238,7 @@ $check = 0;
       </div>
     </div>
   </div>
-  <script src="organizer-js/viewcampaignjs.js"></script>
+  <script src="organizer-js/campaignviewjs.js"></script>
   <script>
     function submitClicked() {
 

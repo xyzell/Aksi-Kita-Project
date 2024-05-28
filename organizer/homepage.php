@@ -57,7 +57,12 @@ $campaignTotal = $rowCampaign['campaignTotal'];
   <header class="header">
     <img class="logo-img" src="assets/logo.png" alt="" />
     <h1 class="title">Organizer Dashboard</h1>
-    <img class="profile" src="../assets/images/gen.jpeg" alt="" />
+    <a href="../organizer/organizerprofile.php" class="profile-href">
+      <div class="tooltip">
+        <img class="profile" src="../assets/images/profiles/<?php echo $_SESSION['organizerLogo'] ?>" alt="" />
+        <span class="tooltiptext">Profile Details</span>
+      </div>
+    </a>
   </header>
   <div class="banner">
     <p class="subtitle">Total Active Campaigns and Active Users</p>
@@ -79,14 +84,14 @@ $campaignTotal = $rowCampaign['campaignTotal'];
               <img class="campaigns-image" src="../assets/images/campaign/<?php echo $row['banner'] ?>" alt="">
               <div class="campaigns-info">
                 <div class="campaigns-details">
-                  <p class="campaigns-organizer"><?php echo $row['organizerName'] ?></p>
+                  <p class="campaigns-organizer"><?php echo htmlentities($row['organizerName']) ?></p>
                   <div class="container-title">
-                    <h1 class="campaigns-title"><?php echo $row['title'] ?></h1>
+                    <h1 class="campaigns-title"><?php echo htmlentities($row['title']) ?></h1>
                   </div>
                 </div>
                 <div class="loc-date">
                   <img class="campaigns-location-icon" src="assets/pin.png" alt="">
-                  <p class="campaigns-location"><?php echo $row['location'] ?></p>
+                  <p class="campaigns-location"><?php echo htmlentities($row['location']) ?></p>
                 </div>
                 <div class="loc-date">
                   <img class="campaigns-date-icon" src="assets/calendar.png" alt="">
@@ -143,6 +148,18 @@ $campaignTotal = $rowCampaign['campaignTotal'];
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="organizer-js/homepagejs.js"></script>
+
+  <?php
+  if ($_SESSION['notification'] == 1) {
+  ?>
+    <script>
+      campaignCreated();
+    </script>
+  <?php
+    $_SESSION['notification'] = 0;
+  }
+
+  ?>
 </body>
 
 </html>

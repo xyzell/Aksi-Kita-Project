@@ -22,8 +22,3 @@ function countTextComment() {
   }
 }
 
-// reload page
-function reload() {
-  location.reload();
-}
-

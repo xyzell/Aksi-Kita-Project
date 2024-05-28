@@ -1,0 +1,43 @@
+.height-100 {
+    height: 100vh;
+}
+
+.profil-card-size {
+    height: 300px;
+    width: 250px;
+    border: 1px solid black;
+}
+
+.image-size {
+    width: 200px;
+}
+
+.info-card-size {
+    width: 500px;
+}
+
+.change-profile-button {
+    width: 170px;
+    height: 30px;
+}
+
+.custom-line-height {
+    line-height: 0px;
+}
+
+.button-modal,
+button-modal:focus {
+    box-shadow: none !important;
+}
+
+.button-modal {
+    width: 100px;
+}
+
+.title-modal {
+    line-height: 10px;
+}
+
+.background-color {
+    background-color: azure;
+}

@@ -57,6 +57,7 @@ dropArea.addEventListener("drop", (e) =>{
 // Char Count Title
 function countTextTitle() {
   let text = document.getElementById("title").value;
+  document.getElementById("title").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal');
   document.getElementById('title-char').innerText = text.length;
   if (text.length == 120) {
     document.getElementById('title-max').setAttribute('style', 'color: #dc3545 !important');
@@ -67,7 +68,8 @@ function countTextTitle() {
 
 // Char Count Desc
 function countTextDesc() {
-  let text = document.getElementById("desc").value
+  let text = document.getElementById("desc").value;
+   document.getElementById("desc").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active h-desc fw-normal');
   document.getElementById('desc-char').innerText = text.length;
   if (text.length == 3000) {
     document.getElementById('desc-max').setAttribute('style', 'color: #dc3545 !important');
@@ -76,20 +78,10 @@ function countTextDesc() {
   }
 }
 
-// Char Count Organizer
-function countTextOrganizer () {
-  let text = document.getElementById("organizer").value
-  document.getElementById('organizer-char').innerText = text.length;
-  if (text.length == 50) {
-    document.getElementById('organizer-max').setAttribute('style', 'color: #dc3545 !important');
-  } else {
-    document.getElementById('organizer-max').setAttribute('style', '');
-  }
-}
-
 // Char Count Location
 function countTextLoc () {
-  let text = document.getElementById("loc").value
+  let text = document.getElementById("loc").value;
+  document.getElementById("loc").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb');
   document.getElementById('loc-char').innerText = text.length;
   if (text.length == 40) {
     document.getElementById('loc-max').setAttribute('style', 'color: #dc3545 !important');
@@ -106,36 +98,24 @@ function noImage (){
 }
 
 function noTitle(){
-  document.getElementById("title").setAttribute('class', 'w-100 rounded-3 border-danger border-2 border border-opacity-50 bg-danger bg-opacity-10 px-2 title-active fw-normal');
+  document.getElementById("title").setAttribute('class', 'w-100 rounded-3 border-danger border-2 border border-opacity-50 bg-danger bg-opacity-10 px-2 title-active-invalid fw-normal');
 }
 
 function noDesc(){
-  document.getElementById("desc").setAttribute('class', 'w-100 rounded-3 border-danger border-2 border border-opacity-50 bg-danger bg-opacity-10 px-2 title-active h-desc fw-normal');
+  document.getElementById("desc").setAttribute('class', 'w-100 rounded-3 border-danger border-2 border border-opacity-50 bg-danger bg-opacity-10 px-2 title-active-invalid h-desc fw-normal');
 }
 
 function noDate(){
-  document.getElementById("date").setAttribute('class', 'w-100 rounded-3 border-danger border-2 border border-opacity-50 bg-danger bg-opacity-10 px-2 title-active fw-normal padding-tb');
+  document.getElementById("date").setAttribute('class', 'w-100 rounded-3 border-danger border-2 border border-opacity-50 bg-danger bg-opacity-10 px-2 title-active-invalid fw-normal padding-tb');
 }
 
 function noLocation(){
-  document.getElementById("loc").setAttribute('class', 'w-100 rounded-3 border-danger border-2 border border-opacity-50 bg-danger bg-opacity-10 px-2 title-active fw-normal padding-tb');
+  document.getElementById("loc").setAttribute('class', 'w-100 rounded-3 border-danger border-2 border border-opacity-50 bg-danger bg-opacity-10 px-2 title-active-invalid fw-normal padding-tb');
 }
 
-// onclick after empty
-function clickTitle(){
-  document.getElementById("title").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal');
-}
-
-function clickDesc(){
-  document.getElementById("desc").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active h-desc fw-normal');
-}
-
-function clickDate(){
+// not empty anymore after empty
+function inputDate(){
   document.getElementById("date").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb');
-}
-
-function clickLocation(){
-  document.getElementById("loc").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb');
 }
 
 // error image

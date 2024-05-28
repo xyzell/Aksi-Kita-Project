@@ -17,8 +17,8 @@
 
 .desc {
     line-height: 23px;
-    padding-top: 5px;
-    white-space: pre-line;
+    padding-top: 25px;
+    /* white-space: pre-line; */
 }
 
 .margin-top-table {
@@ -47,6 +47,7 @@
 }
 
 .margin-line {
+    margin-top: -8px;
     margin-bottom: 3px;
 }
 
@@ -64,10 +65,4 @@
 
 .name-image-css {
     padding-top: 15px;
-}
-
-.submit-comment {
-    width: 150px;
-    height: 30px;
-    margin-left : -10px;
 }

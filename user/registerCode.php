@@ -37,7 +37,7 @@ function sendemail_verify($email, $verify_token)
     <h2> Kamu berhasil mendaftar dengan AksiKita</h2>
     <h5>Verifikasi email kamu untuk login pada link dibawah ini</h5>
     <br/><br/>
-    <a href='http://localhost:3000/user/verify-email.php?token=$verify_token'> Click Me </a>
+    <a href='http://localhost:8082/user/verify-email.php?token=$verify_token'> Click Me </a>
     ";
 
     $mail->Body = $email_template;

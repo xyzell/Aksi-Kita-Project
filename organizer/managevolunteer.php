@@ -20,16 +20,16 @@ $campaign = $_REQUEST['campaign'];
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>AksiKita Organizer</title>
+    <title>Manage Volunteer</title>
     <link rel="icon" href="../assets/images/title.png" type="image/x-icon" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="organizer-css/bootstrap5/bootstrap.css" />
 </head>
 
-<body>
-    <div class="container shadow rounded-3 pt-2 pb-4 px-4 mt-5">
-        <table class="table border-bottom border-2 border-warning border-opacity-75">
+<body class="bg-danger bg-opacity-10">
+    <div class="container shadow rounded-3 pt-1 pb-0 px-4 mt-5 bg-white">
+        <table class="table" style="border-bottom: hidden;">
             <th scope="col" class="col-1">
                 <a href="campaignview.php?campaign=<?php echo $campaign ?>">
                     <i class="fs-1 link-secondary opacity-75 fa fa-angle-left"></i>
@@ -39,6 +39,26 @@ $campaign = $_REQUEST['campaign'];
                 <h1 class="pt-1 text-center fs-3">Manage Volunteer</h1>
             </th>
             <th scope="col" class="col-1"></th>
+        </table>
+    </div>
+
+    <div class="container shadow rounded-3 pt-1 pb-0 px-4 mt-2 bg-white">
+        <table class="table">
+            <tr scope="row" class="col-1">
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="container shadow rounded-3 pt-1 pb-0 px-4 mt-2 bg-white">
+        <table class="table">
+            <tr scope="row" class="col-1">
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
         </table>
     </div>
 </body>
