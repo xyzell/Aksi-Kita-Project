@@ -135,11 +135,11 @@ session_start();
             <div class="block-38-img">
               <div class="block-38-header">
                 <img src="assets/images/sambo.jpg" alt="Image placeholder">
-                <h3 class="block-38-heading">Fero refadha Zaidan</h3>
-                <p class="block-38-subheading">Developer</p>
+                <h3 class="block-38-heading">Jennifer Greive</h3>
+                <p class="block-38-subheading">President</p>
               </div>
               <div class="block-38-body">
-                <p>Gw Kece Brutal  </p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
               </div>
             </div>
           </div>
@@ -148,12 +148,12 @@ session_start();
           <div class="block-38 text-center">
             <div class="block-38-img">
               <div class="block-38-header">
-                <img src="assets/images/Nicholas.jpg" alt="Image placeholder">
-                <h3 class="block-38-heading">Nicholas Simmanjuntak</h3>
-                <p class="block-38-subheading">Software Tester</p>
+                <img src="../assets/images/person_3.jpg" alt="Image placeholder">
+                <h3 class="block-38-heading">Patrick Marx</h3>
+                <p class="block-38-subheading">Marketer</p>
               </div>
               <div class="block-38-body">
-                <p> Korban Ditinggal Cina </p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
               </div>
             </div>
           </div>
@@ -162,12 +162,12 @@ session_start();
           <div class="block-38 text-center">
             <div class="block-38-img">
               <div class="block-38-header">
-                <img src="../assets/images/Silhi.jpg" alt="Image placeholder">
-                <h3 class="block-38-heading">Silhi</h3>
-                <p class="block-38-subheading">Analysis</p>
+                <img src="../assets/images/person_4.jpg" alt="Image placeholder">
+                <h3 class="block-38-heading">Mike Coolbert</h3>
+                <p class="block-38-subheading">Partner</p>
               </div>
               <div class="block-38-body">
-                <p>Gw Kece </p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
               </div>
             </div>
           </div>
@@ -230,17 +230,17 @@ session_start();
     </div>
   </div> <!-- .site-section -->
   
-   <footer class="footer">
+  <footer class="footer">
     <div class="container">
       <div class="row mb-5">
         <div class="col-md-6 col-lg-4">
           <h3 class= "heading-section">About Us</h3>
-          <p style="text-align: justify;" class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
+          <p style="text-align: justify; font-size: 15px"  class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
             masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang, 
             melatih relawan, dan mendapatkan pengakuan dari pemerintah dan media. </p>
-          <p style="text-align: justify;" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
+          <p style="text-align: justify; font-size: 15px" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
             pendidikan, dan pembangunan berkelanjutan demi menciptakan dampak yang berkelanjutan.</p>
-          <p><a href="#" class="link-underline">Read  More</a></p>
+          <p><a href="#" class="link-underline">Read More</a></p>
         </div>
         <div class="col-md-6 col-lg-4">
           <h3 class="heading-section">Recent Blog</h3>
@@ -296,10 +296,11 @@ session_start();
               </ul>
             </div>
         </div>
+        
       </div>
     </div>
   </footer>
-  
+
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 

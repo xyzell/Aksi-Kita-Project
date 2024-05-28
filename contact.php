@@ -174,12 +174,12 @@ session_start();
       <div class="row mb-5">
         <div class="col-md-6 col-lg-4">
           <h3 class= "heading-section">About Us</h3>
-          <p style="text-align: justify;" class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
+          <p style="text-align: justify; font-size: 15px"  class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
             masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang, 
             melatih relawan, dan mendapatkan pengakuan dari pemerintah dan media. </p>
-          <p style="text-align: justify;" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
+          <p style="text-align: justify; font-size: 15px" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
             pendidikan, dan pembangunan berkelanjutan demi menciptakan dampak yang berkelanjutan.</p>
-          <p><a href="#" class="link-underline">Read  More</a></p>
+          <p><a href="#" class="link-underline">Read More</a></p>
         </div>
         <div class="col-md-6 col-lg-4">
           <h3 class="heading-section">Recent Blog</h3>
@@ -228,17 +228,16 @@ session_start();
         <div class="col-md-6 col-lg-4">
           <div class="block-23">
             <h3 class="heading-section">Get Connected</h3>
-              <ul>
-                <li><span class="icon icon-map-marker"></span><span style="text-align: justify;" class="text">Jl. Khp Hasan Mustopa No.23, Neglasari, Kec. Cibeunying Kaler, Kota Bandung, Jawa Barat 40124</span></li>
-                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Aksik1taaa@gmail.com</span></a></li>
-              </ul>
-            </div>
+            <ul>
+              <li><span class="icon icon-map-marker"></span><span style="text-align: justify;" class="text">Jl. Khp Hasan Mustopa No.23, Neglasari, Kec. Cibeunying Kaler, Kota Bandung, Jawa Barat 40124</span></li>
+              <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+              <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Aksik1taaa@gmail.com</span></a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </footer>
-
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 

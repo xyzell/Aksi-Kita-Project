@@ -184,63 +184,62 @@ session_start();
     </div>
 
     <div class="container-fluid">
-
-      <!-- <div class="row"> -->
-        
-        <div class="col-md-12 block-11">
+    <div class="col-md-12 block-11">
           <div class="nonloop-block-11 owl-carousel">
 
             <div class="card fundraise-item">
-              <a href="#"><img class="card-img-top" src="assets/images/img_1.jpg" alt="Image placeholder"></a>
+              <a href="#"><img class="card-img-top" src="assets/images/airbersih.jpg" alt="Image placeholder"></a>
               <div class="card-body">
-                <h3 class="card-title"><a href="#">Water Is Life. Clean Water In Urban Area</a></h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
+                <h3 class="card-title"><a href="#">Butuh bantuan untuk program air bersih</a></h3>
+                <p class="card-text">Kami menyediakan bantuan air bersih untuk daerah yang terkena bencana seperti banjir, gempa bumi, atau kekeringan</p>
+                <p></p>
+                <span class="donation-time mb-3 d-block">Donasi terakhir 1 jam yang lalu</span>
                 <div class="progress custom-progress-success">
-                  <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 90%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-              </div>
-            </div>
-
-            
-            <div class="card fundraise-item">
-              <a href="#"><img class="card-img-top" src="assets/images/img_7.jpg" alt="Image placeholder"></a>
-              <div class="card-body">
-                <h3 class="card-title"><a href="#">Need Shelter for Children in Africa</a></h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-                <div class="progress custom-progress-success">
-                  <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                <span class="fund-raised d-block">Terkumpul Rp.48,347,101,00 dari Rp.50,000,000,00</span>
               </div>
             </div>
             
+            
+            
             <div class="card fundraise-item">
-              <a href="#"><img class="card-img-top" src="assets/images/img_3.jpg" alt="Image placeholder"></a>
+              <a href="#"><img class="card-img-top" src="assets/images/darling.png" alt="Image placeholder"></a>
               <div class="card-body">
-                <h3 class="card-title"><a href="#">Children Needs Education</a></h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
+                <h3 class="card-title"><a href="#">Butuh Bantuan Untuk Membantu Dapur Keliling</a></h3>
+                <p class="card-text">Kami menyediakan layanan dapur keliling yang akan memasak dan mendistribusikan makanan bergizi kepada anak-anak jalanan di berbagai lokasi.</p>
+                <span class="donation-time mb-3 d-block">Donasi terakhir 1 jam yang lalu</span>
                 <div class="progress custom-progress-success">
-                  <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 91%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                <span class="fund-raised d-block">Terkumpul Rp.10,112,503,0000 dari Rp.11,0,000,00</span>
+              </div>
+            </div>
+            
+            <div class="card fundraise-item">
+              <a href="#"><img class="card-img-top" src="assets/images/anakterlantar.jpg" alt="Image placeholder"></a>
+              <div class="card-body">
+                <h3 class="card-title"><a href="#">Penggalangan dana untuk anak anak jalanan</a></h3>
+                <p class="card-text">Program ini bertujuan untuk meningkatkan kesadaran masyarakat tentang masalah kelaparan anak-anak dan menggalang dana untuk menyediakan makanan bagi mereka.</p>
+                <span class="donation-time mb-3 d-block">Donasi terakhir 1 jam yang lalu</span>
+                <div class="progress custom-progress-success">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 67%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="fund-raised d-block">Rp.3,112,503,00 dari Rp.5,000,000,00</span>
               </div>
             </div>
 
 
             <div class="card fundraise-item">
-              <a href="#"><img class="card-img-top" src="assets/images/img_4.jpg" alt="Image placeholder"></a>
+              <a href="#"><img class="card-img-top" src="assets/images/anakmiskin.jpg" alt="Image placeholder"></a>
               <div class="card-body">
-                <h3 class="card-title"><a href="#">Refugees Needs Food</a></h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
+                <h3 class="card-title"><a href="#">Butuh Bantuan untuk Adopsi Sekolah untuk Anak-Anak dari Keluarga Miskin</a></h3>
+                <p class="card-text">Kami mengajak masyarakat untuk mengadopsi sekolah atau kelas bagi anak-anak dari keluarga miskin.</p>
+                <span class="donation-time mb-3 d-block">Donasi terakhir 3 hari yang lalu</span>
                 <div class="progress custom-progress-success">
-                  <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 11%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                <span class="fund-raised d-block">Rp.1,112,503,00 dari Rp.10,000,000,00</span>
               </div>
             </div>
 
@@ -248,34 +247,21 @@ session_start();
             <div class="card fundraise-item">
               <a href="#"><img class="card-img-top" src="assets/images/img_6.jpg" alt="Image placeholder"></a>
               <div class="card-body">
-                <h3 class="card-title"><a href="#">Voluteer </a></h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
+                <h3 class="card-title"><a href="#">Bantuan Pendidikan untuk Anak Disabilitas </a></h3>
+                <p class="card-text">Program ini bertujuan untuk meningkatkan kesadaran masyarakat tentang pentingnya pendidikan inklusif bagi anak-anak dengan disabilitas</p>
+                <span class="donation-time mb-3 d-block">Donasi terakhir 3 hari yang lalu</span>
                 <div class="progress custom-progress-success">
-                  <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 51%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                <span class="fund-raised d-block">Rp.15,112,503,00 dari Rp.30,000,000,00</span>
               </div>
             </div>
-            
-            <div class="card fundraise-item">
-              <a href="#"><img class="card-img-top" src="assets/images/img_3.jpg" alt="Image placeholder"></a>
-              <div class="card-body">
-                <h3 class="card-title"><a href="#">Children Needs Food</a></h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-                <div class="progress custom-progress-success">
-                  <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-              </div>
-            </div>
-           
           </div>
         </div>
       <!-- </div> -->
     </div>
   </div> <!-- .section -->
+
 
 
   <div class="site-section fund-raisers">
@@ -452,12 +438,12 @@ session_start();
       <div class="row mb-5">
         <div class="col-md-6 col-lg-4">
           <h3 class= "heading-section">About Us</h3>
-          <p style="text-align: justify;" class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
+          <p style="text-align: justify; font-size: 15px"  class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
             masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang, 
             melatih relawan, dan mendapatkan pengakuan dari pemerintah dan media. </p>
-          <p style="text-align: justify;" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
+          <p style="text-align: justify; font-size: 15px" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
             pendidikan, dan pembangunan berkelanjutan demi menciptakan dampak yang berkelanjutan.</p>
-          <p><a href="#" class="link-underline">Read  More</a></p>
+          <p><a href="#" class="link-underline">Read More</a></p>
         </div>
         <div class="col-md-6 col-lg-4">
           <h3 class="heading-section">Recent Blog</h3>
