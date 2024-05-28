@@ -107,7 +107,7 @@ $conn->close();
           <p><strong>Tanggal:</strong> <?php echo date("d M Y, H:i", strtotime($campaign['campaignDate'])); ?></p>
         </div>
         <div class="action-buttons">
-          <button type="button">Jadi Relawan</button>
+          <button id="openModalBtn" class="open-modal-btn">Jadi Relawan</button>
           <button type="button">Kontak Organisasi</button>
         </div>
       </div>
@@ -122,11 +122,57 @@ $conn->close();
         <p><strong>Alamat:</strong> <?php echo htmlspecialchars($campaign['organizerAddress']); ?></p>
         <p><strong>Website:</strong> <a href="<?php echo htmlspecialchars($campaign['organizerWebsite']); ?>"><?php echo htmlspecialchars($campaign['organizerWebsite']); ?></a></p>
       </div>
-      <?php else : ?>
+    <?php else : ?>
       <h2>Detail kampanye tidak ditemukan</h2>
     <?php endif; ?>
   </div>
 
+  <!-- Modal -->
+  <!-- Modal -->
+  <div id="modalForm" class="custom-modal">
+    <div class="custom-modal-content">
+      <span class="custom-close">&times;</span>
+      <h2>Daftar Aktivitas</h2>
+      <form>
+        <div class="custom-form-group">
+          <label for="kepada" class="custom-label">Kepada</label>
+          <div class="input-container">
+            <img id="organizerLogo" src="assets/images/profiles/<?php echo htmlspecialchars($campaign['organizerLogo']); ?>" alt="<?php echo htmlspecialchars($campaign['organizerName']); ?>" class="custom-logo">
+            <span id="organizationName" class="organization-name"><?php echo htmlspecialchars($campaign['organizerName']); ?></span>
+          </div>
+        </div>
+        <div class="custom-form-group">
+          <label for="subyek" class="custom-label">Subyek</label>
+          <input type="text" id="subyek" class="custom-input" value="<?php echo htmlspecialchars($campaign['title']); ?>" disabled>
+        </div>
+        <div class="custom-form-group">
+          <label for="question1" class="custom-label">* Mengapa Anda tertarik untuk menjadi relawan pada aktivitas ini?</label>
+          <textarea id="question1" class="custom-textarea" required></textarea>
+        </div>
+        <div class="custom-form-group">
+          <label for="question2" class="custom-label">* Mengapa Anda adalah relawan yang tepat untuk aktivitas ini?</label>
+          <textarea id="question2" class="custom-textarea" required></textarea>
+        </div>
+        <div class="custom-form-group">
+          <label for="pekerjaan" class="custom-label">* Pilih pekerjaan Anda:</label>
+          <select id="pekerjaan" class="custom-input" disabled>
+            <option value="Relawan <?php echo htmlspecialchars($campaign['title']); ?>" selected>Relawan <?php echo htmlspecialchars($campaign['title']); ?></option>
+          </select>
+        </div>
+        <div class="custom-form-group">
+          <p class="custom-label">Masukan nomor handphone dan alamat email untuk memudahkan organisasi menghubungi Anda.</p>
+          <div class="custom-form-group-inline">
+            <input type="tel" id="kontak" class="custom-input custom-input-small" placeholder="HP - e.g. +62 812 1016 7119" required>
+            <input type="email" id="email" class="custom-input custom-input-small" value="<?php echo htmlspecialchars($_SESSION['userEmail']); ?>" required>
+          </div>
+          <a href="#" id="changeEmail" class="custom-link">Ganti email</a>
+        </div>
+        <button type="submit" class="custom-submit-btn">Kirim Formulir Pendaftaran</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 
   <footer class="footer">
     <div class="container">
