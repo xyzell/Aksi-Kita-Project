@@ -20,7 +20,7 @@ $result = mysqli_query($conn, $queryTotalCampaign);
 
 $row = mysqli_fetch_assoc($result);
 $campaignCount = $row['count'];
-
+$_SESSION['maxCampaign'] = $campaignCount;
 ?>
 
 <!-- get user and campaign total -->
@@ -62,9 +62,9 @@ $campaignTotal = $rowCampaign['campaignTotal'];
   <div class="banner">
     <p class="subtitle">Total Active Campaigns and Active Users</p>
     <div class="information">
-      <p class="campaigns-count"><?php echo $campaignTotal ?>&nbsp;Campaigns</p>
+      <p class="campaigns-count"><span id="counter" data-count="<?php echo $campaignTotal ?>">0</span>&nbsp;Campaigns</p>
       <p>|</p>
-      <p class="volunteers-count"><?php echo $userTotal ?>&nbsp;Users</p>
+      <p class="volunteers-count"><span id="counter" data-count="<?php echo $userTotal ?>">0</span>&nbsp;Users</p>
     </div>
   </div>
 
@@ -74,19 +74,19 @@ $campaignTotal = $rowCampaign['campaignTotal'];
     <div class="list-container">
       <div class="campaigns-list">
         <?php while ($row = mysqli_fetch_assoc($ListCampaignResult)) { ?>
-          <a href="campaignview.php?id=<?php echo $row['campaignId'] ?>">
+          <a href="campaignview.php?campaign=<?php echo $row['campaignId'] ?>">
             <div class="campaigns-card">
-              <img class="campaigns-image" src="../assets/images/<?php echo $row['banner'] ?>" alt="">
+              <img class="campaigns-image" src="../assets/images/campaign/<?php echo $row['banner'] ?>" alt="">
               <div class="campaigns-info">
                 <div class="campaigns-details">
-                  <p class="campaigns-organizer"><?php echo $row['organizerName'] ?></p>
+                  <p class="campaigns-organizer"><?php echo htmlentities($row['organizerName']) ?></p>
                   <div class="container-title">
-                    <h1 class="campaigns-title"><?php echo $row['title'] ?></h1>
+                    <h1 class="campaigns-title"><?php echo htmlentities($row['title']) ?></h1>
                   </div>
                 </div>
                 <div class="loc-date">
                   <img class="campaigns-location-icon" src="assets/pin.png" alt="">
-                  <p class="campaigns-location"><?php echo $row['location'] ?></p>
+                  <p class="campaigns-location"><?php echo htmlentities($row['location']) ?></p>
                 </div>
                 <div class="loc-date">
                   <img class="campaigns-date-icon" src="assets/calendar.png" alt="">

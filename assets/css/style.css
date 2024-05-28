@@ -1986,7 +1986,9 @@ textarea.form-control {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
   
-/* Register CSS */
+/*---------------------
+  Register
+-----------------------*/
 
 .select-box {
   position: relative;
@@ -2017,31 +2019,31 @@ height: 1px;
 background: #eee;
 }
 
-/* Style ikon dari Font Awesome */
+
 .fa-solid {
   font-size: 24px;
 }
 
-/* Tambahkan style untuk grid besar horizontal */
+
 .icon-grid {
   display: flex;
   justify-content: center;
 }
 
-/* Tambahkan margin antara ikon */
+
 .icon-grid .btn {
   margin: 0 10px;
   border-radius: 8px;
 }
 
-/* Style ikon dari Font Awesome */
+
 .fa-solid {
   font-size: 36px;
 }
 
 .modal-body .btn i {
-  display: block; /* Menempatkan ikon di atas teks */
-  margin-bottom: 5px; /* Memberikan jarak antara ikon dan teks */
+  display: block;
+  margin-bottom: 5px; 
 }
 
 .modal-body .btn span {
@@ -2049,8 +2051,8 @@ background: #eee;
 }
 
 .register-link {
-  color: #333; /* Warna teks */
-  font-size: 14px; /* Ukuran font */
+  color: #333; 
+  font-size: 14px;
 }
 
 .form-section {
@@ -2064,4 +2066,233 @@ background: #eee;
   Cari Aksi
 -----------------------*/
 
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px; 
+  padding: 25px;
+  margin-top: 5px;
+}
 
+.card-aksi {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  cursor: pointer;
+  transition: all .4s ease;
+}
+
+.card-aksi:hover {
+  cursor: pointer;
+  transform: translateY(-10px);
+}
+
+.card-aksi img {
+  border-radius: 8px 8px 8px 8px;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.subTitle {
+  padding: 25px;
+}
+
+.card-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.card-content h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 10px 0;
+  min-height: 3em;
+
+}
+
+.card-content p {
+  flex: 1;
+  color: #666;
+  font-size: 0.9em;
+  margin: 10px 0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+  color: #fff;
+  background-color: #fff;
+}
+
+.buy-now {
+  background-color: #ffc107;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 10px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.buy-now:hover {
+  background-color: #e0a800;
+}
+
+.loc-date {
+  display: flex;
+  align-items: center;
+
+}
+
+.loc-date img {
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.campaigns-location, .campaigns-date {
+  margin: 0;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.campaigns-date-icon {
+  width: 20px;
+  padding: 4.5px;
+  background-color: #f0d404;
+  border-radius: 1.5px;
+  margin-left: 1px;
+}
+
+.site-section-aksi {
+  padding: 8em 0; }
+
+.search-container {
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 0 25px;
+}
+
+.subTitle {
+  flex: 1; 
+  padding: 0;
+}
+
+.subTitle h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.searchBtn {
+  padding: 0; 
+}
+
+.searchErr h2 { 
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin: 20px 0;
+}
+
+
+/*---------------------
+  aksiRelawan
+-----------------------*/
+
+.event-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 140px;
+}
+
+.event-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.event-details {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.banner {
+  width: 100%;
+  height: 300px; 
+  margin-bottom: 20px;
+  overflow: hidden; 
+  border-radius: 8px;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  object-position: center; 
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.details p {
+  margin: 5px 0;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.action-buttons button {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ffc107;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-buttons button:hover {
+  background-color: #000;
+}
+
+.description, .organizer-card {
+  width: 100%;
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.organizer-card img {
+  display: block;
+  margin: 0 auto 20px;
+}

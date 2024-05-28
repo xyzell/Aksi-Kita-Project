@@ -9,6 +9,7 @@ session_start();
   <title>AksiKita &mdash;Go for action!</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="../assets/images/title.png" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/animate.css">
@@ -34,7 +35,7 @@ session_start();
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="../index.html">
-        <div class="logo-header"><img src="/assets/images/logo/whiteLogo.png" alt="" width="126" height="45"></div>
+        <div class="logo-header"><img src="../assets/images/logo/whiteLogo.png" alt="" width="126" height="45"></div>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
@@ -295,7 +296,6 @@ session_start();
           function loginAsUser() {            
             window.location.href = "../user/login.php";
           }
-
           function loginAsOrganizer() {
             window.location.href = "../organizer/login.php";
             

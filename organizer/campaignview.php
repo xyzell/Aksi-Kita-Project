@@ -1,16 +1,16 @@
 <?php
 
 include('../server/koneksi.php');
+
+session_start();
 include('converter.php');
 
-// session_start();
+if (!isset($_SESSION['loggedIn']) || $_SESSION['userStatus'] != 'organizer') {
+  header('location: login.php');
+  exit;
+}
 
-// if (!isset($_SESSION['logged_in'])) {
-//   header('location: login.php');
-//   exit;
-// }
-
-$id = $_REQUEST['id'];
+$id = $_REQUEST['campaign'];
 
 // campaigns
 $queryCampaign = "SELECT campaignId, title, banner, description, campaignDate, location, organizerName from campaign join organizer on campaign.organizerId = organizer.organizerId where campaignId = ? LIMIT 1";
@@ -69,7 +69,7 @@ $check = 0;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title><?php echo $title ?></title>
 
   <link rel="icon" href="../assets/images/title.png" type="image/x-icon" />
 
@@ -92,11 +92,11 @@ $check = 0;
         <?php echo $title ?>
       </h1>
       <div class="banner border border-2 border-secondary border-opacity-25 rounded-3" id="banner-container">
-        <img id="image-size" class="image-banner rounded-2" src="../assets/images/<?php echo $banner ?>" alt="" />
+        <img id="image-size" class="image-banner rounded-2" src="../assets/images/campaign/<?php echo $banner ?>" alt="" />
       </div>
       <div>
         <p class="desc">
-          <?php echo $description ?>
+          <?php echo htmlentities($description) ?>
         </p>
       </div>
 
@@ -105,7 +105,7 @@ $check = 0;
           <tr>
             <th class="border-secondary border-opacity-75 text-center text-secondary fw-medium border-bottom border-2 border-0 pt-1 pb-2" colspan="2">
               Organizer<br />
-              <span class="fw-normal text-black"> <?php echo $organizer ?></span>
+              <span class="fw-normal text-black"> <?php echo htmlentities($organizer) ?></span>
             </th>
           </tr>
           <tr>
@@ -115,7 +115,7 @@ $check = 0;
             </th>
             <th class="border-secondary border-opacity-75 text-center text-secondary fw-medium border-start border-2 border-0 pt-1 pb-2 col-5">
               Location<br />
-              <span class="fw-normal text-black"> <?php echo $location ?></span>
+              <span class="fw-normal text-black"> <?php echo htmlentities($location) ?></span>
             </th>
           </tr>
         </table>
@@ -124,17 +124,28 @@ $check = 0;
       <div class="top-line border-bottom border-warning border-opacity-75 border-2 my-4"></div>
     </div>
 
-    <!-- Button Edit & Delete -->
+    <!-- Button Voluunter, Edit & Delete -->
+    <div class="mb-3">
+      <a href="managevolunteer.php?campaign=<?php echo $id ?>    ">
+        <button class="button-css w-100 rounded-pill bg-info fw-bold text-white border-0 pb-2">
+          Manage Volunteer
+        </button>
+      </a>
+    </div>
     <div class="row">
       <div class="col">
-        <button class="button-css w-100 rounded-pill bg-info fw-bold text-white border-0">
-          Edit
-        </button>
+        <a href="editcampaign.php?campaign=<?php echo $id ?>    ">
+          <button class="button-css w-100 rounded-pill bg-warning fw-bold text-white border-0 pb-2">
+            Edit
+          </button>
+        </a>
       </div>
       <div class="col">
-        <button class="button-css w-100 rounded-pill bg-danger fw-bold text-white border-0">
-          Delete
-        </button>
+        <a href="">
+          <button class="button-css w-100 rounded-pill bg-danger fw-bold text-white border-0 pb-2">
+            Delete
+          </button>
+        </a>
       </div>
     </div>
 

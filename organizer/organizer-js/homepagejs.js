@@ -26,3 +26,42 @@ function eightCampaigns() {
   }
 });
 }
+
+// count animation
+const counters = document.querySelectorAll("#counter");
+
+        counters.forEach(counter => {
+            let initial_count = 0;
+            const final_count = counter.dataset.count;
+            // console.log(final_count);
+
+            let counting = setInterval(updateCounting, 50);
+
+           function updateCounting() {
+
+                if (initial_count < 1000) {
+                    initial_count += 1;
+                    counter.innerText = initial_count;
+                }
+
+                if (final_count >= 1000) {
+                    initial_count += 111;
+                    counter.innerText = initial_count;
+                }
+
+                if (initial_count >= 10000) {
+                    initial_count += 11111;
+					counter.innerText = initial_count;
+                }
+
+                if (initial_count >= 1000000) {
+                    initial_count += 111111;
+                    counter.innerText = initial_count;
+                }
+
+                if (initial_count >= final_count) {
+                    clearInterval(counting);
+					counter.innerText = final_count;
+                }
+            }
+        })

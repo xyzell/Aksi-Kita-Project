@@ -9,11 +9,16 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['userStatus'] != 'organizer') {
   exit;
 }
 
+if ($_SESSION['maxCampaign'] == 8) {
+  header('location: homepage.php');
+  exit;
+}
+
 $organizer = $_SESSION['organizerId'];
 $image = null;
 
 if (isset($_POST['submit'])) {
-  $path = "../assets/images/" . basename($_FILES['image-data']['name']);
+  $path = "../assets/images/campaign/" . basename($_FILES['image-data']['name']);
   $image = $_FILES['image-data']['name'];
 
   $title = $_POST['title'];
@@ -21,15 +26,15 @@ if (isset($_POST['submit'])) {
   $date = $_POST['date'];
   $location = $_POST['loc'];
 
-  $queryInsert = "INSERT INTO campaign VALUES ('', ?, ?, ?, ?, ?, ?)";
+  $queryInsert = "INSERT INTO campaign (title, banner, description, campaignDate, location, organizerId) VALUES (?, ?, ?, ?, ?, ?)";
 
   if ($stmt_insert = $conn->prepare($queryInsert)) {
     $stmt_insert->bind_param("sssssi", $title, $image, $desc, $date, $location, $organizer);
     $stmt_insert->execute();
     $stmt_insert->close();
-  }
 
-  move_uploaded_file($_FILES['image-data']['tmp_name'], $path);
+    move_uploaded_file($_FILES['image-data']['tmp_name'], $path);
+  }
 
   header("location: homepage.php");
 }
@@ -86,7 +91,7 @@ if (isset($_POST['submit'])) {
 
         <!-- Title -->
         <p class="mb-1 mt-3 fw-medium text-secondary">Campaign Title</p>
-        <input onclick="clickTitle()" oninvalid="noTitle()" required type="text" name="title" id="title" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal" maxlength="120" oninput="countTextTitle()" autocomplete="off" />
+        <input oninvalid="noTitle()" required type="text" name="title" id="title" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal" maxlength="120" oninput="countTextTitle()" autocomplete="off" />
         <div class="d-flex justify-content-end fw-medium text-secondary fs-6 margin-bottom-20" id="title-max">
           <p class="text-end" id="title-char">0</p>
           <p>/120</p>
@@ -94,7 +99,7 @@ if (isset($_POST['submit'])) {
 
         <!-- Desc -->
         <p class="mb-1 mt-1 fw-medium text-secondary">Campaign Description</p>
-        <textarea onclick="clickDesc()" oninvalid="noDesc()" required type="text" name="desc" id="desc" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active h-desc fw-normal" maxlength="3000" oninput="countTextDesc()" autocomplete="off"></textarea>
+        <textarea oninvalid="noDesc()" required type="text" name="desc" id="desc" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active h-desc fw-normal" maxlength="3000" oninput="countTextDesc()" autocomplete="off"></textarea>
         <div class="d-flex justify-content-end fw-medium text-secondary fs-6 margin-bottom-30" id="desc-max">
           <p class="text-end" id="desc-char">0</p>
           <p>/3000</p>
@@ -123,14 +128,14 @@ if (isset($_POST['submit'])) {
         <div class="row" style="margin-top: -30px">
           <div class="col">
             <p class="mb-1 mt-3 fw-medium text-secondary">Campaigns Date</p>
-            <input onclick="clickDate()" oninvalid="noDate()" required type="date" name="date" id="date" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb" oninput="countTextOrganizer()" autocomplete="off" />
+            <input onclick="clickDate()" oninvalid="noDate()" required type="date" name="date" id="date" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb" oninput="inputDate()" autocomplete="off" />
           </div>
 
           <div class="col">
             <p class="mb-1 mt-3 fw-medium text-secondary">
               Campaign Location
             </p>
-            <input onclick="clickLocation()" oninvalid="noLocation()" required type="text" name="loc" id="loc" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb" maxlength="40" oninput="countTextLoc()" autocomplete="off" />
+            <input oninvalid="noLocation()" required type="text" name="loc" id="loc" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb" maxlength="40" oninput="countTextLoc()" autocomplete="off" />
             <div class="d-flex justify-content-end fw-medium text-secondary fs-6" id="loc-max">
               <p class="text-end" id="loc-char">0</p>
               <p>/40</p>

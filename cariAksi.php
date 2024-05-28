@@ -1,31 +1,13 @@
 <?php
+
 session_start();
+include('./server/koneksi.php');
 
-// Cek apakah pengguna sudah login
-// if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-//     header('location: login.php?error=Anda harus login terlebih dahulu');
-//     exit;
-// }
+$queryCampaignTotal = "SELECT count(*) as campaignTotal from campaign";
+$resultCampaignTotal = mysqli_query($conn, $queryCampaignTotal);
 
-// Mengambil informasi pengguna dari sesi
-// $userId = $_SESSION['userId'];
-// $userName = $_SESSION['userName'];
-// $userEmail = $_SESSION['userEmail'];
-// $userGender = $_SESSION['userGender'];
-// $userAddress = $_SESSION['userAddress'];
-// $userStatus = $_SESSION['userStatus'];
-// $verifyOtp = $_SESSION['verifyOtp'];
-// $verifyStatus = $_SESSION['verifyStatus'];
-
-include './server/koneksi.php';
-
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-$query = "SELECT * FROM campaign";
-$result = $conn->query($sql);
-
+$rowCampaign = mysqli_fetch_assoc($resultCampaignTotal);
+$campaignTotal = $rowCampaign['campaignTotal'];
 
 
 ?>
@@ -38,6 +20,8 @@ $result = $conn->query($sql);
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
+  <link rel="icon" href="../assets/images/title.png" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/animate.css">
@@ -112,39 +96,25 @@ $result = $conn->query($sql);
   </div>
   <!-- END modal -->
 
-  <div class="block-31" style="position: relative;">
-    <div class="owl-carousel loop-block-31 ">
-
-    </div>
-  </div>
-  <div class="site-section">
-    <div class="container py-5">
-    <?php while ($row = $campaigns->fetch_assoc()) { ?>      
-      <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
-        <div class="col">
-          <div class="card">
-            <img src="../assets/images/banner/<?php echo $row['banner']; ?>" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><?php echo $row['title']; ?></h5>
-              <p class="card-text"><?php echo $row['description']; ?>.</p>
-            </div>
-            <div class="mb-5 d-flex justify-content-around">
-              <h3>190$</h3>
-              <button class="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>    
+  <div class="site-section-aksi">
+    <div class="search-container">
+      <div class="subTitle">
+        <h2>Cari Aksimu, <?php echo $campaignTotal ?> aktivitas membutuhkan bantuan</h2>
       </div>
-      <?php } ?>
+      <div class="searchBtn">
+        <form method="GET" action="">
+          <div class="input-group rounded">
+          <input type="search" name="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" />
+            <span class="input-group-text border-0" id="search-addon">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+      </div>
     </div>
+    <?php include 'rowlist.php'; ?>
   </div>
 
-  <div class="site-section fund-raisers">
-    <!-- <div class="my-2">
-          <a class="btn btn-light" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
-          <a class="btn btn-danger" href="?logout">Logout</a>
-      </div> -->
-  </div>
+
   <!-- .section -->
 
 
@@ -271,6 +241,7 @@ $result = $conn->query($sql);
       });
     });
   </script>
+
 
 </body>
 
