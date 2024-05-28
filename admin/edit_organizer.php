@@ -104,7 +104,7 @@ if (isset($_GET['organizerId'])) {
                             </div>
                         </div>
                         <div class="m-t-20 text-right">
-                            <a href="user.php" class="btn btn-danger">Cancel <i class="fas fa-undo"></i></a>
+                            <a href="organizer.php" class="btn btn-danger">Cancel <i class="fas fa-undo"></i></a>
                             <button type="submit" class="btn btn-primary submit-btn" name="edit_btn">Update <i class="fas fa-share-square"></i></button>
                         </div>
                     </form>

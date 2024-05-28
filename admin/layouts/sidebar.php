@@ -57,11 +57,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Campaign Management</h6>
-                <a class="collapse-item" href="campaign.php">Campaign List</a>
-                <a class="collapse-item" href="products.php">Certificate List</a>
-                <a class="collapse-item" href="products.php">Task List</a>
-                <a class="collapse-item" href="products.php">Feedback List</a>
-                <a class="collapse-item" href="products.php">Comment</a>
+                <a class="collapse-item" href="campaignlist.php">Campaign list</a>
+                <a class="collapse-item" href="commentlist.php">Comment list</a>
                 <!-- <a class="collapse-item" href="create_product.php">User Product</a>
                 <a class="collapse-item" href="create_product.php">Campaign List</a> -->
             </div>

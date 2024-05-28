@@ -6,7 +6,6 @@ if (!isset($_SESSION['admin_logged_in'])) {
     exit();
 }
 
-
 $servername = "localhost"; 
 $username = "root"; 
 $password = ""; 
@@ -20,15 +19,27 @@ if ($conn->connect_error) {
 
 if (isset($_GET['campaignId'])) {
     $campaignId = $_GET['campaignId'];
-    $query = "DELETE FROM campaign WHERE campaignId = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $campaignId);
+    
+    $conn->begin_transaction();
 
-    if ($stmt->execute()) {
-        header("location: campaign.php?success_delete_message=Campaign deleted successfully");
+    try {
+        $query_joincampaign = "DELETE FROM joincampaign WHERE campaignId = ?";
+        $stmt_joincampaign = $conn->prepare($query_joincampaign);
+        $stmt_joincampaign->bind_param("i", $campaignId);
+        $stmt_joincampaign->execute();
+        
+        $query_campaign = "DELETE FROM campaign WHERE campaignId = ?";
+        $stmt_campaign = $conn->prepare($query_campaign);
+        $stmt_campaign->bind_param("i", $campaignId);
+        $stmt_campaign->execute();
+
+        $conn->commit();
+
+        header("location: campaignlist.php?success_delete_message=Campaign deleted successfully");
         exit();
-    } else {
-        header("location: campaign.php?fail_delete_message=Failed to delete campaign");
+    } catch (Exception $e) {
+        $conn->rollback();
+        header("location: campaign.php?fail_delete_message=Failed to delete campaign. Error: " . $e->getMessage());
         exit();
     }
 } else {
