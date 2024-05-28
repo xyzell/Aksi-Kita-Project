@@ -1,3 +1,4 @@
+// comma between zero
 function addCommas(nStr)
 {
 	nStr += '';
@@ -9,4 +10,78 @@ function addCommas(nStr)
 		x1 = x1.replace(rgx, '$1' + ',' + '$2');
 	}
 	return x1 + x2;
+}
+
+// error 8 campaigns
+function eightCampaigns() {
+  Swal.fire({
+  icon: "error",
+  title: "Error!",
+  text: "You Have Already Reached The Limit of Campaings You Can Create",
+  buttonsStyling: false,
+  customClass: {
+    title: 'title-modal',
+    text: 'text-modal',
+    confirmButton: 'btn rounded-pill border-0 bg-warning bg-opacity-75 h-button mt-2 fw-bolder fs-6 text-white button-modal'
+  }
+});
+}
+
+// count animation
+const counters = document.querySelectorAll("#counter");
+
+counters.forEach(counter => {
+    let initial_count = 0;
+    const final_count = counter.dataset.count;
+    // console.log(final_count);
+
+    let counting = setInterval(updateCounting, 50);
+
+    function updateCounting() {
+
+        if (initial_count < 1000) {
+            initial_count += 1;
+            counter.innerText = initial_count;
+        }
+
+        if (final_count >= 1000) {
+            initial_count += 111;
+            counter.innerText = initial_count;
+        }
+
+        if (initial_count >= 10000) {
+            initial_count += 11111;
+			counter.innerText = initial_count;
+        }
+
+        if (initial_count >= 1000000) {
+            initial_count += 111111;
+            counter.innerText = initial_count;
+        }
+
+        if (initial_count >= final_count) {
+            clearInterval(counting);
+			counter.innerText = final_count;
+        }
+    }
+})
+
+//mixin
+function campaignCreated(){
+    const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+    });
+
+    Toast.fire({
+    icon: "success",
+    title: "Campaign Created Successfully"
+    });
 }

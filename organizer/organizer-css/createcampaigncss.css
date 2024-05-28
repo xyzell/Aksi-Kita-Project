@@ -1,7 +1,10 @@
 .image-box {
-    border-style: dashed !important;
+    outline: 2px dashed rgba(108, 117, 125, 0.5);
     height: 424px;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgba(108, 117, 125, 0.1);
+    background-position: center;
 }
 
 .input-cursor {
@@ -34,4 +37,17 @@
 
 .h-button {
     height: 35px;
+}
+
+.button-modal {
+    width: 100px;
+}
+
+.title-modal {
+    line-height: 10px;
+}
+
+.title-active-invalid:focus {
+    outline: none;
+    border: solid #e83345 2.5px !important;
 }

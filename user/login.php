@@ -1,50 +1,61 @@
 <?php
-  ini_set('display_errors',  true);
-  error_reporting(E_ALL);
+ini_set('display_errors', true);
+error_reporting(E_ALL);
 
-  session_start();
-  include('../server/koneksi.php');
+session_start();
+include('../server/koneksi.php');
 
-  if (isset($_SESSION['logged_in'])) {
-      header('location: cariAksi.html');
-      exit;
-  }
+if (isset($_SESSION['logged_in'])) {
+    header('location: ../cariAksi.php');
+    exit;
+}
 
-  if (isset($_POST['login_btn'])) {
-      $email = $_POST['email'];
-      $password = md5($_POST['pass']);
+if (isset($_POST['login_btn'])) {
+    $email = $_POST['email'];
+    $password = md5($_POST['pass']); 
 
-      $query = "SELECT userId, userName, userEmail, userPassword, userGender, userAddress, userStatus, verifyOtp, verifyStatus FROM users WHERE userEmail = ? AND userPassword = ? LIMIT 1";
+    $query = "SELECT userId, userName, userEmail, userPassword, userGender, userAddress, userStatus, verifyOtp, verifyStatus 
+              FROM users 
+              WHERE userEmail = ? AND userPassword = ? LIMIT 1";
 
-      $stmt_login = $conn->prepare($query);
-      $stmt_login->bind_param('ss', $email, $password);
-      
-      if ($stmt_login->execute()) {
-          $stmt_login->bind_result($user_id, $name, $userEmail, $userPassword, $gender, $address, $userStatus, $verify_token, $verifyStatus);
-          $stmt_login->store_result();
+    $stmt_login = $conn->prepare($query);
+    $stmt_login->bind_param('ss', $email, $password);
+    
+    if ($stmt_login->execute()) {
+        $stmt_login->bind_result($user_id, $name, $userEmail, $userPassword, $gender, $address, $userStatus, $verify_token, $verifyStatus);
+        $stmt_login->store_result();
 
-          if ($stmt_login->num_rows() == 1) {
-              $stmt_login->fetch();
+        if ($stmt_login->num_rows() == 1) {
+            $stmt_login->fetch();
 
-              $_SESSION['userId'] = $user_id;
-              $_SESSION['userName'] = $name;
-              $_SESSION['userEmail'] = $userEmail;
-              $_SESSION['userGender'] = $gender;
-              $_SESSION['userAddress'] = $address;
-              $_SESSION['userStatus'] = $userStatus;
-              $_SESSION['verifyOtp'] = $verify_token;
-              $_SESSION['verifyStatus'] = $verifyStatus;
-              $_SESSION['logged_in'] = true;
+            
+            $_SESSION['userId'] = $user_id;
+            $_SESSION['userName'] = $name;
+            $_SESSION['userEmail'] = $userEmail;
+            $_SESSION['userGender'] = $gender;
+            $_SESSION['userAddress'] = $address;
+            $_SESSION['userStatus'] = $userStatus;
+            $_SESSION['verifyOtp'] = $verify_token;
+            $_SESSION['verifyStatus'] = $verifyStatus;
+            $_SESSION['logged_in'] = true;
 
-              header('location: cariAksi.html?message=Logged in successfully');
-          } else {
-              header('location: login.php?error=Could not verify your account');
-          }
-      } else {          
-          header('location: login.php?error=Something went wrong!');
-      }
-  }
+            
+            header('location: ../cariAksi.php?message=Berhasil login');
+            exit;
+        } else {
+            
+            header('location: login.php?error=Akun tidak dapat diverifikasi');
+            exit;
+        }
+    } else {
+        
+        header('location: login.php?error=Terjadi kesalahan!');
+        exit;
+    }
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +64,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
+    <link rel="icon" href="../assets/images/title.png" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/animate.css">
@@ -82,11 +94,11 @@
       </button>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="../index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="how-it-works.html" class="nav-link">Cari Aksi</a></li>          
-          <li class="nav-item"><a href="../about.html" class="nav-link">Tentang Kami</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">FAQ</a></li>
-          <li class="nav-item"><a href="user/login.php" class="nav-link" data-toggle="modal" data-target="#loginModal" id="loginButton">Login</a></li>           
+          <li class="nav-item"><a href="../index.php" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="../cariAksi.php" class="nav-link">Cari Aksi</a></li>          
+          <li class="nav-item"><a href="../about.php" class="nav-link">Tentang Kami</a></li>
+          <li class="nav-item"><a href="../contact.php" class="nav-link">FAQ</a></li>
+          <li class="nav-item active"><a href="user/login.php" class="nav-link" data-toggle="modal" data-target="#loginModal" id="loginButton">Login</a></li>           
         </ul>
       </div>
     </div>
@@ -138,20 +150,20 @@
             <!-- Email input -->
             <div data-mdb-input-init class="form-outline mb-4">
               <label class="form-label" for="form1Example13">Email</label>
-              <input type="email" id="form1Example13" name="email" class="form-control form-control-lg" />
+              <input type="email" name="email" class="form-control form-control-lg" />
             </div>
 
             <!-- Password input -->
             <div data-mdb-input-init class="form-outline mb-4">
-              <label class="form-label" for="form1Example23">Password</label>
-              <input type="password" id="form1Example23" name="pass" class="form-control form-control-lg" />
+              <label class="form-label">Password</label>
+              <input type="password"  name="pass" class="form-control form-control-lg" />
             </div>
 
             <div class="d-flex justify-content-around align-items-center mb-4">
               <!-- Checkbox -->
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-                <label class="form-check-label" for="form1Example3"> Ingat Saya </label>
+                <label class="form-check-label"> Ingat Saya </label>
               </div>
               <a href="#!">Lupa Password?</a>
             </div>
@@ -168,17 +180,17 @@
 <!-- .section -->
 
 
-  <footer class="footer">
+<footer class="footer">
     <div class="container">
       <div class="row mb-5">
         <div class="col-md-6 col-lg-4">
           <h3 class= "heading-section">About Us</h3>
-          <p style="text-align: justify;" class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
+          <p style="text-align: justify; font-size: 15px"  class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
             masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang, 
             melatih relawan, dan mendapatkan pengakuan dari pemerintah dan media. </p>
-          <p style="text-align: justify;" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
+          <p style="text-align: justify; font-size: 15px" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
             pendidikan, dan pembangunan berkelanjutan demi menciptakan dampak yang berkelanjutan.</p>
-          <p><a href="#" class="link-underline">Read  More</a></p>
+          <p><a href="#" class="link-underline">Read More</a></p>
         </div>
         <div class="col-md-6 col-lg-4">
           <h3 class="heading-section">Recent Blog</h3>
@@ -227,14 +239,16 @@
         <div class="col-md-6 col-lg-4">
           <div class="block-23">
             <h3 class="heading-section">Get Connected</h3>
-              <ul>
-                <li><span class="icon icon-map-marker"></span><span style="text-align: justify;" class="text">Jl. Khp Hasan Mustopa No.23, Neglasari, Kec. Cibeunying Kaler, Kota Bandung, Jawa Barat 40124</span></li>
-                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Aksik1taaa@gmail.com</span></a></li>
-              </ul>
-            </div>
+            <ul>
+              <li><span class="icon icon-map-marker"></span><span style="text-align: justify;" class="text">Jl. Khp Hasan Mustopa No.23, Neglasari, Kec. Cibeunying Kaler, Kota Bandung, Jawa Barat 40124</span></li>
+              <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+              <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Aksik1taaa@gmail.com</span></a></li>
+            </ul>
+          </div>
         </div>
-
+      </div>
+    </div>
+  </footer>
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
@@ -266,7 +280,7 @@
     function loginAsOrganizer() {
       // Redirect or perform actions for organizer login
       // Example: window.location.href = "organizer/login.php";
-      window.location.href = "../organizer/register.php";
+      window.location.href = "../organizer/login.php";
       // alert("Fitur ini belum tersedia");
     }
   </script>
