@@ -1,27 +1,20 @@
 <?php
 session_start();
-include './server/koneksi.php';
+include('./server/koneksi.php');
 
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+if (!isset($_SESSION['logged_in'])) {
+  header('location: login.php');
+  exit;
 }
 
-$campaignId = isset($_GET['campaignId']) ? $_GET['campaignId'] : '';
+$userId = $_SESSION['userId'];
 
-$campaign = null;
-if (!empty($campaignId)) {
-  $query = "SELECT campaign.*, organizer.organizerName, organizer.organizerEmail, organizer.organizerPhoneNum, organizer.organizerKind, organizer.organizerDesc, organizer.organizerAddress, organizer.organizerWebsite, organizer.organizerLogo 
-              FROM campaign 
-              INNER JOIN organizer ON campaign.organizerId = organizer.organizerId 
-              WHERE campaign.campaignId = '" . $conn->real_escape_string($campaignId) . "'";
-
-  $result = $conn->query($query);
-
-  if ($result->num_rows > 0) {
-    $campaign = $result->fetch_assoc();
-  }
-}
-$conn->close();
+$query = "SELECT userName, userEmail, userGender, userAddress, userBirthdate, userBio, userProfession, userProvince, userTown, userPostalCode FROM users WHERE userId = ? LIMIT 1";
+$stmt = $conn->prepare($query);
+$stmt->bind_param('i', $userId);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +42,6 @@ $conn->close();
   <link rel="stylesheet" href="../assets/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="../assets/css/bootstrap.css">
   <link rel="stylesheet" href="../assets/css/style.css">
-
 </head>
 
 <body>
@@ -65,16 +57,16 @@ $conn->close();
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="../index.php" class="nav-link">Home</a></li>
-          <li class="nav-item active"><a href="cariAksi.php" class="nav-link">Cari Aksi</a></li>
+          <li class="nav-item"><a href="../cariAksi.php" class="nav-link">Cari Aksi</a></li>
           <li class="nav-item"><a href="../about.php" class="nav-link">Tentang Kami</a></li>
           <li class="nav-item"><a href="contact.php" class="nav-link">FAQ</a></li>
           <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) : ?>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown active">
               <a class="nav-link dropdown" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-solid fa-user fa-sm"></i>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="myProfile.php">My Profile</a></li>
+                <li><a class="dropdown-item active" href="my-profile.php">My Profile</a></li>
                 <li><a class="dropdown-item" href="../user/logout.php">Logout</a></li>
               </ul>
             </li>
@@ -83,94 +75,56 @@ $conn->close();
           <?php endif; ?>
         </ul>
       </div>
-
     </div>
   </nav>
   <!-- END nav -->
 
+  <div class="site-section bg-light">
+    <div class="container">
 
+      <body class="profile-edit-body">
+        <div class="profile-edit-container">
+          <h2>Edit Profil</h2>
+          <form action="updateProfil.php" method="post" class="profile-edit-form">
+            <label for="userName">Nama:</label>
+            <input type="text" id="userName" name="userName" value="<?php echo htmlspecialchars($user['userName'] ?? ''); ?>" required>
 
-  <div class="event-page">
-    <?php if ($campaign) : ?>
-      <div class="event-content">
-        <div class="banner">
-          <img src="assets/images/campaign/<?php echo htmlspecialchars($campaign['banner']); ?>" alt="Banner">
-        </div>
-      </div>
-      <div class="description">
-        <p><?php echo nl2br(htmlspecialchars($campaign['description'])); ?></p>
-      </div>
-      <div class="event-details">
-        <h1><?php echo htmlspecialchars($campaign['title']); ?></h1>
-        <div class="details">
-          <p><strong>Lokasi:</strong> <?php echo htmlspecialchars($campaign['location']); ?></p>
-          <p><strong>Tanggal:</strong> <?php echo date("d M Y, H:i", strtotime($campaign['campaignDate'])); ?></p>
-        </div>
-        <div class="action-buttons">
-          <button id="openModalBtn" class="open-modal-btn">Jadi Relawan</button>
-          <button type="button">Kontak Organisasi</button>
-        </div>
-      </div>
-      <div class="organizer-card">
-        <h2>Tentang Penyelenggara</h2>
-        <img src="assets/images/profiles/<?php echo htmlspecialchars($campaign['organizerLogo']); ?>" alt="Logo Penyelenggara" style="max-width: 100px;">
-        <p><strong>Nama:</strong> <?php echo htmlspecialchars($campaign['organizerName']); ?></p>
-        <p><strong>Email:</strong> <?php echo htmlspecialchars($campaign['organizerEmail']); ?></p>
-        <p><strong>Telepon:</strong> <?php echo htmlspecialchars($campaign['organizerPhoneNum']); ?></p>
-        <p><strong>Jenis:</strong> <?php echo htmlspecialchars($campaign['organizerKind']); ?></p>
-        <p><strong>Deskripsi:</strong> <?php echo nl2br(htmlspecialchars($campaign['organizerDesc'])); ?></p>
-        <p><strong>Alamat:</strong> <?php echo htmlspecialchars($campaign['organizerAddress']); ?></p>
-        <p><strong>Website:</strong> <a href="<?php echo htmlspecialchars($campaign['organizerWebsite']); ?>"><?php echo htmlspecialchars($campaign['organizerWebsite']); ?></a></p>
-      </div>
-    <?php else : ?>
-      <h2>Detail kampanye tidak ditemukan</h2>
-    <?php endif; ?>
-  </div>
+            <label for="userEmail">Email:</label>
+            <input type="email" id="userEmail" name="userEmail" value="<?php echo htmlspecialchars($user['userEmail'] ?? ''); ?>" required>
 
-  <!-- Modal Pendaftaran -->
-<div id="modalForm" class="custom-modal">
-    <div class="custom-modal-content">
-        <span class="custom-close">&times;</span>
-        <h2>Daftar Aktivitas</h2>
-        <form id="volunteerForm" method="POST" action="joinCampaign.php">
-            <div class="custom-form-group">
-                <label for="kepada" class="custom-label">Kepada</label>
-                <div class="input-container">
-                    <img id="organizerLogo" src="assets/images/profiles/<?php echo htmlspecialchars($campaign['organizerLogo']); ?>" alt="<?php echo htmlspecialchars($campaign['organizerName']); ?>" class="custom-logo">
-                    <span id="organizationName" class="organization-name"><?php echo htmlspecialchars($campaign['organizerName']); ?></span>
-                </div>
-            </div>
-            <div class="custom-form-group">
-                <label for="subyek" class="custom-label">Subyek</label>
-                <input type="text" id="subyek" class="custom-input" value="<?php echo htmlspecialchars($campaign['title']); ?>" disabled>
-            </div>
-            <div class="custom-form-group">
-                <label for="question1" class="custom-label">* Mengapa Anda tertarik untuk menjadi relawan pada aktivitas ini?</label>
-                <textarea id="question1" name="desc1" class="custom-textarea" required></textarea>
-            </div>
-            <div class="custom-form-group">
-                <label for="question2" class="custom-label">* Mengapa Anda adalah relawan yang tepat untuk aktivitas ini?</label>
-                <textarea id="question2" name="desc2" class="custom-textarea" required></textarea>
-            </div>
-            <input type="hidden" name="campaignId" value="<?php echo htmlspecialchars($campaignId); ?>">
-            <div class="custom-submit-container">
-                <button type="submit" id="submitBtn" class="custom-submit-btn" disabled>Kirim Formulir Pendaftaran</button>
-            </div>
-        </form>
+            <label for="userGender">Jenis Kelamin:</label>
+            <select id="userGender" name="userGender" required>
+              <option value="Male" <?php if (($user['userGender'] ?? '') === 'Male') echo 'selected'; ?>>Male</option>
+              <option value="Female" <?php if (($user['userGender'] ?? '') === 'Female') echo 'selected'; ?>>Female</option>
+            </select>
+
+            <label for="userAddress">Alamat:</label>
+            <input type="text" id="userAddress" name="userAddress" value="<?php echo htmlspecialchars($user['userAddress'] ?? ''); ?>">
+
+            <label for="userBirthdate">Tanggal Lahir:</label>
+            <input type="date" id="userBirthdate" name="userBirthdate" value="<?php echo htmlspecialchars($user['userBirthdate'] ?? ''); ?>">
+
+            <label for="userBio">Deskripsi:</label>
+            <textarea id="userBio" name="userBio"><?php echo htmlspecialchars($user['userBio'] ?? ''); ?></textarea>
+
+            <label for="userProfession">Profesi:</label>
+            <input type="text" id="userProfession" name="userProfession" value="<?php echo htmlspecialchars($user['userProfession'] ?? ''); ?>">
+
+            <label for="userProvince">Provinsi:</label>
+            <input type="text" id="userProvince" name="userProvince" value="<?php echo htmlspecialchars($user['userProvince'] ?? ''); ?>">
+
+            <label for="userTown">Kota:</label>
+            <input type="text" id="userTown" name="userTown" value="<?php echo htmlspecialchars($user['userTown'] ?? ''); ?>">
+
+            <label for="userPostalCode">Kode Pos:</label>
+            <input type="text" id="userPostalCode" name="userPostalCode" value="<?php echo htmlspecialchars($user['userPostalCode'] ?? ''); ?>">
+
+            <button type="submit" name="update_btn">Update</button>
+          </form>
+        </div>
     </div>
-</div>
+  </div> <!-- .section -->
 
-<!-- Modal Pendaftaran Sukses -->
-<div id="successModal" class="custom-modal">
-    <div class="custom-modal-content custom-modal-content-success">
-        <span class="custom-close">&times;</span>
-        <h2>Pendaftaran Sukses</h2>
-        <p>Formulir pendaftaran Anda telah berhasil dikirim.</p>
-        <button id="closeSuccessModalBtn" class="custom-submit-btn">Tutup</button>
-    </div>
-</div>
-
-  <script src="script.js"></script>
 
   <footer class="footer">
     <div class="container">
@@ -259,8 +213,6 @@ $conn->close();
         <script src="https://kit.fontawesome.com/e1612437fd.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/jquery.fancybox.min.js"></script>
-
-
         <script src="assets/js/aos.js"></script>
         <script src="assets/js/jquery.animateNumber.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
@@ -287,6 +239,7 @@ $conn->close();
             });
           });
         </script>
+
 
 </body>
 

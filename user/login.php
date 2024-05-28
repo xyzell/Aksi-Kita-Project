@@ -12,48 +12,54 @@ if (isset($_SESSION['logged_in'])) {
 
 if (isset($_POST['login_btn'])) {
     $email = $_POST['email'];
-    $password = md5($_POST['pass']); 
+    $password = md5($_POST['pass']); // Hash password untuk login
 
     $query = "SELECT userId, userName, userEmail, userPassword, userGender, userAddress, userStatus, verifyOtp, verifyStatus 
               FROM users 
               WHERE userEmail = ? AND userPassword = ? LIMIT 1";
 
-    $stmt_login = $conn->prepare($query);
-    $stmt_login->bind_param('ss', $email, $password);
-    
-    if ($stmt_login->execute()) {
-        $stmt_login->bind_result($user_id, $name, $userEmail, $userPassword, $gender, $address, $userStatus, $verify_token, $verifyStatus);
-        $stmt_login->store_result();
+    if ($stmt_login = $conn->prepare($query)) {
+        $stmt_login->bind_param('ss', $email, $password);
 
-        if ($stmt_login->num_rows() == 1) {
-            $stmt_login->fetch();
+        if ($stmt_login->execute()) {
+            $result = $stmt_login->get_result();
+            if ($result->num_rows === 1) {
+                $user = $result->fetch_assoc();
 
-            
-            $_SESSION['userId'] = $user_id;
-            $_SESSION['userName'] = $name;
-            $_SESSION['userEmail'] = $userEmail;
-            $_SESSION['userGender'] = $gender;
-            $_SESSION['userAddress'] = $address;
-            $_SESSION['userStatus'] = $userStatus;
-            $_SESSION['verifyOtp'] = $verify_token;
-            $_SESSION['verifyStatus'] = $verifyStatus;
-            $_SESSION['logged_in'] = true;
+                // Tambahkan pengecekan apakah akun sudah diverifikasi
+                if ($user['verifyStatus'] == 1) {
+                    $_SESSION['userId'] = $user['userId'];
+                    $_SESSION['userName'] = $user['userName'];
+                    $_SESSION['userEmail'] = $user['userEmail'];
+                    $_SESSION['userGender'] = $user['userGender'];
+                    $_SESSION['userAddress'] = $user['userAddress'];
+                    $_SESSION['userStatus'] = $user['userStatus'];
+                    $_SESSION['verifyOtp'] = $user['verifyOtp'];
+                    $_SESSION['verifyStatus'] = $user['verifyStatus'];
+                    $_SESSION['logged_in'] = true;
 
-            
-            header('location: ../cariAksi.php?message=Berhasil login');
-            exit;
+                    header('location: ../cariAksi.php?message=Berhasil login');
+                    exit;
+                } else {
+                    header('location: login.php?error=Email belum diverifikasi!');
+                    exit;
+                }
+            } else {
+                header('location: login.php?error=Akun tidak dapat diverifikasi');
+                exit;
+            }
         } else {
-            
-            header('location: login.php?error=Akun tidak dapat diverifikasi');
+            header('location: login.php?error=Terjadi kesalahan saat eksekusi query!');
             exit;
         }
     } else {
-        
-        header('location: login.php?error=Terjadi kesalahan!');
+        header('location: login.php?error=Terjadi kesalahan saat mempersiapkan query!');
         exit;
     }
 }
 ?>
+
+
 
 
 
@@ -98,7 +104,7 @@ if (isset($_POST['login_btn'])) {
           <li class="nav-item"><a href="../cariAksi.php" class="nav-link">Cari Aksi</a></li>          
           <li class="nav-item"><a href="../about.php" class="nav-link">Tentang Kami</a></li>
           <li class="nav-item"><a href="../contact.php" class="nav-link">FAQ</a></li>
-          <li class="nav-item active"><a href="user/login.php" class="nav-link" data-toggle="modal" data-target="#loginModal" id="loginButton">Login</a></li>           
+          <li class="nav-item active"><a href="login.php" class="nav-link" data-toggle="modal" data-target="#loginModal" id="loginButton">Login</a></li>           
         </ul>
       </div>
     </div>
@@ -272,7 +278,7 @@ if (isset($_POST['login_btn'])) {
   <script>
     function loginAsUser() {
       // Redirect or perform actions for user login
-      window.location.href = "user/login.php";
+      window.location.href = "login.php";
     }
 
     function loginAsOrganizer() {

@@ -54,7 +54,7 @@ session_start();
                 <i class="fa-solid fa-user fa-sm"></i>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="my-profile.php">My Profile</a></li>
+                <li><a class="dropdown-item" href="myProfile.php">My Profile</a></li>
                 <li><a class="dropdown-item" href="../user/logout.php">Logout</a></li>
               </ul>
             </li>
@@ -142,7 +142,7 @@ session_start();
           <div class="media block-6">
             <div class="icon"><span class="ion-ios-cash"></span></div>
             <div class="media-body">
-              <h3 class="heading">Misi Kamii</h3>
+              <h3 class="heading">Misi Kami</h3>
               <p>Menggalang dan mengkoordinasikan aksi sukarela dari individu dan komunitas untuk
                 memberikan dampak positif dalam berbagai bidang, termasuk kesehatan, pendidikan,
                 lingkungan, dan kemanusiaan.</p>
