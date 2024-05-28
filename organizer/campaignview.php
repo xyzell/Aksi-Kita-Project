@@ -129,6 +129,13 @@ $check = 0;
 
     <!-- Button Voluunter, Edit & Delete -->
     <div class="mb-3">
+      <a href="manageregistrant.php?campaign=<?php echo $id ?>    ">
+        <button class="button-css w-100 rounded-pill bg-primary bg-opacity-75 fw-bold text-white border-0 pb-2">
+          Manage Registrant
+        </button>
+      </a>
+    </div>
+    <div class="mb-3">
       <a href="managevolunteer.php?campaign=<?php echo $id ?>    ">
         <button class="button-css w-100 rounded-pill bg-info fw-bold text-white border-0 pb-2">
           Manage Volunteer
