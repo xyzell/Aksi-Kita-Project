@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
       echo           '</p>
                     </div>
                   </div>
-                  <button class="buy-now">Daftar</button>
+                  <a href="aksiRelawan.php?campaignId=' . $row["campaignId"] . '" class="buy-now">Daftar</a>
               </div>
             </div>';
   }
