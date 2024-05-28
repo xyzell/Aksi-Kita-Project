@@ -114,8 +114,8 @@ session_start();
         </div>
         <div class="col-md-6 welcome-text">
           <h2 class="display-4 mb-3">Apa itu AksiKita ?</h2>
-          <p class="lead">AksiKita didirikan dengan tujuan untuk memobilisasi dan mengkoordinasikan aksi relawan
-            dalam menanggapi berbagai masalah sosial, lingkungan, dan kemanusiaan. Inisiatif ini lahir dari keinginan
+          <p class="lead">AksiKita didirikan dengan tujuan untuk memobilisasi dan mengkoordinasikan aksi relawan 
+            dalam menanggapi berbagai masalah sosial, lingkungan, dan kemanusiaan. Inisiatif ini lahir dari keinginan 
             mendalam untuk membawa perubahan positif dalam masyarakat dan membantu mereka yang membutuhkan.</p>
           <p class="mb-0"><a href="about.html" class="btn btn-primary px-3 py-2">Lebih Lanjut</a></p>
         </div>
@@ -132,7 +132,7 @@ session_start();
             <div class="icon"><span class="ion-ios-bulb"></span></div>
             <div class="media-body">
               <h3 class="heading">Visi Kami</h3>
-              <p>Menjadi agen perubahan yang kuat dalam mewujudkan masyarakat yang lebih adil, berkelanjutan, dan berempati.</p>
+              <p style="text-align: justify;">Menjadi agen perubahan yang kuat dalam mewujudkan masyarakat yang lebih adil, berkelanjutan, dan berempati.</p>
               <p><a href="about.html" class="link-underline">Learn More</a></p>
             </div>
           </div>
@@ -143,8 +143,8 @@ session_start();
             <div class="icon"><span class="ion-ios-cash"></span></div>
             <div class="media-body">
               <h3 class="heading">Misi Kamii</h3>
-              <p>Menggalang dan mengkoordinasikan aksi sukarela dari individu dan komunitas untuk
-                memberikan dampak positif dalam berbagai bidang, termasuk kesehatan, pendidikan,
+              <p>Menggalang dan mengkoordinasikan aksi sukarela dari individu dan komunitas untuk 
+                memberikan dampak positif dalam berbagai bidang, termasuk kesehatan, pendidikan, 
                 lingkungan, dan kemanusiaan.</p>
               <p><a href="about.html" class="link-underline">Learn More</a></p>
             </div>
@@ -156,8 +156,8 @@ session_start();
             <div class="icon"><span class="ion-ios-contacts"></span></div>
             <div class="media-body">
               <h3 class="heading">Tujuan</h3>
-              <p>Tujuan utama AksiKita adalah menginspirasi individu untuk bergabung dan berpartisipasi dalam aksi-aksi sukarela
-                yang positif. Kami ingin mendorong semangat kemanusiaan dan kesadaran sosial di antara masyarakat agar lebih banyak
+              <p>Tujuan utama AksiKita adalah menginspirasi individu untuk bergabung dan berpartisipasi dalam aksi-aksi sukarela 
+                yang positif. Kami ingin mendorong semangat kemanusiaan dan kesadaran sosial di antara masyarakat agar lebih banyak 
                 orang terlibat dalam membawa perubahan positif.</p>
               <p><a href="about.html" class="link-underline">Learn More</a></p>
             </div>
@@ -176,114 +176,101 @@ session_start();
     <div class="container">
       <div class="row mb-3 justify-content-center">
         <div class="col-md-8 text-center">
-          <h2>Latest Fundraisers</h2>
-          <p class="lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <p><a href="#" class="link-underline">View All Fundraisers</a></p>
+          <h2>150 Aktivitas Butuh Bantuan Bamu</h2>
+          <p class="lead">Pilih aktivitas kerelawanan sesuai minat, lokasi, dan isu yang kamu sukai !</p>
+          <p><a href="#" class="link-underline">Lihat Aktivitas Lain</a></p>
         </div>
       </div>
     </div>
 
     <div class="container-fluid">
+    <div class="col-md-12 block-11">
+          <div class="nonloop-block-11 owl-carousel">
 
-      <!-- <div class="row"> -->
-
-      <div class="col-md-12 block-11">
-        <div class="nonloop-block-11 owl-carousel">
-          <div class="card fundraise-item">
-            <a href="#"><img class="card-img-top" src="assets/images/img_1.jpg" alt="Image placeholder"></a>
-            <div class="card-body">
-              <h3 class="card-title"><a href="#">Water Is Life. Clean Water In Urban Area</a></h3>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-              <div class="progress custom-progress-success">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="card fundraise-item">
+              <a href="#"><img class="card-img-top" src="assets/images/airbersih.jpg" alt="Image placeholder"></a>
+              <div class="card-body">
+                <h3 class="card-title"><a href="#">Butuh bantuan untuk program air bersih</a></h3>
+                <p class="card-text">Kami menyediakan bantuan air bersih untuk daerah yang terkena bencana seperti banjir, gempa bumi, atau kekeringan</p>
+                <p></p>
+                <span class="donation-time mb-3 d-block">Donasi terakhir 1 jam yang lalu</span>
+                <div class="progress custom-progress-success">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 90%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="fund-raised d-block">Terkumpul Rp.48,347,101,00 dari Rp.50,000,000,00</span>
               </div>
-              <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+            </div>
+            
+            
+            
+            <div class="card fundraise-item">
+              <a href="#"><img class="card-img-top" src="assets/images/darling.png" alt="Image placeholder"></a>
+              <div class="card-body">
+                <h3 class="card-title"><a href="#">Butuh Bantuan Untuk Membantu Dapur Keliling</a></h3>
+                <p class="card-text">Kami menyediakan layanan dapur keliling yang akan memasak dan mendistribusikan makanan bergizi kepada anak-anak jalanan di berbagai lokasi.</p>
+                <span class="donation-time mb-3 d-block">Donasi terakhir 1 jam yang lalu</span>
+                <div class="progress custom-progress-success">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 91%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="fund-raised d-block">Terkumpul Rp.10,112,503,0000 dari Rp.11,0,000,00</span>
+              </div>
+            </div>
+            
+            <div class="card fundraise-item">
+              <a href="#"><img class="card-img-top" src="assets/images/anakterlantar.jpg" alt="Image placeholder"></a>
+              <div class="card-body">
+                <h3 class="card-title"><a href="#">Penggalangan dana untuk anak anak jalanan</a></h3>
+                <p class="card-text">Program ini bertujuan untuk meningkatkan kesadaran masyarakat tentang masalah kelaparan anak-anak dan menggalang dana untuk menyediakan makanan bagi mereka.</p>
+                <span class="donation-time mb-3 d-block">Donasi terakhir 1 jam yang lalu</span>
+                <div class="progress custom-progress-success">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 67%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="fund-raised d-block">Rp.3,112,503,00 dari Rp.5,000,000,00</span>
+              </div>
+            </div>
+
+
+            <div class="card fundraise-item">
+              <a href="#"><img class="card-img-top" src="assets/images/anakmiskin.jpg" alt="Image placeholder"></a>
+              <div class="card-body">
+                <h3 class="card-title"><a href="#">Butuh Bantuan untuk Adopsi Sekolah untuk Anak-Anak dari Keluarga Miskin</a></h3>
+                <p class="card-text">Kami mengajak masyarakat untuk mengadopsi sekolah atau kelas bagi anak-anak dari keluarga miskin.</p>
+                <span class="donation-time mb-3 d-block">Donasi terakhir 3 hari yang lalu</span>
+                <div class="progress custom-progress-success">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 11%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="fund-raised d-block">Rp.1,112,503,00 dari Rp.10,000,000,00</span>
+              </div>
+            </div>
+
+            
+            <div class="card fundraise-item">
+              <a href="#"><img class="card-img-top" src="assets/images/img_6.jpg" alt="Image placeholder"></a>
+              <div class="card-body">
+                <h3 class="card-title"><a href="#">Bantuan Pendidikan untuk Anak Disabilitas </a></h3>
+                <p class="card-text">Program ini bertujuan untuk meningkatkan kesadaran masyarakat tentang pentingnya pendidikan inklusif bagi anak-anak dengan disabilitas</p>
+                <span class="donation-time mb-3 d-block">Donasi terakhir 3 hari yang lalu</span>
+                <div class="progress custom-progress-success">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 51%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="fund-raised d-block">Rp.15,112,503,00 dari Rp.30,000,000,00</span>
+              </div>
             </div>
           </div>
-
-
-          <div class="card fundraise-item">
-            <a href="#"><img class="card-img-top" src="assets/images/img_7.jpg" alt="Image placeholder"></a>
-            <div class="card-body">
-              <h3 class="card-title"><a href="#">Need Shelter for Children in Africa</a></h3>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-              <div class="progress custom-progress-success">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-            </div>
-          </div>
-
-          <div class="card fundraise-item">
-            <a href="#"><img class="card-img-top" src="assets/images/img_3.jpg" alt="Image placeholder"></a>
-            <div class="card-body">
-              <h3 class="card-title"><a href="#">Children Needs Education</a></h3>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-              <div class="progress custom-progress-success">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-            </div>
-          </div>
-
-
-          <div class="card fundraise-item">
-            <a href="#"><img class="card-img-top" src="assets/images/img_4.jpg" alt="Image placeholder"></a>
-            <div class="card-body">
-              <h3 class="card-title"><a href="#">Refugees Needs Food</a></h3>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-              <div class="progress custom-progress-success">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-            </div>
-          </div>
-
-
-          <div class="card fundraise-item">
-            <a href="#"><img class="card-img-top" src="assets/images/img_6.jpg" alt="Image placeholder"></a>
-            <div class="card-body">
-              <h3 class="card-title"><a href="#">Voluteer </a></h3>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-              <div class="progress custom-progress-success">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-            </div>
-          </div>
-
-          <div class="card fundraise-item">
-            <a href="#"><img class="card-img-top" src="assets/images/img_3.jpg" alt="Image placeholder"></a>
-            <div class="card-body">
-              <h3 class="card-title"><a href="#">Children Needs Food</a></h3>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-              <div class="progress custom-progress-success">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-            </div>
-          </div>
-
         </div>
-      </div>
       <!-- </div> -->
     </div>
   </div> <!-- .section -->
+
 
 
   <div class="site-section fund-raisers">
     <div class="container">
       <div class="row mb-3 justify-content-center">
         <div class="col-md-8 text-center">
-          <h2>Latest Donations</h2>
-          <p class="lead">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <p class="mb-5"><a href="#" class="link-underline">View All Donations</a></p>
+          <h2>Donasi Terbaru</h2>
+          <p class="lead">Kami sangat berterimakasih atas donasi yang kalian berikan !</p>
+          <p class="mb-5"><a href="#" class="link-underline">Lihat Semua</a></p>
         </div>
       </div>
 
@@ -292,9 +279,9 @@ session_start();
           <div class="person-donate text-center">
             <img src="assets/images/person_1.jpg" alt="Image placeholder" class="img-fluid">
             <div class="donate-info">
-              <h2>Jorge Smith</h2>
-              <span class="time d-block mb-3">Donated Just now</span>
-              <p>Donated <span class="text-success">$252</span> <br> <em>for</em> <a href="#" class="link-underline fundraise-item">Water Is Life. Clean Water In Urban Area</a></p>
+              <h2>Nicos Ganteng</h2>
+              <span class="time d-block mb-3">Menyumbang 3 jam yang lalu</span>
+              <p>Donated <span class="text-success">Rp.1,500,000,00</span> <br> <em>for</em> <a href="#" class="link-underline fundraise-item">Butuh bantuan untuk program air bersih</a></p>
             </div>
           </div>
         </div>
@@ -303,9 +290,9 @@ session_start();
           <div class="person-donate text-center">
             <img src="assets/images/person_2.jpg" alt="Image placeholder" class="img-fluid">
             <div class="donate-info">
-              <h2>Christine Charles</h2>
-              <span class="time d-block mb-3">Donated 1 hour ago</span>
-              <p>Donated <span class="text-success">$400</span> <br> <em>for</em> <a href="#" class="link-underline fundraise-item">Children Needs Education</a></p>
+              <h2>Bilek Ketumbar</h2>
+              <span class="time d-block mb-3">Menyumbang 1 jam yang lalu</span>
+              <p>Donated <span class="text-success">Rp.5,000,000,00</span> <br> <em>for</em> <a href="#" class="link-underline fundraise-item">Butuh Bantuan Untuk Membantu Dapur Keliling</a></p>
             </div>
           </div>
         </div>
@@ -314,9 +301,9 @@ session_start();
           <div class="person-donate text-center">
             <img src="assets/images/person_3.jpg" alt="Image placeholder" class="img-fluid">
             <div class="donate-info">
-              <h2>Albert Sluyter</h2>
+              <h2>Fer D Sambo</h2>
               <span class="time d-block mb-3">Donated 4 hours ago</span>
-              <p>Donated <span class="text-success">$1,200</span> <br> <em>for</em> <a href="#" class="link-underline fundraise-item">Need Shelter for Children in Africa</a></p>
+              <p>Donated <span class="text-success">Rp.2,000,000,00</span> <br> <em>for</em> <a href="#" class="link-underline fundraise-item">Penggalangan dana untuk anak anak jalanan</a></p>
             </div>
           </div>
         </div>
@@ -325,9 +312,9 @@ session_start();
           <div class="person-donate text-center">
             <img src="assets/images/person_4.jpg" alt="Image placeholder" class="img-fluid">
             <div class="donate-info">
-              <h2>Andrew Holloway</h2>
-              <span class="time d-block mb-3">Donated 9 hours ago</span>
-              <p>Donated <span class="text-success">$100</span> <br> <em>for</em> <a href="#" class="link-underline fundraise-item">Water Is Life. Clean Water In Urban Area</a></p>
+              <h2>Silhi Rendang</h2>
+              <span class="time d-block mb-3">Menyumbang 1 jam yang lalu</span>
+              <p>Donated <span class="text-success">Rp.10,000,000,00</span> <br> <em>for</em> <a href="#" class="link-underline fundraise-item">Bantuan Pendidikan untuk Anak Disabilitas</a></p>
             </div>
           </div>
         </div>
@@ -346,11 +333,11 @@ session_start();
 
         <div class="col-md-6 pl-md-5">
           <span class="featured-text d-block mb-3">Success Stories</span>
-          <h2>Water Is Life. We Successfuly Provide Clean Water in South East Asia</h2>
-          <p class="mb-3">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          <span class="fund-raised d-block mb-5">We have raised $100,000</span>
+          <h2>Air Adalah Kehidupan. Kami Berhasil Menyediakan Air Bersih di Asia Tenggara</h2>
+          <p class="mb-3">Far away, behind the mountains, far from a closed country with no access, it is difficult for them to get clean water</p>
+          <span class="fund-raised d-block mb-5">Ayo Bantu Mereka</span>
 
-          <p><a href="#" class="btn btn-success btn-hover-white py-3 px-5">Read The Full Story</a></p>
+          <p><a href="#" class="btn btn-success btn-hover-white py-3 px-5">Baca Cerita Lengkapnya</a></p>
         </div>
 
       </div>
@@ -362,7 +349,7 @@ session_start();
     <div class="container">
       <div class="row mb-5">
         <div class="col-md-12">
-          <h2>Latest News</h2>
+          <h2>Berita Terakhir</h2>
         </div>
       </div>
 
@@ -372,10 +359,10 @@ session_start();
             <a href="#" class="mb-3 img-wrap">
               <img src="assets/images/img_4.jpg" alt="Image placeholder" class="img-fluid">
             </a>
-            <h3><a href="#">Be A Volunteer Today</a></h3>
-            <span class="date mb-4 d-block text-muted">July 26, 2018</span>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-            <p><a href="#" class="link-underline">Read More</a></p>
+            <h3><a href="#">Jadilah Relawan sekarang !</a></h3>
+            <span class="date mb-4 d-block text-muted">Juny 24/05/2024</span>
+            <p>Bantu Sesama Kita !</p>
+            <p><a href="#" class="link-underline">Baca Selengkapnya</a></p>
           </div>
         </div>
         <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
@@ -383,10 +370,10 @@ session_start();
             <a href="#" class="mb-3 img-wrap">
               <img src="assets/images/img_5.jpg" alt="Image placeholder" class="img-fluid">
             </a>
-            <h3><a href="#">You May Save The Life of A Child</a></h3>
-            <span class="date mb-4 d-block text-muted">July 26, 2018</span>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-            <p><a href="#" class="link-underline">Read More</a></p>
+            <h3><a href="#">Anda Dapat Menyelamatkan Nyawa Seorang Anak</a></h3>
+            <span class="date mb-4 d-block text-muted">Juny 20/05/2024</span>
+            <p>Dengan bantuan yang anda berikan, anda dapat menyelamatkan nyawa seorang anak diluar sana .</p>
+            <p><a href="#" class="link-underline">Baca selengkapnya</a></p>
           </div>
         </div>
         <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
@@ -394,10 +381,12 @@ session_start();
             <a href="#" class="mb-3 img-wrap">
               <img src="assets/images/img_6.jpg" alt="Image placeholder" class="img-fluid">
             </a>
-            <h3><a href="#">Children That Needs Care</a></h3>
+            <h3><a href="#">Anak-anak Yang Membutuhkan Perawatan</a></h3>
             <span class="date mb-4 d-block text-muted">July 26, 2018</span>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-            <p><a href="#" class="link-underline">Read More</a></p>
+            <p>Ayo berikan perhatian dan hiburan kepada anak-anak, 
+              membantu dalam kegiatan sehari-hari seperti memberi makan, 
+              membantu mandi, dan memberikan dukungan emosional kepada anak-anak dan keluarga mereka.</p>
+            <p><a href="#" class="link-underline">Baca Selengkapnya</a></p>
           </div>
         </div>
       </div>
@@ -416,24 +405,24 @@ session_start();
         <div class="col-md-6 pl-md-5">
 
           <div class="form-volunteer">
-
+            
             <h2>Be A Volunteer Today</h2>
             <form action="#" method="post">
               <div class="form-group">
                 <!-- <label for="name">Name</label> -->
-                <input type="text" class="form-control py-2" id="name" placeholder="Enter your name">
+                <input type="text" class="form-control py-2" id="name" placeholder="Masukkan Namamu">
               </div>
               <div class="form-group">
                 <!-- <label for="email">Email</label> -->
-                <input type="text" class="form-control py-2" id="email" placeholder="Enter your email">
+                <input type="text" class="form-control py-2" id="email" placeholder="Masukkan Email-mu">
               </div>
               <div class="form-group">
                 <!-- <label for="v_message">Email</label> -->
-                <textarea name="v_message" id="" cols="30" rows="3" class="form-control py-2" placeholder="Write your message"></textarea>
+                <textarea name="v_message" id="" cols="30" rows="3" class="form-control py-2" placeholder="Berikan pesan mu"></textarea>
                 <!-- <input type="text" class="form-control py-2" id="email"> -->
               </div>
               <div class="form-group">
-                <input type="submit" class="btn btn-white px-5 py-2" value="Send">
+                <input type="submit" class="btn btn-white px-5 py-2" value="Kirim">
               </div>
             </form>
           </div>
@@ -448,11 +437,11 @@ session_start();
     <div class="container">
       <div class="row mb-5">
         <div class="col-md-6 col-lg-4">
-          <h3 class="heading-section">About Us</h3>
-          <p style="text-align: justify; font-size: 15px;" class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi
-            masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang,
+          <h3 class= "heading-section">About Us</h3>
+          <p style="text-align: justify; font-size: 15px"  class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
+            masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang, 
             melatih relawan, dan mendapatkan pengakuan dari pemerintah dan media. </p>
-          <p style="text-align: justify;" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat,
+          <p style="text-align: justify; font-size: 15px" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
             pendidikan, dan pembangunan berkelanjutan demi menciptakan dampak yang berkelanjutan.</p>
           <p><a href="#" class="link-underline">Read More</a></p>
         </div>
@@ -510,6 +499,9 @@ session_start();
             </ul>
           </div>
         </div>
+      </div>
+    </div>
+  </footer>
 
         <!-- loader -->
         <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">

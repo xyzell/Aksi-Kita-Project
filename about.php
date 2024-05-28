@@ -235,12 +235,12 @@ session_start();
       <div class="row mb-5">
         <div class="col-md-6 col-lg-4">
           <h3 class= "heading-section">About Us</h3>
-          <p style="text-align: justify;" class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
+          <p style="text-align: justify; font-size: 15px"  class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
             masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang, 
             melatih relawan, dan mendapatkan pengakuan dari pemerintah dan media. </p>
-          <p style="text-align: justify;" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
+          <p style="text-align: justify; font-size: 15px" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
             pendidikan, dan pembangunan berkelanjutan demi menciptakan dampak yang berkelanjutan.</p>
-          <p><a href="#" class="link-underline">Read  More</a></p>
+          <p><a href="#" class="link-underline">Read More</a></p>
         </div>
         <div class="col-md-6 col-lg-4">
           <h3 class="heading-section">Recent Blog</h3>
@@ -297,15 +297,6 @@ session_start();
             </div>
         </div>
         
-      </div>
-      <div class="row pt-5">
-        <div class="col-md-12 text-center">
-          <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ion-ios-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-        </div>
       </div>
     </div>
   </footer>
