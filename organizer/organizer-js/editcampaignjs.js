@@ -6,6 +6,7 @@ document.getElementById('loc-char').innerHTML = document.getElementById("loc").v
 const title = document.getElementById("title").value;
 const desc = document.getElementById("desc").value;
 const loc = document.getElementById("loc").value;
+const date = document.getElementById("date").value;
 
 // Check Change
 function titleChange() {
@@ -32,6 +33,15 @@ function locChange() {
     document.getElementById("loc").setAttribute('class', 'w-100 rounded-3 border-info border-2 border border-opacity-50 bg-info bg-opacity-10 px-2 title-active-change fw-normal padding-tb');
   } else {
     document.getElementById("loc").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb');
+  }
+}
+
+function dateChange(){
+  let check = document.getElementById("date").value;
+  if (check != date) {
+    document.getElementById("date").setAttribute('class', 'w-100 rounded-3 border-info border-2 border border-opacity-50 bg-info bg-opacity-10 px-2 title-active-change fw-normal padding-tb');
+  } else {
+    document.getElementById("date").setAttribute('class', 'w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb');
   }
 }
 

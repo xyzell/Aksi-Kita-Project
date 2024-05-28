@@ -1,0 +1,17 @@
+.margin-top-minus {
+    margin-top: -10px;
+}.title-active:focus {
+    outline: none;
+    border: 2.5px solid gray !important;
+}
+
+.title-active-change:focus {
+    outline: none;
+    border: 2.5px solid #02bce0 !important;
+}
+
+.h-desc{
+    min-height: 20px;
+    max-height: 1000px;
+    height: 450px;
+}

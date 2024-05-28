@@ -30,38 +30,58 @@ function eightCampaigns() {
 // count animation
 const counters = document.querySelectorAll("#counter");
 
-        counters.forEach(counter => {
-            let initial_count = 0;
-            const final_count = counter.dataset.count;
-            // console.log(final_count);
+counters.forEach(counter => {
+    let initial_count = 0;
+    const final_count = counter.dataset.count;
+    // console.log(final_count);
 
-            let counting = setInterval(updateCounting, 50);
+    let counting = setInterval(updateCounting, 50);
 
-           function updateCounting() {
+    function updateCounting() {
 
-                if (initial_count < 1000) {
-                    initial_count += 1;
-                    counter.innerText = initial_count;
-                }
+        if (initial_count < 1000) {
+            initial_count += 1;
+            counter.innerText = initial_count;
+        }
 
-                if (final_count >= 1000) {
-                    initial_count += 111;
-                    counter.innerText = initial_count;
-                }
+        if (final_count >= 1000) {
+            initial_count += 111;
+            counter.innerText = initial_count;
+        }
 
-                if (initial_count >= 10000) {
-                    initial_count += 11111;
-					counter.innerText = initial_count;
-                }
+        if (initial_count >= 10000) {
+            initial_count += 11111;
+			counter.innerText = initial_count;
+        }
 
-                if (initial_count >= 1000000) {
-                    initial_count += 111111;
-                    counter.innerText = initial_count;
-                }
+        if (initial_count >= 1000000) {
+            initial_count += 111111;
+            counter.innerText = initial_count;
+        }
 
-                if (initial_count >= final_count) {
-                    clearInterval(counting);
-					counter.innerText = final_count;
-                }
-            }
-        })
+        if (initial_count >= final_count) {
+            clearInterval(counting);
+			counter.innerText = final_count;
+        }
+    }
+})
+
+//mixin
+function campaignCreated(){
+    const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+    });
+
+    Toast.fire({
+    icon: "success",
+    title: "Campaign Created Successfully"
+    });
+}

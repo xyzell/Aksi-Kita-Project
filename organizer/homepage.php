@@ -57,7 +57,12 @@ $campaignTotal = $rowCampaign['campaignTotal'];
   <header class="header">
     <img class="logo-img" src="assets/logo.png" alt="" />
     <h1 class="title">Organizer Dashboard</h1>
-    <img class="profile" src="../assets/images/gen.jpeg" alt="" />
+    <a href="../organizer/organizerprofile.php" class="profile-href">
+      <div class="tooltip">
+        <img class="profile" src="../assets/images/profiles/<?php echo $_SESSION['organizerLogo'] ?>" alt="" />
+        <span class="tooltiptext">Profile Details</span>
+      </div>
+    </a>
   </header>
   <div class="banner">
     <p class="subtitle">Total Active Campaigns and Active Users</p>
@@ -143,6 +148,18 @@ $campaignTotal = $rowCampaign['campaignTotal'];
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="organizer-js/homepagejs.js"></script>
+
+  <?php
+  if ($_SESSION['notification'] == 1) {
+  ?>
+    <script>
+      campaignCreated();
+    </script>
+  <?php
+    $_SESSION['notification'] = 0;
+  }
+
+  ?>
 </body>
 
 </html>

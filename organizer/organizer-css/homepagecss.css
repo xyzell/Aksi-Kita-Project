@@ -48,11 +48,62 @@ header .title {
     
 }
 
-.profile {
-    border-radius: 50%;
+.profile-href {
+    border-radius: 100px;
     height: 40px;
     margin-right: 0px;
     margin-left: 73px;
+}
+
+.profile {
+    border-radius: 50%;
+    height: 40px;
+    margin-top: -2px;
+    margin-left: -2px;
+}
+
+.profile:hover {
+    outline: solid white 2px;
+}
+
+.tooltip {
+    border: 1px white solid;
+    border-radius: 100px;
+    height: 38px;
+    width: 38px;
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: white;
+    color: black;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 2px;
+    right: 140%;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent white;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
 
 /* Banner */
