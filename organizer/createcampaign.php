@@ -36,6 +36,7 @@ if (isset($_POST['submit'])) {
     move_uploaded_file($_FILES['image-data']['tmp_name'], $path);
   }
 
+  $_SESSION['notification'] = 1;
   header("location: homepage.php");
 }
 
@@ -56,8 +57,8 @@ if (isset($_POST['submit'])) {
   <link rel="stylesheet" href="organizer-css/createcampaigncss.css" />
 </head>
 
-<body class="pb-5 mb-2">
-  <div class="container shadow rounded-3 pt-2 pb-4 px-4 mt-5">
+<body class="pb-5 mb-2 bg-warning bg-opacity-25">
+  <div class="container shadow bg-white rounded-3 pt-2 pb-4 px-4 mt-5">
     <!-- Title and Back Button -->
     <table class="table border-bottom border-2 border-warning border-opacity-75">
       <th scope="col" class="col-1">

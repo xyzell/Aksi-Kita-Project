@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['userStatus'] = $row['userStatus'];
       $_SESSION['verifyStatus'] = $row['verifyStatus'];
       $_SESSION['loggedIn'] = true;
+      $_SESSION['notification'] = 0;
 
       header("Location: homepage.php");
       exit();

@@ -72,9 +72,9 @@ if (isset($_POST['submit'])) {
                 unlink($path2);
             }
         }
-    }
 
-    header("location: campaignview.php?campaign=" . $campaign);
+        header("location: campaignview.php?campaign=" . $campaign);
+    }
 }
 ?>
 
@@ -93,8 +93,8 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="organizer-css/editcampaigncss.css" />
 </head>
 
-<body class="pb-5 mb-2">
-    <div class="container shadow rounded-3 pt-2 pb-4 px-4 mt-5">
+<body class="pb-5 mb-2 bg-info bg-opacity-25">
+    <div class="container bg-white shadow rounded-3 pt-2 pb-4 px-4 mt-5">
         <!-- Title and Back Button -->
         <table class="table border-bottom border-2 border-warning border-opacity-75">
             <th scope="col" class="col-1">
@@ -113,7 +113,7 @@ if (isset($_POST['submit'])) {
             <form action="" method="post" enctype="multipart/form-data">
                 <!-- Image Banner -->
                 <p class="mb-2 fw-medium text-secondary">Campaign Banner</p>
-                <label for="input-image" id="drop-area" class="w-100" value="1">
+                <label for="input-image" id="drop-area" class="w-100">
                     <input type="file" accept="image/*" id="input-image" name="image-data" hidden oninvalid="noImage()" />
                     <div id="image-view" id="drop-area" class="image-box input-cursor container rounded-3 d-flex justify-content-center align-items-center">
                         <p class="text-center text-secondary">
@@ -136,7 +136,7 @@ if (isset($_POST['submit'])) {
                     <th scope="col" class="col-3 table-info-height">
                     </th>
                     <th scope="col">
-                        <p class="fw-medium text-center text-secondary text-opacity-75 banner-info">Drop Your Image or Click The Banner to Edit The Image</p>
+                        <p class="fw-medium text-center text-secondary text-opacity-75 banner-info">Drop Your Image or Click The Image to Change The Banner</p>
                     </th>
                     <th scope="col" class="col-3">
                         <div class="display-undo-button" id="undo-button">
@@ -182,7 +182,7 @@ if (isset($_POST['submit'])) {
                     <div class="row" style="margin-top: -30px">
                         <div class="col">
                             <p class="mb-1 mt-3 fw-medium text-secondary">Campaigns Date</p>
-                            <input value="<?php echo $row['campaignDate'] ?>" type="date" name="date" id="date" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb" oninput="countTextOrganizer()" autocomplete="off" />
+                            <input value="<?php echo $row['campaignDate'] ?>" type="date" name="date" id="date" class="w-100 rounded-3 border-secondary border-2 border border-opacity-50 bg-white bg-opacity-10 px-2 title-active fw-normal padding-tb" oninput="dateChange()" autocomplete="off" />
                         </div>
 
                         <div class="col">

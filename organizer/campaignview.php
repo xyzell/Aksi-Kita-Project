@@ -75,11 +75,14 @@ $check = 0;
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="organizer-css/bootstrap5/bootstrap.css" />
-  <link rel="stylesheet" href="organizer-css/viewcampaigncss.css" />
+  <link rel="stylesheet" href="organizer-css/campaignviewcss.css" />
+
+  <script src="organizer-js/bootstrap5/bootstrap.bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="pb-5 mb-2">
-  <div class="container shadow rounded-3 pt-2 pb-4 px-4 mt-5">
+<body class="pb-5 mb-2 bg-success bg-opacity-25">
+  <div class="container bg-white shadow rounded-3 pt-2 pb-4 px-4 mt-5">
     <!-- Back Button -->
     <div class="top-line border-bottom border-warning border-opacity-75 border-2 mb-3">
       <a href="homepage.php">
@@ -141,13 +144,16 @@ $check = 0;
         </a>
       </div>
       <div class="col">
-        <a href="">
-          <button class="button-css w-100 rounded-pill bg-danger fw-bold text-white border-0 pb-2">
-            Delete
-          </button>
-        </a>
+        <button type="button" class="button-css w-100 rounded-pill bg-danger fw-bold text-white border-0 pb-2 delete-button" href="#" onclick="deleteCampaign()">
+          Delete
+        </button>
       </div>
     </div>
+
+    <form action="deletecampaign.php" id="form-delete" method="POST">
+      <input type="hidden" name="campaign-id" id="campaign-id" value="<?php echo $id ?>" hidden />
+      <input type="hidden" name="campaign-banner" id="campaign-banner" value="<?php echo $banner ?>" hidden />
+    </form>
 
     <div class="top-line border-bottom border-warning border-opacity-75 border-2 mt-3"></div>
 
@@ -225,7 +231,7 @@ $check = 0;
       </div>
     </div>
   </div>
-  <script src="organizer-js/viewcampaignjs.js"></script>
+  <script src="organizer-js/campaignviewjs.js"></script>
   <script>
     function submitClicked() {
 

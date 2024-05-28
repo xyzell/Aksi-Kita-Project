@@ -71,3 +71,19 @@
     height: 30px;
     margin-left : -10px;
 }
+
+.delete-button, .delete-button:focus, .delete-button:active {
+    outline: none;
+}
+
+.button-modal {
+    width: 100px;
+}
+
+.title-modal {
+    line-height: 10px;
+}
+
+.button-modal, button-modal:focus {
+    box-shadow: none !important;
+}
