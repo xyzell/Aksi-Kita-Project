@@ -108,7 +108,7 @@ header .title {
 
 /* Banner */
 .banner {
-    background-image: linear-gradient(rgba(0, 0, 0, 1),rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.0)), url('../assets/banner.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 1),rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.0)), url('../assets/banner.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     text-align: center;
