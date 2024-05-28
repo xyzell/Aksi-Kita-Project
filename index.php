@@ -449,7 +449,7 @@ session_start();
       <div class="row mb-5">
         <div class="col-md-6 col-lg-4">
           <h3 class="heading-section">About Us</h3>
-          <p style="text-align: justify;" class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi
+          <p style="text-align: justify; font-size: 15px;" class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi
             masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang,
             melatih relawan, dan mendapatkan pengakuan dari pemerintah dan media. </p>
           <p style="text-align: justify;" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat,
