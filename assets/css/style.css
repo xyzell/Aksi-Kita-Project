@@ -1332,8 +1332,8 @@ textarea.form-control {
 /* Blog*/
 .post-info {
   font-size: 12px;
-  text-transform: uppercase;
   font-weight: bold;
+  text-transform: uppercase;
   color: #fff;
   letter-spacing: .1em; }
   .post-info > div {
@@ -2208,6 +2208,28 @@ background: #eee;
   margin: 20px 0;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+.pagination a {
+  margin: 0 5px;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.pagination a.active {
+  background-color: #ffc107;
+  color: #fff;
+  border: 1px solid #ffc107;
+}
+.pagination a:hover {
+  background-color: #ddd;
+}
+
 
 /*---------------------
   aksiRelawan
@@ -2329,7 +2351,7 @@ h1 {
 
 h2 {
   margin: 0;
-  padding-right: 40px; /* Adjusted to give space for the close button */
+  padding-right: 40px; 
 }
 
 .custom-form-group {
