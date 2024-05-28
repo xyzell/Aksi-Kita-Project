@@ -198,7 +198,8 @@ session_start();
                 <span class="fund-raised d-block">Terkumpul Rp.48,347,101,00 dari Rp.50,000,000,00</span>
               </div>
             </div>
-
+            
+            
             
             <div class="card fundraise-item">
               <a href="#"><img class="card-img-top" src="assets/images/darling.png" alt="Image placeholder"></a>
@@ -406,7 +407,7 @@ session_start();
             <form action="#" method="post">
               <div class="form-group">
                 <!-- <label for="name">Name</label> -->
-                <input type="text" class="form-control py-2" id="name" placeholder="Masukkan Namammu">
+                <input type="text" class="form-control py-2" id="name" placeholder="Masukkan Namamu">
               </div>
               <div class="form-group">
                 <!-- <label for="email">Email</label> -->
@@ -434,12 +435,12 @@ session_start();
       <div class="row mb-5">
         <div class="col-md-6 col-lg-4">
           <h3 class= "heading-section">About Us</h3>
-          <p style="text-align: justify;" class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
-            masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang, 
+          <p style="text-align: justify; font-size: 15px;" class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi
+            masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang,
             melatih relawan, dan mendapatkan pengakuan dari pemerintah dan media. </p>
-          <p style="text-align: justify;" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
+            <p style="text-align: justify;" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat,
             pendidikan, dan pembangunan berkelanjutan demi menciptakan dampak yang berkelanjutan.</p>
-          <p><a href="#" class="link-underline">Read  More</a></p>
+            <p><a href="#" class="link-underline">ReadMore</a></p>
         </div>
         <div class="col-md-6 col-lg-4">
           <h3 class="heading-section">Recent Blog</h3>
