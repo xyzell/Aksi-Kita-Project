@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     closeSuccessModalBtn.onclick = function() {
         successModal.style.display = "none";
-        window.location.href = 'aksiRelawan.php';  // Ganti dengan halaman sebelumnya
+        window.location.href = 'cariAksi.php';  // Ganti dengan halaman sebelumnya
     }
 
     window.onclick = function(event) {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
         if (event.target == successModal) {
             successModal.style.display = "none";
-            window.location.href = 'aksiRelawan.php';  // Ganti dengan halaman sebelumnya
+            window.location.href = 'cariAksi.php';  // Ganti dengan halaman sebelumnya
         }
     }
 

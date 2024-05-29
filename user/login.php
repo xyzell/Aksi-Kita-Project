@@ -41,27 +41,27 @@ if (isset($_POST['login_btn'])) {
                     header('location: ../cariAksi.php?message=Berhasil login');
                     exit;
                 } else {
-                    header('location: login.php?error=Email belum diverifikasi!');
+                    $_SESSION['status'] = "Email belum diverifikasi!";
+                    header('location: login.php');
                     exit;
                 }
             } else {
-                header('location: login.php?error=Akun tidak dapat diverifikasi');
+                $_SESSION['status'] = "Akun tidak dapat diverifikasi";
+                header('location: login.phpi');
                 exit;
             }
         } else {
-            header('location: login.php?error=Terjadi kesalahan saat eksekusi query!');
+            $_SESSION['status'] = "Terjadi kesalahan saat eksekusi query!";
+            header('location: login.php');
             exit;
         }
     } else {
-        header('location: login.php?error=Terjadi kesalahan saat mempersiapkan query!');
+        $_SESSION['status'] = "Terkado kesalahan saat mempersiapkan query!";
+        header('location: login.php');
         exit;
     }
 }
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">

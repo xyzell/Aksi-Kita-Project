@@ -88,6 +88,25 @@ $conn->close();
   </nav>
   <!-- END nav -->
 
+  <!-- START modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Pilih Jenis Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body icon-grid">
+          <button type="button" class="btn btn-primary btn-block" onclick="loginAsUser()"><i class="fa-solid fa-user"></i><span>User</span></button>
+          <button type="button" class="btn btn-primary btn-block" onclick="loginAsOrganizer()"><i class="fa-solid fa-landmark"></i><span>Organizer</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END modal -->
+
 
 
   <div class="event-page">
@@ -176,11 +195,11 @@ $conn->close();
     <div class="container">
       <div class="row mb-5">
         <div class="col-md-6 col-lg-4">
-          <h3 class="heading-section">About Us</h3>
-          <p style="text-align: justify;" class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi
-            masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang,
+          <h3 class= "heading-section">About Us</h3>
+          <p style="text-align: justify; font-size: 15px"  class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
+            masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang, 
             melatih relawan, dan mendapatkan pengakuan dari pemerintah dan media. </p>
-          <p style="text-align: justify;" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat,
+          <p style="text-align: justify; font-size: 15px" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
             pendidikan, dan pembangunan berkelanjutan demi menciptakan dampak yang berkelanjutan.</p>
           <p><a href="#" class="link-underline">Read More</a></p>
         </div>
@@ -238,6 +257,9 @@ $conn->close();
             </ul>
           </div>
         </div>
+      </div>
+    </div>
+  </footer>
 
         <!-- loader -->
         <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
@@ -259,8 +281,6 @@ $conn->close();
         <script src="https://kit.fontawesome.com/e1612437fd.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/jquery.fancybox.min.js"></script>
-
-
         <script src="assets/js/aos.js"></script>
         <script src="assets/js/jquery.animateNumber.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
@@ -279,7 +299,6 @@ $conn->close();
             // alert("Fitur ini belum tersedia");
           }
         </script>
-
         <script>
           $(document).ready(function() {
             $("#loginButton").click(function() {

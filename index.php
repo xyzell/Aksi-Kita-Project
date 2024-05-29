@@ -106,10 +106,10 @@ session_start();
       <div class="row">
         <div class="col-md-6 pr-5">
           <div class="block-48">
-            <span class="block-48-text-1">Served Over</span>
+            <span class="block-48-text-1">Analisa WHO</span>
             <div class="block-48-counter ftco-number" data-number="1321901">0</div>
-            <span class="block-48-text-1 mb-4 d-block">Children in 150 Countries</span>
-            <p class="mb-0"><a href="#" class="btn btn-white px-3 py-2">View Our Program</a></p>
+            <span class="block-48-text-1 mb-4 d-block">Anak Terdampak Stunting </span>
+            <p class="mb-0"><a href="#" class="btn btn-white px-3 py-2">TUNJUKKAN AKSIMU</a></p>
           </div>
         </div>
         <div class="col-md-6 welcome-text">
@@ -393,45 +393,6 @@ session_start();
     </div>
   </div> <!-- .section -->
 
-  <div class="featured-section overlay-color-2" style="background-image: url('assets/images/bg_2.jpg');">
-
-    <div class="container">
-      <div class="row">
-
-        <div class="col-md-6 mb-5 mb-md-0">
-          <img src="assets/images/bg_2.jpg" alt="Image placeholder" class="img-fluid">
-        </div>
-
-        <div class="col-md-6 pl-md-5">
-
-          <div class="form-volunteer">
-            
-            <h2>Be A Volunteer Today</h2>
-            <form action="#" method="post">
-              <div class="form-group">
-                <!-- <label for="name">Name</label> -->
-                <input type="text" class="form-control py-2" id="name" placeholder="Masukkan Namamu">
-              </div>
-              <div class="form-group">
-                <!-- <label for="email">Email</label> -->
-                <input type="text" class="form-control py-2" id="email" placeholder="Masukkan Email-mu">
-              </div>
-              <div class="form-group">
-                <!-- <label for="v_message">Email</label> -->
-                <textarea name="v_message" id="" cols="30" rows="3" class="form-control py-2" placeholder="Berikan pesan mu"></textarea>
-                <!-- <input type="text" class="form-control py-2" id="email"> -->
-              </div>
-              <div class="form-group">
-                <input type="submit" class="btn btn-white px-5 py-2" value="Kirim">
-              </div>
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </div> <!-- .featured-donate -->
 
   <footer class="footer">
     <div class="container">
