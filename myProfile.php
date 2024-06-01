@@ -15,7 +15,38 @@ $stmt->bind_param('i', $userId);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
+
+if (isset($_POST['uploadTask'])) {
+  $campaignId = $_POST['campaignId'];
+  $userId = $_SESSION['userId']; // Asumsikan userId disimpan di session
+  $statusTask = 'pending';
+
+  // Menghandle upload file
+  $targetDir = "./assets/images/task/";
+  $fileName = basename($_FILES["taskFile"]["name"]);
+  $targetFilePath = $targetDir . $fileName;
+  $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
+  // Memeriksa apakah file sudah diupload atau belum
+  if (move_uploaded_file($_FILES["taskFile"]["tmp_name"], $targetFilePath)) {
+    // Insert record ke database
+    $sql = "INSERT INTO task (fileTask, statusTask, userId, campaignId) VALUES (?, ?, ?, ?)";
+    if ($stmt = $conn->prepare($sql)) {
+      $stmt->bind_param("ssii", $fileName, $statusTask, $userId, $campaignId);
+      if ($stmt->execute()) {
+        $_SESSION['status'] = "File berhasil diupload!";
+      } else {
+        $_SESSION['statusDanger'] = "File gagal diupload!";      
+      }
+      $stmt->close();
+    }
+  } else {
+    $_SESSION['statusDanger'] = "Maaf, terdapat kesalahan saat mengupload.";
+  }
+}
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +76,7 @@ $user = $result->fetch_assoc();
 </head>
 
 <body>
-
+  <!-- START nav -->
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="../index.html">
@@ -81,59 +112,98 @@ $user = $result->fetch_assoc();
 
   <div class="site-section bg-light">
     <div class="container">
-      <ul class="nav-tabs">
-        <li data-tab="edit-profil" class="active">Edit Profil</li>
-        <li data-tab="aktivitas-saya">Aktivitas Saya</li>
-      </ul>
-
-      <!-- <body class="profile-edit-body"> -->
-        <div class="profile-edit-container">
-          <div id="edit-profil" class="tab-active">
-            <h2>Edit Profil</h2>
-            <form action="updateProfil.php" method="post" class="profile-edit-form">
-              <label for="userName">Nama:</label>
-              <input type="text" id="userName" name="userName" value="<?php echo htmlspecialchars($user['userName'] ?? ''); ?>" required>
-
-              <label for="userEmail">Email:</label>
-              <input type="email" id="userEmail" name="userEmail" value="<?php echo htmlspecialchars($user['userEmail'] ?? ''); ?>" required>
-
-              <label for="userGender">Jenis Kelamin:</label>
-              <select id="userGender" name="userGender" required>
-                <option value="Male" <?php if (($user['userGender'] ?? '') === 'Male') echo 'selected'; ?>>Male</option>
-                <option value="Female" <?php if (($user['userGender'] ?? '') === 'Female') echo 'selected'; ?>>Female</option>
-              </select>
-
-              <label for="userAddress">Alamat:</label>
-              <input type="text" id="userAddress" name="userAddress" value="<?php echo htmlspecialchars($user['userAddress'] ?? ''); ?>">
-
-              <label for="userBirthdate">Tanggal Lahir:</label>
-              <input type="date" id="userBirthdate" name="userBirthdate" value="<?php echo htmlspecialchars($user['userBirthdate'] ?? ''); ?>">
-
-              <label for="userBio">Deskripsi:</label>
-              <textarea id="userBio" name="userBio"><?php echo htmlspecialchars($user['userBio'] ?? ''); ?></textarea>
-
-              <label for="userProfession">Profesi:</label>
-              <input type="text" id="userProfession" name="userProfession" value="<?php echo htmlspecialchars($user['userProfession'] ?? ''); ?>">
-
-              <label for="userProvince">Provinsi:</label>
-              <input type="text" id="userProvince" name="userProvince" value="<?php echo htmlspecialchars($user['userProvince'] ?? ''); ?>">
-
-              <label for="userTown">Kota:</label>
-              <input type="text" id="userTown" name="userTown" value="<?php echo htmlspecialchars($user['userTown'] ?? ''); ?>">
-
-              <label for="userPostalCode">Kode Pos:</label>
-              <input type="text" id="userPostalCode" name="userPostalCode" value="<?php echo htmlspecialchars($user['userPostalCode'] ?? ''); ?>">
-
-              <button type="submit" name="update_btn">Update</button>
-            </form>
+      <div class="profile-edit-container">
+      <div class="alert">
+            <?php
+                if(isset($_SESSION['status'])) 
+                {
+                  ?>
+                  <div class="alert alert-success text-center">
+                      <h5><?= $_SESSION['status'];?></h5>
+                  </div>
+                  <?php
+                  unset($_SESSION['status']);
+                }
+            ?>
+            <?php
+            if (isset($_SESSION['statusDanger'])) {
+            ?>
+              <div class="alert alert-danger text-center">
+                <h5><?= $_SESSION['statusDanger']; ?></h5>
+              </div>
+            <?php
+              unset($_SESSION['statusDanger']);
+            }
+            ?>
+            <?php
+                if(isset($_SESSION['statusSuccess'])) 
+                {
+                  ?>
+                  <div class="alert alert-success text-center">
+                      <h5><?= $_SESSION['statusSuccess'];?></h5>
+                  </div>
+                  <?php
+                  unset($_SESSION['statusSuccess']);
+                }
+            ?>
           </div>
+        <ul class="nav-tabs">
+          <li data-tab="edit-profil" class="active">Profil Saya</li>
+          <li data-tab="aktivitas-saya">Aktivitas</li>
+        </ul>
+        <!-- <body class="profile-edit-body"> -->
+        <div id="edit-profil" class="tab tab-active">
+          <h2>Edit Profil</h2>
+          <form action="updateProfil.php" method="post" class="profile-edit-form">
+            <label for="userName">Nama:</label>
+            <input type="text" id="userName" name="userName" value="<?php echo htmlspecialchars($user['userName'] ?? ''); ?>" required>
+
+            <label for="userEmail">Email:</label>
+            <input type="email" id="userEmail" name="userEmail" value="<?php echo htmlspecialchars($user['userEmail'] ?? ''); ?>" required>
+
+            <label for="userGender">Jenis Kelamin:</label>
+            <select id="userGender" name="userGender" required>
+              <option value="Male" <?php if (($user['userGender'] ?? '') === 'Male') echo 'selected'; ?>>Male</option>
+              <option value="Female" <?php if (($user['userGender'] ?? '') === 'Female') echo 'selected'; ?>>Female</option>
+            </select>
+
+            <label for="userAddress">Alamat:</label>
+            <input type="text" id="userAddress" name="userAddress" value="<?php echo htmlspecialchars($user['userAddress'] ?? ''); ?>">
+
+            <label for="userBirthdate">Tanggal Lahir:</label>
+            <input type="date" id="userBirthdate" name="userBirthdate" value="<?php echo htmlspecialchars($user['userBirthdate'] ?? ''); ?>">
+
+            <label for="userBio">Deskripsi:</label>
+            <textarea id="userBio" name="userBio"><?php echo htmlspecialchars($user['userBio'] ?? ''); ?></textarea>
+
+            <label for="userProfession">Profesi:</label>
+            <input type="text" id="userProfession" name="userProfession" value="<?php echo htmlspecialchars($user['userProfession'] ?? ''); ?>">
+
+            <label for="userProvince">Provinsi:</label>
+            <input type="text" id="userProvince" name="userProvince" value="<?php echo htmlspecialchars($user['userProvince'] ?? ''); ?>">
+
+            <label for="userTown">Kota:</label>
+            <input type="text" id="userTown" name="userTown" value="<?php echo htmlspecialchars($user['userTown'] ?? ''); ?>">
+
+            <label for="userPostalCode">Kode Pos:</label>
+            <input type="text" id="userPostalCode" name="userPostalCode" value="<?php echo htmlspecialchars($user['userPostalCode'] ?? ''); ?>">
+
+            <button type="submit" name="update_btn">Update</button>
+          </form>
         </div>
         <div id="aktivitas-saya" class="tab">
-          <div class="profile-edit-container">
-            <h2>Aktivitas Saya</h2>
-            <?php
-            $sql = "SELECT campaignId, banner, description, campaignDate, location FROM campaign";
-            $result = $conn->query($sql);
+          <h2>Aktivitas</h2>
+          <?php
+          $userId = $_SESSION['userId'];
+          $sql = "SELECT c.campaignId, c.banner, c.title, c.location
+            FROM campaign c
+            JOIN joinCampaign jc ON c.campaignId = jc.campaignId
+            WHERE jc.userId = ?";
+
+          if ($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param('i', $userId);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
@@ -141,12 +211,11 @@ $user = $result->fetch_assoc();
                     <div class="my-activity-card">
                         <img src="assets/images/campaign/' . $row["banner"] . '" alt="Campaign Banner" class="my-activity-banner">
                         <div class="my-activity-info">
-                            <h2 class="my-activity-title">' . $row["description"] . '</h2>
-                            <p class="my-activity-deadline">Deadline: ' . $row["campaignDate"] . '</p>
+                            <h2 class="my-activity-title">' . $row["title"] . '</h2>
                             <p class="my-activity-location">' . $row["location"] . '</p>
                         </div>
                         <div class="my-activity-actions">
-                            <button class="my-activity-upload-task-btn" onclick="showUploadModal(' . $row["campaignId"] . ')">Upload File Task</button>
+                            <button class="my-activity-upload-task-btn" onclick="showUploadModal(' . $row["campaignId"] . ')">Upload Bukti Aktivitas</button>
                             <button class="my-activity-publish-cert-btn" disabled>Terbitkan Sertifikat</button>
                         </div>
                     </div>';
@@ -154,26 +223,28 @@ $user = $result->fetch_assoc();
             } else {
               echo "0 results";
             }
-            ?>
-          </div>
+            $stmt->close();
+          } else {
+            echo "Error preparing statement: " . $conn->error;
+          }
+          ?>
         </div>
+      </div>
     </div>
-  </div> <!-- .section -->
+  </div>
+  <!-- .section -->
 
-
-  <!-- Upload task modal -->
   <div id="uploadTaskModal" class="my-activity-modal">
     <div class="my-activity-modal-content">
       <span class="my-activity-close" onclick="closeUploadModal()">&times;</span>
-      <form id="uploadTaskForm" class="my-activity-form">
+      <form id="uploadTaskForm" class="my-activity-form" method="post" enctype="multipart/form-data" onsubmit="handleUpload(event)">
         <input type="hidden" id="campaignId" name="campaignId">
-        <label for="taskFile">Upload Task File:</label>
+        <label for="taskFile">Upload Bukti Aktivitas :</label>
         <input type="file" id="taskFile" name="taskFile" required>
-        <button type="submit">Upload</button>
+        <button id="uploadButton" class="upload-btn" type="submit" name="uploadTask">Upload</button>
       </form>
     </div>
   </div>
-
 
   <footer class="footer">
     <div class="container">
@@ -247,9 +318,10 @@ $user = $result->fetch_assoc();
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
       <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
       <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
-    </svg></div>
+    </svg>
+  </div>
 
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="assets/js/popper.min.js"></script>
@@ -269,89 +341,29 @@ $user = $result->fetch_assoc();
   <script src="assets/js/google-map.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
-    function loginAsUser() {
-      // Redirect or perform actions for user login
-      window.location.href = "user/login.php";
-    }
+    document.querySelectorAll('.nav-tabs li').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.nav-tabs li').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
 
-    function loginAsOrganizer() {
-      // Redirect or perform actions for organizer login
-      // Example: window.location.href = "organizer/login.php";
-      window.location.href = "organizer/login.php";
-      // alert("Fitur ini belum tersedia");
-    }
-  </script>
-
-  <script>
-    $(document).ready(function() {
-      $("#loginButton").click(function() {
-        $("#loginModal").modal();
-      });
-    });
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Function to show the tab
-      function showTab(tabId) {
-        var tabs = document.querySelectorAll('.tab');
-        var tabButtons = document.querySelectorAll('.nav-tabs li');
-        tabs.forEach(function(tab) {
-          tab.classList.remove('active');
-        });
-        tabButtons.forEach(function(button) {
-          button.classList.remove('active');
-        });
-        document.getElementById(tabId).classList.add('active');
-        document.querySelector('.nav-tabs li[data-tab="' + tabId + '"]').classList.add('active');
-      }
-
-      // Set default tab
-      showTab('edit-profil');
-
-      // Event listeners for tab buttons
-      document.querySelectorAll('.nav-tabs li').forEach(function(tabButton) {
-        tabButton.addEventListener('click', function() {
-          var tabId = this.getAttribute('data-tab');
-          showTab(tabId);
+        document.querySelectorAll('.tab').forEach(content => {
+          content.classList.remove('tab-active');
+          if (content.id === tab.getAttribute('data-tab')) {
+            content.classList.add('tab-active');
+          }
         });
       });
-
-      // Function to show upload modal
-      window.showUploadModal = function(campaignId) {
-        document.getElementById('campaignId').value = campaignId;
-        document.getElementById('uploadTaskModal').style.display = 'flex';
-      }
-
-      // Function to close upload modal
-      window.closeUploadModal = function() {
-        document.getElementById('uploadTaskModal').style.display = 'none';
-      }
-
-      // Form submission handler for upload task
-      document.getElementById('uploadTaskForm').onsubmit = function(event) {
-        event.preventDefault();
-        let formData = new FormData(this);
-        fetch('upload_task.php', {
-            method: 'POST',
-            body: formData
-          })
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              alert('File uploaded successfully');
-              closeUploadModal();
-            } else {
-              alert('Error uploading file');
-            }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-      }
     });
+
+    function showUploadModal(campaignId) {
+      document.getElementById('campaignId').value = campaignId;
+      document.getElementById('uploadTaskModal').style.display = 'flex';
+    }
+
+    function closeUploadModal() {
+      document.getElementById('uploadTaskModal').style.display = 'none';
+    }
   </script>
-
-
 </body>
 
 </html>

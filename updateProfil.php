@@ -29,7 +29,7 @@ if (isset($_POST['update_btn'])) {
         header('location: myProfile.php');
         exit();
     } else {
-        $_SESSION['status'] = "Gagal memperbarui profil: " . $stmt->error;
+        $_SESSION['statusDanger'] = "Gagal memperbarui profil: " . $stmt->error;
         header('location: myProfile.php');
         exit();
     }

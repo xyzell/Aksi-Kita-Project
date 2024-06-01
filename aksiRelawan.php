@@ -222,7 +222,6 @@ $conn->close();
     </div>
   </div>
 
-
   <!-- Modal user sudah mendaftar -->
   <div id="alreadyRegisteredModal" class="unique-custom-modal unique-custom-modal-centered">
     <div class="unique-custom-modal-content unique-custom-modal-centered-content">
