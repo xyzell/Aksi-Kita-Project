@@ -167,8 +167,6 @@ h1, h2, h3, h4, h5,
       background-position: center top 10px;
       z-index: 100;
     }
-
-
     
 .navbar-brand {
   text-transform: uppercase;
@@ -2235,31 +2233,30 @@ background: #eee;
   aksiRelawan
 -----------------------*/
 
-.event-page {
+.unique-event-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   padding-top: 140px;
 }
 
-.event-content {
+.unique-event-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 20px;
 }
 
-.event-details {
+.unique-event-details {
   width: 100%;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
 }
 
-.banner {
+.unique-banner {
   width: 100%;
   height: 300px; 
   margin-bottom: 20px;
@@ -2267,29 +2264,29 @@ background: #eee;
   border-radius: 8px;
 }
 
-.banner img {
+.unique-banner img {
   width: 100%;
   height: 100%;
   object-fit: cover; 
   object-position: center; 
 }
 
-h1 {
+.unique-h1 {
   font-size: 24px;
   margin-bottom: 10px;
 }
 
-.details p {
+.unique-details p {
   margin: 5px 0;
 }
 
-.action-buttons {
+.unique-action-buttons {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
 
-.action-buttons button {
+.unique-action-buttons button {
   padding: 10px 20px;
   margin-bottom: 10px;
   border: none;
@@ -2300,11 +2297,11 @@ h1 {
   transition: background-color 0.3s;
 }
 
-.action-buttons button:hover {
+.unique-action-buttons button:hover {
   background-color: #000;
 }
 
-.description, .organizer-card {
+.unique-description, .unique-organizer-card {
   width: 100%;
   margin: 20px 0;
   padding: 20px;
@@ -2314,59 +2311,56 @@ h1 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.organizer-card img {
+.unique-organizer-card img {
   display: block;
   margin: 0 auto 20px;
 }
 
-.custom-modal-content {
+
+.unique-custom-modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
-  max-width: 700px;
-  border-radius: 8px;
+  width: 40%;
+  border-radius: 10px;
   position: relative;
-  animation: slideIn 0.5s;
-  font-size: 14px;
+  animation-name: slideIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.custom-close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
+.unique-custom-close {
   color: #aaa;
+  float: right;
   font-size: 28px;
   font-weight: bold;
-  cursor: pointer;
 }
 
-.custom-close:hover,
-.custom-close:focus {
+.unique-custom-close:hover,
+.unique-custom-close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
 
-h2 {
+.unique-h2 {
   margin: 0;
-  padding-right: 40px; 
 }
 
-.custom-form-group {
+.unique-custom-form-group {
   margin-bottom: 15px;
 }
 
-.custom-label {
+.unique-custom-label {
   margin-bottom: 5px;
   display: block;
   font-weight: bold;
 }
 
-.custom-input,
-.custom-textarea,
-.custom-select {
+.unique-custom-input,
+.unique-custom-textarea,
+.unique-custom-select {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -2375,12 +2369,12 @@ h2 {
   box-sizing: border-box;
 }
 
-.custom-textarea {
+.unique-custom-textarea {
   resize: vertical;
   height: 80px;
 }
 
-.custom-submit-btn {
+.unique-custom-submit-btn {
   background-color: #4CAF50;
   color: white;
   padding: 10px 20px;
@@ -2389,11 +2383,16 @@ h2 {
   cursor: pointer;
 }
 
-.custom-submit-btn:hover {
+.unique-custom-submit-btn:hover {
   background-color: #45a049;
 }
 
-.custom-modal {
+.unique-custom-submit-btn:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.unique-custom-modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -2402,64 +2401,82 @@ h2 {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
-  padding-top: 60px;
+  opacity: 0;
+  transition: opacity 0.5s;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
 }
 
-.custom-logo {
-  max-width: 50px;
-  margin-right: 10px;
-  border-radius: 50%; /* Membuat gambar menjadi rounded */
+.unique-custom-logo {
+  display: block;
+  margin: 0 auto;
+  width: 50px; 
+  height: 50px;
+  border-radius: 50%;
 }
 
-.input-container {
+.unique-input-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
-.custom-link {
+.unique-custom-link {
   display: block;
   margin-top: 10px;
   color: #007bff;
   text-decoration: none;
 }
 
-.custom-link:hover {
+.unique-custom-link:hover {
   text-decoration: underline;
 }
 
-.custom-submit-container {
-  text-align: right; /* Tombol submit pindah ke kanan bawah */
+.unique-custom-submit-container {
+  text-align: right;
 }
+
 
 @keyframes slideIn {
   from {
-      top: -300px;
-      opacity: 0;
+    transform: translateY(-50px);
+    opacity: 0;
   }
   to {
-      top: 0;
-      opacity: 1;
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
-.custom-modal-content-success {
-  width: 80%;
-  max-width: 500px;
-  text-align: center; /* Agar teks dalam modal sukses rata tengah */
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
 }
 
-#successModal h2 {
+.unique-custom-modal-content-success {
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+}
+
+#unique-successModal h2 {
   margin-bottom: 20px;
 }
 
-#successModal p {
+#unique-successModal p {
   margin-bottom: 20px;
   font-size: 16px;
 }
 
-#closeSuccessModalBtn {
+#unique-closeSuccessModalBtn {
   margin-top: 10px;
   padding: 10px 20px;
   background-color: #4CAF50;
@@ -2469,14 +2486,152 @@ h2 {
   cursor: pointer;
 }
 
-#closeSuccessModalBtn:hover {
+#unique-closeSuccessModalBtn:hover {
   background-color: #45a049;
 }
+
+.unique-warning-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.unique-warning-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  text-align: center;
+}
+
+.unique-warning-modal-content h2 {
+  margin-top: 0;
+}
+
+.unique-warning-modal-content p {
+  font-size: 16px;
+}
+
+.unique-close-btn {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.unique-close-btn:hover {
+  background-color: darkred;
+}
+
+.unique-contact-content {
+  text-align: justify;
+  margin-top: 20px;
+}
+
+
+.unique-custom-modal.show {
+  display: flex; /* Ensure modal is displayed as flex to center it */
+  opacity: 1;
+}
+
+.unique-custom-modal.hide {
+  opacity: 0;
+  transition: opacity 0.5s; /* Ensure smooth transition */
+  pointer-events: none; /* Make sure modal is not interactive when hidden */
+}
+
+.unique-custom-modal-header {
+  padding: 10px 0;
+  border-bottom: 1px solid #444;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.unique-contact-field {
+  margin-bottom: 15px;
+}
+
+.unique-contact-value {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin-top: 5px;
+  
+}
+
+.unique-custom-modal-centered {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center; /* Flexbox to center content horizontally */
+  align-items: center; /* Flexbox to center content vertically */
+}
+
+.unique-custom-modal-centered-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px; /* Maximum width for modal content */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  text-align: center; /* Center the text inside the modal */
+}
+
+.unique-custom-close {
+  color: #e20505;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.unique-custom-close:hover,
+.unique-custom-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.unique-custom-modal-fit-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  max-width: 80%; /* Limit the maximum width */
+  max-height: 80%; /* Limit the maximum height */
+  overflow-y: auto; /* Enable scrolling if content is too tall */
+}
+
+
+
 
 /*---------------------
   MyProfile
 -----------------------*/
 
+/* CSS untuk Edit Profil */
 body.profile-edit-body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -2529,4 +2684,122 @@ body.profile-edit-body {
 }
 .profile-edit-form button:hover {
   background-color: #4cae4c;
+}
+
+/* CSS untuk tab */
+.tab { display: none; }
+.tab.active { display: block; }
+.nav-tabs { display: flex; list-style-type: none; padding: 0; margin: 20px 0; justify-content: center; }
+.nav-tabs li { margin-right: 10px; cursor: pointer; padding: 10px 20px; border: 1px solid #ccc; border-radius: 4px; }
+.nav-tabs li.active { font-weight: bold; background-color: #5cb85c; color: white; }
+
+/* CSS untuk Aktivitas Saya */
+.my-activity-body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.my-activity-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  margin: 20px;
+  overflow: hidden;
+  width: 800px;
+}
+.my-activity-banner {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+.my-activity-info {
+  flex: 1;
+  padding: 20px;
+}
+.my-activity-title {
+  font-size: 24px;
+  margin: 0;
+}
+.my-activity-deadline, .my-activity-location {
+  margin: 5px 0;
+}
+.my-activity-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+.my-activity-actions button {
+  background-color: #00b4d8;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin: 5px 0;
+  padding: 10px;
+  width: 200px;
+}
+.my-activity-actions button[disabled] {
+  background-color: #ccc;
+}
+.my-activity-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
+.my-activity-modal-content {
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 5% auto;
+  padding: 20px;
+  position: relative;
+  width: 80%;
+  max-width: 500px;
+}
+.my-activity-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.my-activity-close:hover,
+.my-activity-close:focus {
+  color: black;
+  cursor: pointer;
+}
+.my-activity-form {
+  display: flex;
+  flex-direction: column;
+}
+.my-activity-form label {
+  margin: 10px 0 5px;
+}
+.my-activity-form input, .my-activity-form textarea {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+}
+.my-activity-form button {
+  background-color: #00b4d8;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 10px;
 }

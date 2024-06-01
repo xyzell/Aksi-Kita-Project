@@ -80,12 +80,20 @@ session_start();
           <?php
           if (isset($_SESSION['status'])) {
           ?>
-            <div class="alert alert-primary text-center">
+            <div class="alert alert-success text-center">
               <h5><?= $_SESSION['status']; ?></h5>
             </div>
           <?php
             unset($_SESSION['status']);
           }
+          if (isset($_SESSION['statusDanger'])) {
+            ?>
+              <div class="alert alert-danger text-center">
+                <h5><?= $_SESSION['statusDanger']; ?></h5>
+              </div>
+            <?php
+              unset($_SESSION['statusDanger']);
+            }
           ?>
         </div>
       </div>

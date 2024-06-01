@@ -64,6 +64,27 @@
                   unset($_SESSION['status']);
                 }
             ?>
+            <?php
+            if (isset($_SESSION['statusDanger'])) {
+            ?>
+              <div class="alert alert-danger text-center">
+                <h5><?= $_SESSION['statusDanger']; ?></h5>
+              </div>
+            <?php
+              unset($_SESSION['statusDanger']);
+            }
+            ?>
+            <?php
+                if(isset($_SESSION['statusSuccess'])) 
+                {
+                  ?>
+                  <div class="alert alert-success text-center">
+                      <h5><?= $_SESSION['statusSuccess'];?></h5>
+                  </div>
+                  <?php
+                  unset($_SESSION['statusSuccess']);
+                }
+            ?>
           </div>
       </div>
       <div class="row mb-3 justify-content-center" style="padding-top: 10px;">

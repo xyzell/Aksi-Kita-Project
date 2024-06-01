@@ -12,7 +12,7 @@ if (isset($_SESSION['logged_in'])) {
 
 if (isset($_POST['login_btn'])) {
     $email = $_POST['email'];
-    $password = md5($_POST['pass']); // Hash password untuk login
+    $password = md5($_POST['pass']);
 
     $query = "SELECT userId, userName, userEmail, userPassword, userGender, userAddress, userStatus, verifyOtp, verifyStatus 
               FROM users 
@@ -26,7 +26,7 @@ if (isset($_POST['login_btn'])) {
             if ($result->num_rows === 1) {
                 $user = $result->fetch_assoc();
 
-                // Tambahkan pengecekan apakah akun sudah diverifikasi
+                
                 if ($user['verifyStatus'] == 1) {
                     $_SESSION['userId'] = $user['userId'];
                     $_SESSION['userName'] = $user['userName'];
@@ -41,22 +41,22 @@ if (isset($_POST['login_btn'])) {
                     header('location: ../cariAksi.php?message=Berhasil login');
                     exit;
                 } else {
-                    $_SESSION['status'] = "Email belum diverifikasi!";
+                    $_SESSION['statusDanger'] = "Email belum diverifikasi!";
                     header('location: login.php');
                     exit;
                 }
             } else {
-                $_SESSION['status'] = "Akun tidak dapat diverifikasi";
-                header('location: login.phpi');
+                $_SESSION['statusDanger'] = "Akun tidak dapat diverifikasi";
+                header('location: login.php');
                 exit;
             }
         } else {
-            $_SESSION['status'] = "Terjadi kesalahan saat eksekusi query!";
+            $_SESSION['statusDanger'] = "Terjadi kesalahan saat eksekusi query!";
             header('location: login.php');
             exit;
         }
     } else {
-        $_SESSION['status'] = "Terkado kesalahan saat mempersiapkan query!";
+        $_SESSION['statusDanger'] = "Terjadi kesalahan saat mempersiapkan query!";
         header('location: login.php');
         exit;
     }
@@ -144,6 +144,15 @@ if (isset($_POST['login_btn'])) {
                 </div>
                 <?php
                 unset($_SESSION['status']);
+              }
+              if(isset($_SESSION['statusDanger'])) 
+              {
+                ?>
+                <div class="alert alert-danger text-center">
+                    <h5><?= $_SESSION['statusDanger'];?></h5>
+                </div>
+                <?php
+                unset($_SESSION['statusDanger']);
               }
             ?>
             <div class="row mb-3 justify-content-center" style="padding-top: 120px;"> 
