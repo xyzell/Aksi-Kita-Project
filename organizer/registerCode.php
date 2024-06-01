@@ -104,28 +104,21 @@ if (isset($_POST['registerBtn'])) {
     $userStatus = $_POST['user_status'];
     $verify_token = md5(rand());
 
-    // This is image file
     $photo = $_FILES['logo_organisasi']['tmp_name'];
 
-    // Photo name
     $photo_name = str_replace(' ', '_', $name) . ".jpg";
 
-    // Upload image
     move_uploaded_file($photo, "../assets/images/profiles/" . $photo_name);
-
-    // If password didn't match
+ 
     if ($password !== $confirm_password) {
-        $_SESSION['status'] = "Kata sandi tidak cocok!";
+        $_SESSION['statusDanger'] = "Kata sandi tidak cocok!";
         header('location: register.php');
 
-    // If password less than 6 characters
     } else if (strlen($password) < 6) {
-        $_SESSION['status'] = "Kata sandi minimal harus 6 karakter";
+        $_SESSION['statusDanger'] = "Kata sandi minimal 6 karakter";
         header('location: register.php');
 
-    // Inf no error
     } else {
-        // Check whether there is a user with this email or not
         $query_check_user = "SELECT COUNT(*) FROM organizer WHERE organizerEmail = ?";
 
         $stmt_check_user = $conn->prepare($query_check_user);
@@ -135,27 +128,26 @@ if (isset($_POST['registerBtn'])) {
         $stmt_check_user->store_result();
         $stmt_check_user->fetch();
 
-        // If there is a user registered with this email
+        
         if ($num_rows !== 0) {
-            $_SESSION['status'] = "Email sudah terdaftar!";
+            $_SESSION['statusDanger'] = "Email sudah terdaftar!";
             header('location: register.php');
         
-        // If no user registered with this email
+
         } else {
             $query = "INSERT INTO organizer (organizerName, organizerEmail, organizerPhoneNum, organizerPass, organizerKind, organizerDesc,	organizerAddress, organizerWebsite, organizerLogo, userStatus, verifyOtp) 
                                 VALUES ('$name', '$email', '$phone', '$password', '$kindOrg', '$description', '$address', '$website', '$photo_name','$userStatus', '$verify_token')";
 
-            if(mysqli_query($conn, $query)){
-                // Kirim email verifikasi
+            if(mysqli_query($conn, $query)){        
                 sendemail_verify($email, $verify_token);
 
                 $_SESSION['status'] = "Registrasi berhasil! <br> Periksa alamat email anda untuk verifikasi!";
-                header("Location: register.php");
-                exit(); // Hentikan eksekusi kode selanjutnya setelah mengalihkan pengguna
+                header("Location: login.php");
+                exit(); 
             } else {
-                $_SESSION['status'] = "Registrasi gagal: " . mysqli_error($conn); // Tangkap pesan kesalahan MySQL
+                $_SESSION['statusDanger'] = "Registrasi gagal: " . mysqli_error($conn); 
                 header("Location: register.php");
-                exit(); // Hentikan eksekusi kode selanjutnya setelah mengalihkan pengguna
+                exit(); 
             }
         }
     }

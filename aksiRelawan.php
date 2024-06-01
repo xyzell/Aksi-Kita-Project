@@ -6,9 +6,14 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+$userLoggedIn = isset($_SESSION['userId']);
+$userId = $userLoggedIn ? $_SESSION['userId'] : '';
+
 $campaignId = isset($_GET['campaignId']) ? $_GET['campaignId'] : '';
 
 $campaign = null;
+$alreadyRegistered = false;
+
 if (!empty($campaignId)) {
   $query = "SELECT campaign.*, organizer.organizerName, organizer.organizerEmail, organizer.organizerPhoneNum, organizer.organizerKind, organizer.organizerDesc, organizer.organizerAddress, organizer.organizerWebsite, organizer.organizerLogo 
               FROM campaign 
@@ -19,6 +24,14 @@ if (!empty($campaignId)) {
 
   if ($result->num_rows > 0) {
     $campaign = $result->fetch_assoc();
+  }
+
+  if ($userLoggedIn) {
+    $checkRegistrationQuery = "SELECT * FROM joinCampaign WHERE userId = '" . $conn->real_escape_string($userId) . "' AND campaignId = '" . $conn->real_escape_string($campaignId) . "'";
+    $registrationResult = $conn->query($checkRegistrationQuery);
+    if ($registrationResult->num_rows > 0) {
+      $alreadyRegistered = true;
+    }
   }
 }
 $conn->close();
@@ -107,87 +120,119 @@ $conn->close();
   </div>
   <!-- END modal -->
 
-
-
-  <div class="event-page">
+  <div class="unique-event-page">
     <?php if ($campaign) : ?>
-      <div class="event-content">
-        <div class="banner">
+      <div class="unique-event-content">
+        <div class="unique-banner">
           <img src="assets/images/campaign/<?php echo htmlspecialchars($campaign['banner']); ?>" alt="Banner">
         </div>
       </div>
-      <div class="description">
+      <div class="unique-description">
         <p><?php echo nl2br(htmlspecialchars($campaign['description'])); ?></p>
       </div>
-      <div class="event-details">
-        <h1><?php echo htmlspecialchars($campaign['title']); ?></h1>
-        <div class="details">
+      <div class="unique-event-details">
+        <h1 class="unique-h1"><?php echo htmlspecialchars($campaign['title']); ?></h1>
+        <div class="unique-details">
           <p><strong>Lokasi:</strong> <?php echo htmlspecialchars($campaign['location']); ?></p>
           <p><strong>Tanggal:</strong> <?php echo date("d M Y, H:i", strtotime($campaign['campaignDate'])); ?></p>
         </div>
-        <div class="action-buttons">
+        <div class="unique-action-buttons">
           <button id="openModalBtn" class="open-modal-btn">Jadi Relawan</button>
-          <button type="button">Kontak Organisasi</button>
+          <button id="contactOrganizerBtn" type="button">Kontak Organisasi</button>
         </div>
       </div>
-      <div class="organizer-card">
-        <h2>Tentang Penyelenggara</h2>
-        <img src="assets/images/profiles/<?php echo htmlspecialchars($campaign['organizerLogo']); ?>" alt="Logo Penyelenggara" style="max-width: 100px;">
-        <p><strong>Nama:</strong> <?php echo htmlspecialchars($campaign['organizerName']); ?></p>
-        <p><strong>Email:</strong> <?php echo htmlspecialchars($campaign['organizerEmail']); ?></p>
-        <p><strong>Telepon:</strong> <?php echo htmlspecialchars($campaign['organizerPhoneNum']); ?></p>
-        <p><strong>Jenis:</strong> <?php echo htmlspecialchars($campaign['organizerKind']); ?></p>
-        <p><strong>Deskripsi:</strong> <?php echo nl2br(htmlspecialchars($campaign['organizerDesc'])); ?></p>
-        <p><strong>Alamat:</strong> <?php echo htmlspecialchars($campaign['organizerAddress']); ?></p>
-        <p><strong>Website:</strong> <a href="<?php echo htmlspecialchars($campaign['organizerWebsite']); ?>"><?php echo htmlspecialchars($campaign['organizerWebsite']); ?></a></p>
-      </div>
     <?php else : ?>
-      <h2>Detail kampanye tidak ditemukan</h2>
+      <h2 class="unique-h2">Detail kampanye tidak ditemukan</h2>
     <?php endif; ?>
   </div>
 
   <!-- Modal Pendaftaran -->
-<div id="modalForm" class="custom-modal">
-    <div class="custom-modal-content">
-        <span class="custom-close">&times;</span>
-        <h2>Daftar Aktivitas</h2>
-        <form id="volunteerForm" method="POST" action="joinCampaign.php">
-            <div class="custom-form-group">
-                <label for="kepada" class="custom-label">Kepada</label>
-                <div class="input-container">
-                    <img id="organizerLogo" src="assets/images/profiles/<?php echo htmlspecialchars($campaign['organizerLogo']); ?>" alt="<?php echo htmlspecialchars($campaign['organizerName']); ?>" class="custom-logo">
-                    <span id="organizationName" class="organization-name"><?php echo htmlspecialchars($campaign['organizerName']); ?></span>
-                </div>
-            </div>
-            <div class="custom-form-group">
-                <label for="subyek" class="custom-label">Subyek</label>
-                <input type="text" id="subyek" class="custom-input" value="<?php echo htmlspecialchars($campaign['title']); ?>" disabled>
-            </div>
-            <div class="custom-form-group">
-                <label for="question1" class="custom-label">* Mengapa Anda tertarik untuk menjadi relawan pada aktivitas ini?</label>
-                <textarea id="question1" name="desc1" class="custom-textarea" required></textarea>
-            </div>
-            <div class="custom-form-group">
-                <label for="question2" class="custom-label">* Mengapa Anda adalah relawan yang tepat untuk aktivitas ini?</label>
-                <textarea id="question2" name="desc2" class="custom-textarea" required></textarea>
-            </div>
-            <input type="hidden" name="campaignId" value="<?php echo htmlspecialchars($campaignId); ?>">
-            <div class="custom-submit-container">
-                <button type="submit" id="submitBtn" class="custom-submit-btn" disabled>Kirim Formulir Pendaftaran</button>
-            </div>
-        </form>
+  <div id="modalForm" class="unique-custom-modal">
+    <div class="unique-custom-modal-content">
+      <span class="unique-custom-close">&times;</span>
+      <h2 class="unique-h2">Daftar Aktivitas</h2>
+      <form id="volunteerForm" method="POST" action="joinCampaign.php">
+        <input type="hidden" name="status" value="registrant">
+        <div class="unique-custom-form-group">
+          <label for="kepada" class="unique-custom-label">Kepada</label>
+          <div class="unique-input-container">
+            <img id="organizerLogo" src="assets/images/profiles/<?php echo htmlspecialchars($campaign['organizerLogo']); ?>" alt="<?php echo htmlspecialchars($campaign['organizerName']); ?>" class="unique-custom-logo">
+            <span id="organizationName" class="organization-name"><?php echo htmlspecialchars($campaign['organizerName']); ?></span>
+          </div>
+        </div>
+        <div class="unique-custom-form-group">
+          <label for="subyek" class="unique-custom-label">Subyek</label>
+          <input type="text" id="subyek" class="unique-custom-input" value="<?php echo htmlspecialchars($campaign['title']); ?>" disabled>
+        </div>
+        <div class="unique-custom-form-group">
+          <label for="question1" class="unique-custom-label">Mengapa Anda tertarik untuk menjadi relawan pada aktivitas ini?</label>
+          <textarea id="question1" name="desc1" class="unique-custom-textarea" required></textarea>
+        </div>
+        <div class="unique-custom-form-group">
+          <label for="question2" class="unique-custom-label">Mengapa Anda adalah relawan yang tepat untuk aktivitas ini?</label>
+          <textarea id="question2" name="desc2" class="unique-custom-textarea" required></textarea>
+        </div>
+        <input type="hidden" name="campaignId" value="<?php echo htmlspecialchars($campaignId); ?>">
+        <div class="unique-custom-submit-container">
+          <button type="submit" id="submitBtn" class="unique-custom-submit-btn" <?php if (!$userLoggedIn || $alreadyRegistered) echo 'disabled'; ?>>Kirim Formulir Pendaftaran</button>
+        </div>
+      </form>
     </div>
-</div>
+  </div>
 
-<!-- Modal Pendaftaran Sukses -->
-<div id="successModal" class="custom-modal">
-    <div class="custom-modal-content custom-modal-content-success">
-        <span class="custom-close">&times;</span>
-        <h2>Pendaftaran Sukses</h2>
-        <p>Formulir pendaftaran Anda telah berhasil dikirim.</p>
-        <button id="closeSuccessModalBtn" class="custom-submit-btn">Tutup</button>
+
+  <!-- Modal Pendaftaran Sukses -->
+  <div id="successModal" class="unique-custom-modal">
+    <div class="unique-custom-modal-content unique-custom-modal-content-success">
+      <span class="unique-custom-close">&times;</span>
+      <h2 class="unique-h2">Pendaftaran Sukses</h2>
+      <p>Formulir pendaftaran Anda telah berhasil dikirim.</p>
+      <button id="unique-closeSuccessModalBtn" class="unique-custom-submit-btn">Tutup</button>
     </div>
-</div>
+  </div>
+
+  <!-- Modal Kontak Organisasi -->
+  <div id="contactModal" class="unique-custom-modal">
+    <div class="unique-custom-modal-content unique-custom-modal-fit-content">
+      <div class="unique-custom-modal-header">
+        <span class="unique-custom-close">&times;</span>
+        <h2 class="unique-h2">Kontak Organisasi</h2>
+      </div>
+      <div class="unique-custom-modal-body">
+        <div class="unique-contact-content">
+          <img id="organizerLogo" src="assets/images/profiles/<?php echo htmlspecialchars($campaign['organizerLogo']); ?>" alt="Logo Penyelenggara" class="unique-custom-logo">
+          <div class="unique-contact-field">
+            <strong>Nama Organisasi:</strong>
+            <div class="unique-contact-value"><?php echo htmlspecialchars($campaign['organizerName']); ?></div>
+          </div>
+          <div class="unique-contact-field">
+            <strong>Email Organisasi:</strong>
+            <div class="unique-contact-value"><?php echo htmlspecialchars($campaign['organizerEmail']); ?></div>
+          </div>
+          <div class="unique-contact-field">
+            <strong>Telepon Organisasi:</strong>
+            <div class="unique-contact-value"><?php echo htmlspecialchars($campaign['organizerPhoneNum']); ?></div>
+          </div>
+          <div class="unique-contact-field">
+            <strong>Website Organisasi:</strong>
+            <div class="unique-contact-value"><a href="#" id="organizerWebsiteLink" style="color: #10439F !important;"><?php echo htmlspecialchars($campaign['organizerWebsite']); ?></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal user sudah mendaftar -->
+  <div id="alreadyRegisteredModal" class="unique-custom-modal unique-custom-modal-centered">
+    <div class="unique-custom-modal-content unique-custom-modal-centered-content">
+      
+      <span class="unique-custom-close">&times;</span>
+      <h2 class="unique-h2">Informasi</h2>
+      <p>Anda sudah terdaftar dalam kampanye ini.</p>
+      <button id="closeAlreadyRegisteredModalBtn" class="unique-custom-submit-btn">Tutup</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 
@@ -195,11 +240,11 @@ $conn->close();
     <div class="container">
       <div class="row mb-5">
         <div class="col-md-6 col-lg-4">
-          <h3 class= "heading-section">About Us</h3>
-          <p style="text-align: justify; font-size: 15px"  class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi 
-            masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang, 
+          <h3 class="heading-section">About Us</h3>
+          <p style="text-align: justify; font-size: 15px" class="lead">AksiKita didirikan untuk mengoordinasikan aksi relawan dalam menanggapi
+            masalah sosial, lingkungan, dan kemanusiaan. Kami berkembang pesat dengan membuka cabang,
             melatih relawan, dan mendapatkan pengakuan dari pemerintah dan media. </p>
-          <p style="text-align: justify; font-size: 15px" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat, 
+          <p style="text-align: justify; font-size: 15px" class="mb-5">Sekarang, fokus kami adalah pada proyek jangka panjang untuk pembangunan masyarakat,
             pendidikan, dan pembangunan berkelanjutan demi menciptakan dampak yang berkelanjutan.</p>
           <p><a href="#" class="link-underline">Read More</a></p>
         </div>
@@ -261,51 +306,56 @@ $conn->close();
     </div>
   </footer>
 
-        <!-- loader -->
-        <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
-          </svg></div>
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+    </svg></div>
 
 
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery-migrate-3.0.1.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.easing.1.3.js"></script>
-        <script src="assets/js/jquery.waypoints.min.js"></script>
-        <script src="assets/js/jquery.stellar.min.js"></script>
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="assets/js/bootstrap-datepicker.js"></script>
-        <script src="https://kit.fontawesome.com/e1612437fd.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/jquery.fancybox.min.js"></script>
-        <script src="assets/js/aos.js"></script>
-        <script src="assets/js/jquery.animateNumber.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-        <script src="assets/js/google-map.js"></script>
-        <script src="assets/js/main.js"></script>
-        <script>
-          function loginAsUser() {
-            // Redirect or perform actions for user login
-            window.location.href = "user/login.php";
-          }
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/jquery.easing.1.3.js"></script>
+  <script src="assets/js/jquery.waypoints.min.js"></script>
+  <script src="assets/js/jquery.stellar.min.js"></script>
+  <script src="assets/js/owl.carousel.min.js"></script>
+  <script src="assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="assets/js/bootstrap-datepicker.js"></script>
+  <script src="https://kit.fontawesome.com/e1612437fd.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/jquery.fancybox.min.js"></script>
+  <script src="assets/js/aos.js"></script>
+  <script src="assets/js/jquery.animateNumber.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="assets/js/google-map.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    function loginAsUser() {
+      // Redirect or perform actions for user login
+      window.location.href = "user/login.php";
+    }
 
-          function loginAsOrganizer() {
-            // Redirect or perform actions for organizer login
-            // Example: window.location.href = "organizer/login.php";
-            window.location.href = "organizer/login.php";
-            // alert("Fitur ini belum tersedia");
-          }
-        </script>
-        <script>
-          $(document).ready(function() {
-            $("#loginButton").click(function() {
-              $("#loginModal").modal();
-            });
-          });
-        </script>
+    function loginAsOrganizer() {
+      // Redirect or perform actions for organizer login
+      // Example: window.location.href = "organizer/login.php";
+      window.location.href = "organizer/login.php";
+      // alert("Fitur ini belum tersedia");
+    }
+  </script>
+  <script>
+    $(document).ready(function() {
+      $("#loginButton").click(function() {
+        $("#loginModal").modal();
+      });
+    });
+  </script>
+
+  <script>
+    var userLoggedIn = <?php echo json_encode($userLoggedIn); ?>;
+    var alreadyRegistered = <?php echo json_encode($alreadyRegistered); ?>;
+  </script>
 
 </body>
 

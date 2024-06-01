@@ -1,35 +1,78 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const modal = document.getElementById("modalForm");
     const successModal = document.getElementById("successModal");
+    const alreadyRegisteredModal = document.getElementById("alreadyRegisteredModal");
     const openModalBtn = document.getElementById("openModalBtn");
-    const closeModal = document.getElementsByClassName("custom-close");
+    const closeModalElements = document.getElementsByClassName("unique-custom-close");
     const submitBtn = document.getElementById("submitBtn");
     const volunteerForm = document.getElementById("volunteerForm");
-    const closeSuccessModalBtn = document.getElementById("closeSuccessModalBtn");
+    const closeSuccessModalBtn = document.getElementById("unique-closeSuccessModalBtn");
+    const closeAlreadyRegisteredModalBtn = document.getElementById("closeAlreadyRegisteredModalBtn");
 
-    openModalBtn.onclick = function() {
-        modal.style.display = "block";
+    const contactModal = document.getElementById("contactModal");
+    const contactOrganizerBtn = document.getElementById("contactOrganizerBtn");
+
+    function showModal(modalElement) {
+        modalElement.classList.remove('hide');
+        modalElement.classList.add('show');
+        modalElement.style.display = 'flex'; // Ensure the modal uses flexbox
     }
 
-    Array.from(closeModal).forEach(element => {
+    function hideModal(modalElement) {
+        modalElement.classList.remove('show');
+        modalElement.classList.add('hide');
+        setTimeout(() => {
+            modalElement.style.display = 'none';
+        }, 500);
+    }
+
+    openModalBtn.onclick = function() {
+        if (alreadyRegistered) {
+            showModal(alreadyRegisteredModal);
+        } else {
+            showModal(modal);
+        }
+    }
+
+    contactOrganizerBtn.onclick = function() {
+        showModal(contactModal);
+    }
+
+    Array.from(closeModalElements).forEach(element => {
         element.onclick = function() {
-            modal.style.display = "none";
-            successModal.style.display = "none";
+            hideModal(modal);
+            hideModal(successModal);
+            hideModal(contactModal);
+            hideModal(alreadyRegisteredModal);
         }
     });
 
     closeSuccessModalBtn.onclick = function() {
-        successModal.style.display = "none";
-        window.location.href = 'cariAksi.php';  // Ganti dengan halaman sebelumnya
+        hideModal(successModal);
+        setTimeout(() => {
+            window.location.href = 'cariAksi.php';  // Ganti dengan halaman sebelumnya
+        }, 500);
+    }
+
+    closeAlreadyRegisteredModalBtn.onclick = function() {
+        hideModal(alreadyRegisteredModal);
     }
 
     window.onclick = function(event) {
         if (event.target == modal) {
-            modal.style.display = "none";
+            hideModal(modal);
         }
         if (event.target == successModal) {
-            successModal.style.display = "none";
-            window.location.href = 'cariAksi.php';  // Ganti dengan halaman sebelumnya
+            hideModal(successModal);
+            setTimeout(() => {
+                window.location.href = 'cariAksi.php';  // Ganti dengan halaman sebelumnya
+            }, 500);
+        }
+        if (event.target == contactModal) {
+            hideModal(contactModal);
+        }
+        if (event.target == alreadyRegisteredModal) {
+            hideModal(alreadyRegisteredModal);
         }
     }
 
@@ -45,6 +88,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     volunteerForm.addEventListener('submit', function(event) {
+        if (!userLoggedIn) {
+            alert("Silakan login terlebih dahulu untuk mendaftar ke kampanye ini.");
+            window.location.href = 'login.php';
+            return; // Hentikan pengiriman formulir
+        }
+
         event.preventDefault();
         
         const formData = new FormData(volunteerForm);
@@ -56,12 +105,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
         .then(response => response.text())
         .then(data => {
             if (data.includes('New record created successfully')) {
-                modal.style.display = "none";
-                successModal.style.display = "block";
+                hideModal(modal);
+                showModal(successModal);
             } else {
                 alert('Error: ' + data);
             }
         })
         .catch(error => console.error('Error:', error));
     });
+
+    // Check user registration status and login status
+    if (!userLoggedIn || alreadyRegistered) {
+        submitBtn.disabled = true;
+    }
 });

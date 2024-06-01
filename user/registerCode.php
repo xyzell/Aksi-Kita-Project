@@ -114,11 +114,11 @@ if (isset($_POST['register_btn'])) {
     }
 
     if ($password !== $confirm_pass) {
-        $_SESSION['status'] = "Kata sandi tidak cocok!";
+        $_SESSION['statusDanger'] = "Kata sandi tidak cocok!";
         header('location: register.php');
         exit();
     } else if (strlen($password) < 6) {
-        $_SESSION['status'] = "Kata sandi minimal harus 6 karakter";
+        $_SESSION['statusDanger'] = "Kata sandi minimal harus 6 karakter";
         header('location: register.php');
         exit();
     }
@@ -130,16 +130,16 @@ if (isset($_POST['register_btn'])) {
         if (mysqli_query($conn, $query)) {
             sendemail_verify($email, $verify_token);
 
-            $_SESSION['status'] = "Registrasi berhasil! <br> Periksa alamat email anda untuk verifikasi!";
+            $_SESSION['statusSuccess'] = "Registrasi berhasil! <br> Periksa alamat email anda untuk verifikasi!";
             header("Location: register.php");
             exit();
         } else {
-            $_SESSION['status'] = "Registrasi gagal: " . mysqli_error($conn);
+            $_SESSION['statusDanger'] = "Registrasi gagal: " . mysqli_error($conn);
             header("Location: register.php");
             exit();
         }
     } else {
-        $_SESSION['status'] = "Error: Nilai gender tidak valid.";
+        $_SESSION['statusDanger'] = "Nilai gender tidak valid.";
         header("Location: register.php");
         exit();
     }
