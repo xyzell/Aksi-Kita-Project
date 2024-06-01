@@ -18,18 +18,17 @@ $user = $result->fetch_assoc();
 
 if (isset($_POST['uploadTask'])) {
   $campaignId = $_POST['campaignId'];
-  $userId = $_SESSION['userId']; // Asumsikan userId disimpan di session
+  $userId = $_SESSION['userId']; 
   $statusTask = 'pending';
 
-  // Menghandle upload file
+  
   $targetDir = "./assets/images/task/";
   $fileName = basename($_FILES["taskFile"]["name"]);
   $targetFilePath = $targetDir . $fileName;
   $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-  // Memeriksa apakah file sudah diupload atau belum
+
   if (move_uploaded_file($_FILES["taskFile"]["tmp_name"], $targetFilePath)) {
-    // Insert record ke database
     $sql = "INSERT INTO task (fileTask, statusTask, userId, campaignId) VALUES (?, ?, ?, ?)";
     if ($stmt = $conn->prepare($sql)) {
       $stmt->bind_param("ssii", $fileName, $statusTask, $userId, $campaignId);
@@ -97,7 +96,7 @@ if (isset($_POST['uploadTask'])) {
                 <i class="fa-solid fa-user fa-sm"></i>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item active" href="my-profile.php">My Profile</a></li>
+                <li><a class="dropdown-item active" href="my-profile.php">Dashboard</a></li>
                 <li><a class="dropdown-item" href="../user/logout.php">Logout</a></li>
               </ul>
             </li>

@@ -47,7 +47,7 @@ session_start();
                       <i class="fa-solid fa-user fa-sm"></i>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <li><a class="dropdown-item" href="myProfile.php">My Profile</a></li>
+                      <li><a class="dropdown-item" href="myProfile.php">Dashboard</a></li>
                       <li><a class="dropdown-item" href="../user/logout.php">Logout</a></li>
                     </ul>
                   </li>
