@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Edit Campaign</title>
+    <title>Edit Profile</title>
     <link rel="icon" href="../assets/images/title.png" type="image/x-icon" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="organizer-css/editprofilecss.css" />
 </head>
 
-<body class="pb-5 mb-2 bg-info bg-opacity-25">
+<body class="pb-5 mb-2 bg-warning bg-opacity-50">
     <div class="container bg-white shadow rounded-3 pt-2 pb-4 px-4 mt-5">
         <!-- Title and Back Button -->
         <table class="table border-bottom border-2 border-warning border-opacity-75">
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
                 </a>
             </th>
             <th scope="col">
-                <h1 class="pt-1 text-center fs-3">Edit Campaign</h1>
+                <h1 class="pt-1 text-center fs-3">Edit Profile</h1>
             </th>
             <th scope="col" class="col-1"></th>
         </table>

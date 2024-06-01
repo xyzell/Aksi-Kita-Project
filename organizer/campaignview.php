@@ -81,17 +81,24 @@ $check = 0;
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="pb-5 mb-2 bg-success bg-opacity-25">
-  <div class="container bg-white shadow rounded-3 pt-2 pb-4 px-4 mt-5">
-    <!-- Back Button -->
-    <div class="top-line border-bottom border-warning border-opacity-75 border-2 mb-3">
-      <a href="homepage.php">
-        <i class="fs-1 link-secondary opacity-75 fa fa-angle-left pt-2 px-2"></i>
-      </a>
-    </div>
+<body class="pb-5 mb-2 bg-warning bg-opacity-50">
+  <div class="container shadow rounded-3 pt-1 pb-0 px-4 mt-5 bg-dark">
+    <table class="table table-dark" style="border-bottom: hidden;">
+      <th scope="col" class="col-1">
+        <a href="homepage.php">
+          <i class="fs-1 text-white opacity-100 fa fa-angle-left"></i>
+        </a>
+      </th>
+      <th scope="col">
+        <h1 class="pt-1 text-center fs-3">Campaign Review</h1>
+      </th>
+      <th scope="col" class="col-1"></th>
+    </table>
+  </div>
 
+  <div class="container bg-white shadow rounded-3 pt-2 pb-4 px-4 mt-2">
     <div>
-      <h1 class="text-center fs-3 mb-4">
+      <h1 class="text-center fs-3 mb-4 mt-3">
         <?php echo $title ?>
       </h1>
       <div class="banner border border-2 border-secondary border-opacity-25 rounded-3" id="banner-container">
