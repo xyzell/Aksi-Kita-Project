@@ -12,15 +12,15 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 function getUserData($email) {
-    // Buat koneksi ke database (sesuaikan dengan konfigurasi database Anda)
-    global $conn; // Asumsikan koneksi database ada di $conn yang diinisialisasi di koneksi.php
+    
+    global $conn;
 
-    // Periksa koneksi
+    
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Query untuk mendapatkan data user berdasarkan email
+    
     $sql = "SELECT * FROM organizer WHERE organizerEmail = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
