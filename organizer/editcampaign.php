@@ -93,26 +93,28 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="organizer-css/editcampaigncss.css" />
 </head>
 
-<body class="pb-5 mb-2 bg-info bg-opacity-25">
-    <div class="container bg-white shadow rounded-3 pt-2 pb-4 px-4 mt-5">
-        <!-- Title and Back Button -->
-        <table class="table border-bottom border-2 border-warning border-opacity-75">
+<body class="pb-5 mb-2 bg-warning bg-opacity-50">
+    <div class="container shadow rounded-3 pt-1 pb-0 px-4 mt-5 bg-dark">
+        <table class="table table-dark" style="border-bottom: hidden;">
             <th scope="col" class="col-1">
                 <a href="campaignview.php?campaign=<?php echo $campaign ?>">
-                    <i class="fs-1 link-secondary opacity-75 fa fa-angle-left"></i>
+                    <i class="fs-1 text-white opacity-100 fa fa-angle-left"></i>
                 </a>
             </th>
             <th scope="col">
-                <h1 class="pt-1 text-center fs-3">Edit Campaign</h1>
+                <h1 class="pt-1 text-center fs-3">Modify Campaign</h1>
             </th>
             <th scope="col" class="col-1"></th>
         </table>
+    </div>
+
+    <div class="container bg-white shadow rounded-3 pt-2 pb-4 px-4 mt-2">
 
         <!-- Form -->
         <div>
             <form action="" method="post" enctype="multipart/form-data">
                 <!-- Image Banner -->
-                <p class="mb-2 fw-medium text-secondary">Campaign Banner</p>
+                <p class="mb-2 fw-medium text-secondary mt-2">Campaign Banner</p>
                 <label for="input-image" id="drop-area" class="w-100">
                     <input type="file" accept="image/*" id="input-image" name="image-data" hidden oninvalid="noImage()" />
                     <div id="image-view" id="drop-area" class="image-box input-cursor container rounded-3 d-flex justify-content-center align-items-center">

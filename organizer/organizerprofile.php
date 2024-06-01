@@ -66,14 +66,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="background-color">
+<body class="bg-warning bg-opacity-75">
     <div class="d-flex justify-content-center align-items-center height-100">
         <div class="row">
-            <div class="container bg-white shadow rounded-3 rounded-3 mb-3 border border-1 border-warning">
-                <table class="table mb-0" style="border-bottom: hidden;">
+            <div class="container bg-dark shadow rounded-3 rounded-3 mb-3">
+                <table class="table mb-0 table-dark" style="border-bottom: hidden;">
                     <th scope="col" class="col-1">
                         <a href="homepage.php">
-                            <i class="fs-1 link-secondary opacity-75 fa fa-angle-left"></i>
+                            <i class="fs-1 text-white fa fa-angle-left"></i>
                         </a>
                     </th>
                     <th scope="col">
@@ -85,11 +85,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="container">
                 <div class="row">
-                    <div class="col-2 profil-card-size bg-white shadow rounded-3 p-3 border border-1 border-success text-center">
+                    <div class="col-2 profil-card-size bg-white shadow rounded-3 border-0 p-3 text-center">
                         <!-- profile change -->
                         <img class="rounded-circle image-size" id="image-view" src="../assets/images/profiles/<?php echo $logo ?>" alt="">
                         <form action="" name=" profile-change" id="profile-change" method="POST" enctype="multipart/form-data">
-                            <label for="input-image" class="mt-4 change-profile-button rounded-pill bg-info bg-opacity-75 border-0 text-white fw-medium mb-0" style="cursor: pointer; padding-top: 3px;">
+                            <label for="input-image" class="mt-4 change-profile-button rounded-pill bg-secondary bg-opacity-75 border-0 text-white fw-medium mb-0" style="cursor: pointer; padding-top: 3px;">
                                 Change Photo
                                 <input type="file" accept="image/*" id="input-image" name="input-image" hidden />
                             </label>
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-                    <div class="col info-card-size bg-white shadow rounded-3 ms-3 ps-3 py-2 border border-1 border-info">
+                    <div class="col info-card-size bg-white shadow rounded-3 ms-3 ps-3 py-2">
                         <p class="fw-medium fs-5 mt-1">Organizer Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="fw-normal fs-6"><?php echo $name ?></span></p>
                         <hr>
                         <p class="fw-medium fs-5 mt-0" style="line-height: 25px;">Organizer Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="fw-normal fs-6"><?php echo $kind ?></span></p>
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <div class="col p-0 border" style="width: 100px;">
-                <div class="container bg-white shadow rounded-3 ps-3 py-2 border border-1 border-danger mt-3 m-0" style="max-height: 300px;">
+                <div class="container bg-white shadow rounded-3 ps-3 py-2 mt-3 m-0" style="max-height: 300px;">
                     <p class="fw-medium fs-4" style="margin-bottom: -5px;">Description</p>
                     <hr>
                     <div class="container overflow-y-scroll ps-0" style="max-height: 200px;">
@@ -122,16 +122,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
 
-            <div class="container mt-3">
-                <div class="row">
-                    <div class="col ps-0">
+            <div class="container mt-3 bg-white shadow rounded-3 rounded-3 mb-3 py-3">
+                <div class=" row">
+                    <div class="col">
                         <a href="editprofile.php">
-                            <button class="button-css w-100 rounded-pill bg-warning fw-bold text-white border-0 pb-1" style="margin-left: 0px !important;">
+                            <button class="button-css w-100 rounded-pill bg-info fw-bold text-white border-0 pb-1" style="margin-left: 0px !important;">
                                 Edit
                             </button>
                         </a>
                     </div>
-                    <div class="col pe-0">
+                    <div class="col">
                         <form action="logout.php" method="POST" name="logout" id="logout">
                             <button type="button" id="logout-button" name="logout-button" class="button-css w-100 rounded-pill bg-danger fw-bold text-white border-0 pb-1 delete-button" onclick="logoutClicked()">
                                 Logout
