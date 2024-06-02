@@ -125,7 +125,7 @@ session_start();
                 <p class="block-38-subheading">Developer</p>
               </div>
               <div class="block-38-body">
-                <p>Penis ( Pede dan narsis) </p>
+                <p>Hi, Im Abil </p>
               </div>
             </div>
           </div>
@@ -135,11 +135,11 @@ session_start();
             <div class="block-38-img">
               <div class="block-38-header">
                 <img src="assets/images/sambo.jpg" alt="Image placeholder">
-                <h3 class="block-38-heading">Jennifer Greive</h3>
-                <p class="block-38-subheading">President</p>
+                <h3 class="block-38-heading">Fero Refadha Zaidan</h3>
+                <p class="block-38-subheading">Developer</p>
               </div>
               <div class="block-38-body">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+                <p>Hi, Nice to meet you ! </p>
               </div>
             </div>
           </div>
@@ -148,12 +148,12 @@ session_start();
           <div class="block-38 text-center">
             <div class="block-38-img">
               <div class="block-38-header">
-                <img src="../assets/images/person_3.jpg" alt="Image placeholder">
-                <h3 class="block-38-heading">Patrick Marx</h3>
-                <p class="block-38-subheading">Marketer</p>
+                <img src="assets/images/Nicholas.jpg" alt="Image placeholder">
+                <h3 class="block-38-heading">Nicholas Simanjuntak</h3>
+                <p class="block-38-subheading">QA</p>
               </div>
               <div class="block-38-body">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+                <p>Hi, Nice to meet you all ! </p>
               </div>
             </div>
           </div>
@@ -162,12 +162,12 @@ session_start();
           <div class="block-38 text-center">
             <div class="block-38-img">
               <div class="block-38-header">
-                <img src="../assets/images/person_4.jpg" alt="Image placeholder">
-                <h3 class="block-38-heading">Mike Coolbert</h3>
-                <p class="block-38-subheading">Partner</p>
+                <img src="assets/images/Silhi.jpg" alt="Image placeholder">
+                <h3 class="block-38-heading">Silhi</h3>
+                <p class="block-38-subheading">Analysis</p>
               </div>
               <div class="block-38-body">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+                <p>Hi, Nice to meet you ! </p>
               </div>
             </div>
           </div>

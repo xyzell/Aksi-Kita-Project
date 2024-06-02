@@ -204,7 +204,7 @@ session_start();
             
             
             <div class="card fundraise-item">
-              <a href="#"><img class="card-img-top" src="assets/images/darling.png" alt="Image placeholder"></a>
+              <a href="#"><img class="card-img-top" src="assets/images/img_4.jpg" alt="Image placeholder"></a>
               <div class="card-body">
                 <h3 class="card-title"><a href="#">Butuh Bantuan Untuk Membantu Dapur Keliling</a></h3>
                 <p class="card-text">Kami menyediakan layanan dapur keliling yang akan memasak dan mendistribusikan makanan bergizi kepada anak-anak jalanan di berbagai lokasi.</p>
@@ -279,7 +279,7 @@ session_start();
           <div class="person-donate text-center">
             <img src="assets/images/person_1.jpg" alt="Image placeholder" class="img-fluid">
             <div class="donate-info">
-              <h2>Nicos Ganteng</h2>
+              <h2>Peter Parker</h2>
               <span class="time d-block mb-3">Menyumbang 3 jam yang lalu</span>
               <p>Donated <span class="text-success">Rp.1,500,000,00</span> <br> <em>for</em> <a href="#" class="link-underline fundraise-item">Butuh bantuan untuk program air bersih</a></p>
             </div>
@@ -290,7 +290,7 @@ session_start();
           <div class="person-donate text-center">
             <img src="assets/images/person_2.jpg" alt="Image placeholder" class="img-fluid">
             <div class="donate-info">
-              <h2>Bilek Ketumbar</h2>
+              <h2>Esmeralda Sabrina</h2>
               <span class="time d-block mb-3">Menyumbang 1 jam yang lalu</span>
               <p>Donated <span class="text-success">Rp.5,000,000,00</span> <br> <em>for</em> <a href="#" class="link-underline fundraise-item">Butuh Bantuan Untuk Membantu Dapur Keliling</a></p>
             </div>
@@ -301,7 +301,7 @@ session_start();
           <div class="person-donate text-center">
             <img src="assets/images/person_3.jpg" alt="Image placeholder" class="img-fluid">
             <div class="donate-info">
-              <h2>Fer D Sambo</h2>
+              <h2>Drake Smith</h2>
               <span class="time d-block mb-3">Donated 4 hours ago</span>
               <p>Donated <span class="text-success">Rp.2,000,000,00</span> <br> <em>for</em> <a href="#" class="link-underline fundraise-item">Penggalangan dana untuk anak anak jalanan</a></p>
             </div>
@@ -312,7 +312,7 @@ session_start();
           <div class="person-donate text-center">
             <img src="assets/images/person_4.jpg" alt="Image placeholder" class="img-fluid">
             <div class="donate-info">
-              <h2>Silhi Rendang</h2>
+              <h2>Ferguson</h2>
               <span class="time d-block mb-3">Menyumbang 1 jam yang lalu</span>
               <p>Donated <span class="text-success">Rp.10,000,000,00</span> <br> <em>for</em> <a href="#" class="link-underline fundraise-item">Bantuan Pendidikan untuk Anak Disabilitas</a></p>
             </div>
