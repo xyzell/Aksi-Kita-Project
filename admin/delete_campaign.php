@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
     exit();
 }
 
-$servername = "localhost"; 
+$servername = "127.0.0.1"; 
 $username = "root"; 
 $password = ""; 
 $dbname = "aksiKita"; 

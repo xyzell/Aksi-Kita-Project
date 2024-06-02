@@ -54,7 +54,7 @@ if (isset($_POST['login_btn'])) {
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-    <link rel="icon" href="../img/icon/store.png" type="image/png">
+    <link rel="icon" href="../assets/images/title.png" type="image/x-icon" />
 
 </head>
 
