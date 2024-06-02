@@ -36,7 +36,7 @@ $campaign = $stmt_campaign->get_result();
             <h6 class="m-0 font-weight-bold text-primary">Campaign</h6>
         </div>
         <div class="card-body">
-            <?php 
+            <?php
             $messages = [
                 'success_update_message' => 'info',
                 'fail_update_message' => 'danger',
@@ -53,9 +53,9 @@ $campaign = $stmt_campaign->get_result();
                     <div class="alert alert-<?php echo $alertType; ?>" role="alert">
                         <?php echo htmlspecialchars($_GET[$message]); ?>
                     </div>
-            <?php 
+            <?php
                 }
-            } 
+            }
             ?>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -83,9 +83,9 @@ $campaign = $stmt_campaign->get_result();
                                     <a href="edit_campaign.php?campaignId=<?php echo htmlspecialchars($campaigns['campaignId']); ?>" class="btn btn-info btn-circle">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="delete_campaign.php?campaignId=<?php echo htmlspecialchars($campaigns['campaignId']); ?>" class="btn btn-danger btn-circle">
+                                    <button type="button" class="btn btn-danger btn-circle" onclick="hapusCampaign('<?php echo htmlspecialchars($campaigns['campaignId']); ?>')">
                                         <i class="fas fa-trash-alt"></i>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -97,3 +97,41 @@ $campaign = $stmt_campaign->get_result();
 </div>
 <!-- End of Main Content -->
 <?php include('layouts/footer.php'); ?>
+
+<!-- Include SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function hapusCampaign(campaignId) {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "Do you really sure want to delete this campaign? This process cannot be undone",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes",
+    focusCancel: true,
+    customClass: {
+      title: 'title-modal',
+      text: 'text-modal',
+      cancelButton: 'btn-modal btn-cancel',
+      confirmButton: 'btn-modal btn-confirm'
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title:  "Campaign Sucessfully Deleted!",
+        text: "Your campaign has been deleted.",
+        icon: "success",
+        confirmButtonText: "Yes",
+        customClass: {
+          title: 'title-modal',
+          text: 'text-modal',
+          confirmButton: 'btn-modal btn-confirm'
+        }
+      }).then(() => {
+        window.location.href = `delete_campaign.php?campaignId=${campaignId}`;
+      });
+    }
+  });
+}
+</script>

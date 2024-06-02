@@ -4,9 +4,8 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon">
-            <i class="fas fa-toolbox"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">ADMIN</div>
+        <img src="/assets/images/logo/whiteLogo.png" alt="" width="126" height="45">
+        </div>        
     </a>
 
     <!-- Divider -->
