@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="bg-warning bg-opacity-75">
+<body class="bg-warning bg-opacity-50">
     <div class="d-flex justify-content-center align-items-center height-100">
         <div class="row">
             <div class="container bg-dark shadow rounded-3 rounded-3 mb-3">

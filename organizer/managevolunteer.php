@@ -12,6 +12,24 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['userStatus'] != 'organizer') {
 
 $campaign = $_REQUEST['campaign'];
 
+$dataPerPage = 10;
+$totalData = mysqli_query($conn, "select * from users JOIN joinCampaign ON users.userId = joincampaign.userId WHERE campaignId = $campaign AND status = 'volunteer'");
+$totalData = mysqli_num_rows($totalData);
+$totalPage = ceil($totalData / $dataPerPage);
+
+$querySelectData = "SELECT 
+joinId,
+userName,
+userEmail,
+userGender,
+userAddress,
+desc1,
+desc2
+FROM users JOIN joinCampaign ON users.userId = joincampaign.userId
+WHERE campaignId = $campaign AND status = 'volunteer' LIMIT 0, $dataPerPage";
+
+$result = mysqli_query($conn, $querySelectData);
+
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +69,7 @@ $campaign = $_REQUEST['campaign'];
             </div>
             <div class=" d-flex">
                 <p class="pb-0" style="padding-top: 2px;"><strong>Filter : </strong></p>
+                <input type="button" value="Activity Uploaded" class="activity-filter ms-2 px-2 pt-0 rounded-pill border-2 fw-medium" style="height: 30px;">
                 <input type="button" value="With Cerificate" class="certificate-filter ms-2 px-2 pt-0 rounded-pill border-2 fw-medium" style="height: 30px;">
             </div>
         </div>
@@ -62,25 +81,32 @@ $campaign = $_REQUEST['campaign'];
                         <th scope="col" class="col-1 text-center bg-warning bg-opacity-10">No.</th>
                         <th scope="col" class="col-4 bg-warning bg-opacity-10">Name</th>
                         <th scope="col" class="col-4 bg-warning bg-opacity-10">Email</th>
-                        <th scope="col" class="col-2 text-center bg-warning bg-opacity-10"></th>
+                        <th scope="col" class="col-3 text-center bg-warning bg-opacity-10"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr scope="row">
-                        <th scope="col" class="col-1 fw-normal text-center">1</th>
-                        <th scope="col" class="col-4 fw-normal">asdasd</th>
-                        <th scope="col" class="col-3 fw-normal">asdad</th>
-                        <th scope="col" class="col-1 text-end fw-normal">
-                            <button class="rounded-2 bg-info text-white border-0 pb-1 px-3">Certificate</button>
-                            <button style="height: 29px; width: 29px; padding-bottom: 2px;" class="border-0 bg-primary bg-opacity-75 px-2 rounded-2 text-white fa fa-ellipsis-h"></button>
-                        </th>
-                    </tr>
+                    <?php
+                    $num = 0;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $num++;
+                    ?>
+                        <tr scope="row">
+                            <th scope="col" class="col-1 fw-normal text-center"><?= $num ?></th>
+                            <th scope="col" class="col-4 fw-normal"><?= $row['userName'] ?></th>
+                            <th scope="col" class="col-3 fw-normal"><?= $row['userEmail'] ?></th>
+                            <th scope="col" class="col-1 text-end fw-normal">
+                                <button class="rounded-2 bg-info text-white border-0 pb-1 px-3">Activity</button>
+                                <button class="rounded-2 bg-info text-white border-0 pb-1 px-3">Certificate</button>
+                                <button style="height: 29px; width: 29px; padding-bottom: 2px;" class="border-0 bg-primary bg-opacity-75 px-2 rounded-2 text-white fa fa-ellipsis-h"></button>
+                            </th>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
             <div class="d-flex justify-content-center">
-                <i class="fa fa-chevron-left" style="padding-top: 6px;"></i>
-                <p class="fw-bold mx-4 text-secondary">1</p>
-                <i class="fa fa-chevron-right" style="padding-top: 6px;"></i>
+                <i class="fa fa-chevron-left" style="padding-top: 6px; cursor: pointer;"></i>
+                <p class="fw-bold mx-4 text-secondary" style="cursor: default;">1</p>
+                <i class="fa fa-chevron-right" style="padding-top: 6px; cursor: pointer;"></i>
             </div>
         </div>
     </div>
