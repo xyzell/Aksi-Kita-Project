@@ -202,7 +202,7 @@ if (isset($_POST['submit'])) {
 
                     <!-- Button -->
                     <div class="d-flex justify-content-center">
-                        <input type="submit" value="Submit" name="submit" id="submit" class="w-100 rounded-pill border-0 bg-warning bg-opacity-75 h-button mt-2 fw-bolder fs-6 text-white" />
+                        <input type="submit" value="Edit" name="submit" id="submit" class="w-100 rounded-pill border-0 bg-warning bg-opacity-75 h-button mt-2 fw-bolder fs-6 text-white" />
                     </div>
                 </div>
             </form>
