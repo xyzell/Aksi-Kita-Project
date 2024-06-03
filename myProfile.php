@@ -18,10 +18,10 @@ $user = $result->fetch_assoc();
 
 if (isset($_POST['uploadTask'])) {
   $campaignId = $_POST['campaignId'];
-  $userId = $_SESSION['userId']; 
+  $userId = $_SESSION['userId'];
   $statusTask = 'pending';
 
-  
+
   $targetDir = "./assets/images/task/";
   $fileName = basename($_FILES["taskFile"]["name"]);
   $targetFilePath = $targetDir . $fileName;
@@ -35,7 +35,7 @@ if (isset($_POST['uploadTask'])) {
       if ($stmt->execute()) {
         $_SESSION['status'] = "File berhasil diupload!";
       } else {
-        $_SESSION['statusDanger'] = "File gagal diupload!";      
+        $_SESSION['statusDanger'] = "File gagal diupload!";
       }
       $stmt->close();
     }
@@ -112,40 +112,38 @@ if (isset($_POST['uploadTask'])) {
   <div class="site-section bg-light">
     <div class="container">
       <div class="profile-edit-container">
-      <div class="alert">
-            <?php
-                if(isset($_SESSION['status'])) 
-                {
-                  ?>
-                  <div class="alert alert-success text-center">
-                      <h5><?= $_SESSION['status'];?></h5>
-                  </div>
-                  <?php
-                  unset($_SESSION['status']);
-                }
-            ?>
-            <?php
-            if (isset($_SESSION['statusDanger'])) {
-            ?>
-              <div class="alert alert-danger text-center">
-                <h5><?= $_SESSION['statusDanger']; ?></h5>
-              </div>
-            <?php
-              unset($_SESSION['statusDanger']);
-            }
-            ?>
-            <?php
-                if(isset($_SESSION['statusSuccess'])) 
-                {
-                  ?>
-                  <div class="alert alert-success text-center">
-                      <h5><?= $_SESSION['statusSuccess'];?></h5>
-                  </div>
-                  <?php
-                  unset($_SESSION['statusSuccess']);
-                }
-            ?>
-          </div>
+        <div class="alert">
+          <?php
+          if (isset($_SESSION['status'])) {
+          ?>
+            <div class="alert alert-success text-center">
+              <h5><?= $_SESSION['status']; ?></h5>
+            </div>
+          <?php
+            unset($_SESSION['status']);
+          }
+          ?>
+          <?php
+          if (isset($_SESSION['statusDanger'])) {
+          ?>
+            <div class="alert alert-danger text-center">
+              <h5><?= $_SESSION['statusDanger']; ?></h5>
+            </div>
+          <?php
+            unset($_SESSION['statusDanger']);
+          }
+          ?>
+          <?php
+          if (isset($_SESSION['statusSuccess'])) {
+          ?>
+            <div class="alert alert-success text-center">
+              <h5><?= $_SESSION['statusSuccess']; ?></h5>
+            </div>
+          <?php
+            unset($_SESSION['statusSuccess']);
+          }
+          ?>
+        </div>
         <ul class="nav-tabs">
           <li data-tab="edit-profil" class="active">Profil Saya</li>
           <li data-tab="aktivitas-saya">Aktivitas</li>
@@ -195,9 +193,9 @@ if (isset($_POST['uploadTask'])) {
           <?php
           $userId = $_SESSION['userId'];
           $sql = "SELECT c.campaignId, c.banner, c.title, c.location
-            FROM campaign c
-            JOIN joinCampaign jc ON c.campaignId = jc.campaignId
-            WHERE jc.userId = ?";
+    FROM campaign c
+    JOIN joinCampaign jc ON c.campaignId = jc.campaignId
+    WHERE jc.userId = ?";
 
           if ($stmt = $conn->prepare($sql)) {
             $stmt->bind_param('i', $userId);
@@ -206,18 +204,32 @@ if (isset($_POST['uploadTask'])) {
 
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
+                // Check if feedback exists
+                $campaignId = $row["campaignId"];
+                $feedbackSql = "SELECT feedbackId FROM userFeedback WHERE userId = ? AND campaignId = ?";
+                if ($feedbackStmt = $conn->prepare($feedbackSql)) {
+                  $feedbackStmt->bind_param('ii', $userId, $campaignId);
+                  $feedbackStmt->execute();
+                  $feedbackResult = $feedbackStmt->get_result();
+                  $feedbackExists = $feedbackResult->num_rows > 0;
+                  $feedbackStmt->close();
+                }
+
                 echo '
-                    <div class="my-activity-card">
-                        <img src="assets/images/campaign/' . $row["banner"] . '" alt="Campaign Banner" class="my-activity-banner">
-                        <div class="my-activity-info">
-                            <h2 class="my-activity-title">' . $row["title"] . '</h2>
-                            <p class="my-activity-location">' . $row["location"] . '</p>
-                        </div>
-                        <div class="my-activity-actions">
-                            <button class="my-activity-upload-task-btn" onclick="showUploadModal(' . $row["campaignId"] . ')">Upload Bukti Aktivitas</button>
-                            <button class="my-activity-publish-cert-btn" disabled>Terbitkan Sertifikat</button>
-                        </div>
-                    </div>';
+            <div class="my-activity-card">
+                <img src="assets/images/campaign/' . $row["banner"] . '" alt="Campaign Banner" class="my-activity-banner">
+                <div class="my-activity-info">
+                    <h2 class="my-activity-title">' . $row["title"] . '</h2>
+                    <p class="my-activity-location">' . $row["location"] . '</p>
+                </div>
+                <div class="my-activity-actions">
+                    <button class="my-activity-upload-task-btn" onclick="showUploadModal(' . $campaignId . ')">Upload Bukti Aktivitas</button>
+                    <form action="claimCertificate.php" method="post">
+                      <input type="hidden" name="campaignId" value="' . $campaignId . '">
+                      <button class="my-activity-publish-cert-btn" ' . ($feedbackExists ? '' : 'disabled') . ' type="submit">Claim Certificate</button>
+                    </form>
+                </div>
+            </div>';
               }
             } else {
               echo "0 results";
@@ -228,6 +240,7 @@ if (isset($_POST['uploadTask'])) {
           }
           ?>
         </div>
+
       </div>
     </div>
   </div>
