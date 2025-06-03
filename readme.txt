@@ -28,9 +28,9 @@ Database: MySQL
 
 ## Anggota Tim
 
-| NIM    | Nama                     | Universitas       | 
-|---------------|--------------------------|---------------------|
-| 162022004   | Silhi      | Institut Teknologi Nasional Bandung    |
-| 162022008   | M Nur Dzikrie Alief Billah       | Institut Teknologi Nasional Bandung    | 
-| 162022011   | Fero Refadha Zaidan     | Institut Teknologi Nasional Bandung    |
-| 162022020   | Nicholas G.I Simanjuntak        | Institut Teknologi Nasional Bandung     |
+| NIM | Nama | Universitas | 
+|---|---|---|
+| 162022004 | Silhi | Institut Teknologi Nasional Bandung |
+| 162022008 | M Nur Dzikrie Alief Billah | Institut Teknologi Nasional Bandung | 
+| 162022011 | Fero Refadha Zaidan | Institut Teknologi Nasional Bandung |
+| 162022020 | Nicholas G.I Simanjuntak | Institut Teknologi Nasional Bandung |
